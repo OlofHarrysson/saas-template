@@ -2,17 +2,16 @@
 A minimal template for modern Python projects.
 
 ## How to use this template to create a new project repository
-1. Select this template under the "Repository template" dropdown when you [create a repository in Github](https://github.com/organizations/modulai/repositories/new).
+1. Select this template under the "Repository template" dropdown when you create a repository in Github UI.
 2. Clone the repository and open this README.md in your editor to continue from there.
-2. Go over the files in the created repository and understand what each tool/file does.
-3. Update this readme by replacing the "MY_AWESOME_PROJECT" name below and briefly describe the project.
-4. Update the project name in [src/your_project_name](src/your_project_name) and inside of [pyproject.toml](pyproject.toml)
-5. If you want to use mypy for typing, uncomment mypy related configs in [pyproject.toml](pyproject.toml) and [.pre-commit-config.yaml](.pre-commit-config.yaml)
-6. (Optional) Create a project tracker/planning using [the template](https://github.com/orgs/modulai/projects/29)
+3. Go over the files in the created repository and understand what each tool/file does.
+4. Update this readme by replacing the "MY_AWESOME_PROJECT" name below and briefly describe the project.
+5. Update the project name in [src/your_project_name](src/your_project_name) and inside of [pyproject.toml](pyproject.toml)
+6. If you want to use mypy for typing, uncomment mypy related configs in [pyproject.toml](pyproject.toml) and [.pre-commit-config.yaml](.pre-commit-config.yaml)
 7. Finally, remove any information from this readme that is no longer required.
 
 ## How to contribute to this template
-1. Create a descriptive issue in this project. (Or write in Slack)
+1. Create a descriptive issue in this project.
 
 # MY_AWESOME_PROJECT
 ## Get started
