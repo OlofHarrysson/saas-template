@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "your_project_name"              # Change this to be the same as your folder under src/ is named
+name = "your_project_name"                              # Change this to be the same as your folder under src/ is named
 version = "0.1.0"
 description = "TODO"
-authors = ["Modulai <info@modulai.io>"]
+authors = ["Olof Harrysson <harrysson.olof@gmail.com>"]
 license = "Proprietary"
 readme = "README.md"
 
