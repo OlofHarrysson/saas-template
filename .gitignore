@@ -1,4 +1,6 @@
 # Project specific gitignores
+untracked/*
+!untracked/.gitkeep
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
