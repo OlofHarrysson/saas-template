@@ -28,7 +28,7 @@ curl -sSL https://install.python-poetry.org | python3 -
 Most of the requirements are installed with the following command
 ```bash
 cd path/to/git-repo
-poetry env use 3.10 # Tells Poetry which Python version to use
+poetry env use 3.12 # Tells Poetry which Python version to use
 make install_dependencies
 ```
 
