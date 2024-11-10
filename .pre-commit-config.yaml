@@ -9,6 +9,10 @@ repos:
   - id: check-added-large-files
   - id: debug-statements
     language_version: python3
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v3.19.0
+    hooks:
+    -   id: pyupgrade
 - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
   rev: 0.2.3
   hooks:
