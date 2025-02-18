@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import PlausibleProvider from "next-plausible";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/app/site-config";
 import { getSEOTags } from "@/lib/seo";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";

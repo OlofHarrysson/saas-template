@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/app/site-config";
 
 // Avoid caching this route
 export const dynamic = "force-dynamic";

@@ -6,7 +6,7 @@
 
 ## Setup
 
-- Fill in the values in[src/config/site.ts](src/config/site.ts)
+- Fill in the values in[src/app/site-config.ts](src/app/site-config.ts)
 - Image and favicon
 - Vercel
 - Plausible

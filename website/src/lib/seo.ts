@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/app/site-config";
 
 // TODO: Add image and twitter card?
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/client";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/app/site-config";
 
 export function useAuth() {
   const router = useRouter();
