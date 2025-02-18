@@ -2,13 +2,8 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function updateSession(request: NextRequest) {
-  // Add the current path to the headers for the server components that the middleware is running on
-  // const headers = new Headers(request.headers);
-  // headers.set("x-current-path", request.nextUrl.pathname);
-
   let supabaseResponse = NextResponse.next({
     request,
-    // headers, // Note: This overwrites the headers which is bad!
   });
 
   const supabase = createServerClient(
