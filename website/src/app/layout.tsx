@@ -1,12 +1,18 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-
-import "./globals.css";
 import PlausibleProvider from "next-plausible";
 import { siteConfig } from "@/config/site";
 import { getSEOTags } from "@/lib/seo";
+import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 const font = Inter({ subsets: ["latin"] });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
 
 // Uses default values from siteConfig
 export const metadata: Metadata = getSEOTags();
@@ -26,7 +32,23 @@ export default function RootLayout({
           enabled={process.env.NODE_ENV === "production"}
         />
       </head>
-      <body className={`${font.className} antialiased`}>{children}</body>
+      <body className={`${font.className} antialiased`}>
+        {children}
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            className: "!rounded-md !p-4 !shadow-md",
+            success: {
+              className: "toast-success",
+              duration: 4000,
+            },
+            error: {
+              className: "toast-error",
+              duration: 4000,
+            },
+          }}
+        />
+      </body>
     </html>
   );
 }

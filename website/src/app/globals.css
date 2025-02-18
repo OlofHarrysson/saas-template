@@ -32,11 +32,33 @@
 
     /* Border radius */
     --radius: 0.5rem;
+
+    /* Toast colors */
+    --toast-success: #10b981;
+    --toast-error: var(--destructive);
+    --toast-background: var(--background);
+    --toast-border: var(--border);
+    --toast-text: var(--foreground);
   }
 }
 
 @layer base {
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Add toast styles */
+@layer components {
+  .toast-success {
+    background-color: var(--toast-background) !important;
+    border: 1px solid var(--toast-success) !important;
+    color: var(--toast-text) !important;
+  }
+
+  .toast-error {
+    background-color: var(--toast-background) !important;
+    border: 1px solid var(--toast-error) !important;
+    color: var(--toast-text) !important;
   }
 }
