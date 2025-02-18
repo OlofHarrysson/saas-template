@@ -4,7 +4,7 @@ import { Menu } from "lucide-react";
 
 const navigationLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+  { href: "/p/dashboard", label: "Dashboard" },
 ] as const;
 
 const MobileNav = () => {
