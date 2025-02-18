@@ -41,6 +41,7 @@ export function getSEOTags({
         openGraph?.description || description || siteConfig.description,
       siteName: siteConfig.name,
       url: baseUrl,
+      locale: "en_US",
       type: "website",
     },
 
