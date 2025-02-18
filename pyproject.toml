@@ -1,40 +1,23 @@
-[tool.poetry]
+[project]
 name = "your_project_name"                              # Change this to be the same as your folder under src/ is named
 version = "0.1.0"
 description = "TODO"
-authors = ["Olof Harrysson <harrysson.olof@gmail.com>"]
-license = "Proprietary"
+authors = [
+    { name = "Olof Harrysson", email = "harrysson.olof@gmail.com" }
+]
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.12"
-jsonargparse = "^4.34.0"
-python-dotenv = "^1.0.1"
-
-[tool.poetry.group.dev.dependencies]
-# Additional dependencies that developers need
-black = "^24.10.0"
-isort = "^5.13.2"
-pre-commit = "^4.0.1"
-# mypy = "^1.13.0"
+requires-python = ">=3.12"
+dependencies = [
+    "jsonargparse>=4.37.0",
+    "python-dotenv>=1.0.1",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.black]
-line-length = 100
-
-[tool.isort]
-profile = "black"
-
-# [tool.mypy]
-# python-version = "3.12"
-# check-untyped-defs = true
-# disallow-any-generics = true
-# disallow-incomplete-defs = true
-# disallow-untyped-defs = true
-# no-implicit-optional = true
-# warn-redundant-casts = true
-# warn-unused-ignores = true
-# show-error-codes = true
+[tool.ruff.lint]
+extend-select = [
+  "UP",  # pyupgrade
+  # "I",  # isort
+]

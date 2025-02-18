@@ -15,13 +15,10 @@ A minimal template for modern Python projects.
 
 # MY_AWESOME_PROJECT
 ## Get started
-### Install Python and Poetry
-Install the Python version specified in [pyproject.toml](pyproject.toml) to your system.
-
-Install Poetry [(Instructions on their website)](https://python-poetry.org/) or run the command
+### Install UV
 
 ```bash
-curl -sSL https://install.python-poetry.org | python3 -
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 ### Install Requirements
