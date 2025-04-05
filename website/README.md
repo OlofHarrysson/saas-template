@@ -1,10 +1,15 @@
 # Website
 
-## TODO
+## TODOs
 
 - Fix the SEO tags images etc. Look at shipfast
 - Landing page sections, as a basis for components later
+- Footer that links to Tandem
 - Stripe when I've got it working on some other site
+- TOS and privacy policy
+- Resend? Setup readme and supabase integration readme
+- Vercel Readme
+- Error handling https://shipfa.st/docs/features/error-handling
 
 ## Setup
 
@@ -100,3 +105,7 @@ CREATE POLICY delete_own_profile_data ON public.profiles
 FOR DELETE
 USING (auth.uid() = id);
 ```
+
+### Terms of Service + Privacy Policy
+
+Go to /privacy/page.tsx and terms/page.tsx and use cursor to create the real TOS by adding some relevant files into the prompt.
