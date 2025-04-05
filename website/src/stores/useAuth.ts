@@ -55,10 +55,30 @@ export function useAuth() {
     }
   };
 
+  const signOut = async () => {
+    setError("");
+    setIsLoading(true);
+    try {
+      const { error: signOutError } = await supabase.auth.signOut();
+      if (signOutError) {
+        setError(signOutError.message);
+        return;
+      }
+      router.refresh();
+      router.push("/");
+    } catch (err) {
+      console.error("Logout error:", err);
+      setError("An unexpected error occurred");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return {
     error,
     isLoading,
     signInWithEmail,
     signInWithGoogle,
+    signOut,
   };
 }
