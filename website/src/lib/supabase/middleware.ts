@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { siteConfig } from "@/app/site-config";
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -31,17 +32,22 @@ export async function updateSession(request: NextRequest) {
 
   // refreshing the auth token
   const user = await supabase.auth.getUser();
-  const isLoginPage = request.nextUrl.pathname === "/login";
+
+  const isLoginPage = request.nextUrl.pathname === siteConfig.auth.loginUrl;
   const isProtectedPage = request.nextUrl.pathname.startsWith("/p");
 
   // Redirect to dashboard if accessing login while authenticated
   if (!user.error && isLoginPage) {
-    return NextResponse.redirect(new URL("/p/feeds", request.url));
+    return NextResponse.redirect(
+      new URL(siteConfig.auth.callbackUrl, request.url)
+    );
   }
 
   // Redirect to login if trying to access protected routes without auth
   if (user.error && isProtectedPage) {
-    return NextResponse.redirect(new URL("/login", request.url));
+    return NextResponse.redirect(
+      new URL(siteConfig.auth.loginUrl, request.url)
+    );
   }
 
   return supabaseResponse;
