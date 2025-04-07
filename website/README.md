@@ -6,7 +6,6 @@
 - Landing page sections, as a basis for components later
 - Footer that links to Tandem
 - Stripe when I've got it working on some other site
-- TOS and privacy policy
 - Resend? Setup readme and supabase integration readme
 - Vercel Readme
 - Error handling https://shipfa.st/docs/features/error-handling

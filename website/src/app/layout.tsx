@@ -6,6 +6,7 @@ import { getSEOTags } from "@/lib/seo";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const font = Inter({ subsets: ["latin"] });
 
@@ -35,7 +36,8 @@ export default function RootLayout({
       </head>
       <body className={`${font.className} antialiased`}>
         <Navbar />
-        {children}
+        <main>{children}</main>
+        <Footer />
         <Toaster
           position="bottom-right"
           toastOptions={{
