@@ -1,6 +1,7 @@
 import { siteConfig } from "./site-config";
 
 export default function Home() {
+  throw new Error("Test error");
   return (
     <div className="flex flex-col items-center justify-center w-full">
       {/* Hero Section */}
