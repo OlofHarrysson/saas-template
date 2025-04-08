@@ -108,17 +108,19 @@ Go to /privacy/page.tsx and terms/page.tsx and use cursor to create the real TOS
 
 ### Vercel Deployment
 
-1.  **Initiate Setup:**
+**Initiate Setup:**
+
+From the root of the repo, run the command below and specify ./website for your code path.
 
 ```bash
-cd website
-vercel link
+vercel login
+vercel
 ```
 
 Follow the CLI prompts.
 
-2.  **Configure on Vercel Dashboard:**
+**Configure on Vercel Dashboard:**
 
 - Add git repository
-- Add domain
 - Add env variables
+- Add domain
