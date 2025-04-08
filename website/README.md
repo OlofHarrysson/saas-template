@@ -105,3 +105,20 @@ USING (auth.uid() = id);
 ### Terms of Service + Privacy Policy
 
 Go to /privacy/page.tsx and terms/page.tsx and use cursor to create the real TOS by adding some relevant files into the prompt.
+
+### Vercel Deployment
+
+1.  **Initiate Setup:**
+
+```bash
+cd website
+vercel link
+```
+
+Follow the CLI prompts.
+
+2.  **Configure on Vercel Dashboard:**
+
+- Add git repository
+- Add domain
+- Add env variables
