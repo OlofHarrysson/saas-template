@@ -2,18 +2,15 @@
 
 ## TODOs
 
-- Fix the SEO tags images etc. Look at shipfast
+- Verify that the icon stuff works
 - Stripe when I've got it working on some other site
 - Resend? Setup readme and supabase integration readme next time I create a domain
 
 ## Setup
 
 - Fill in the values in [src/app/site-config.ts](src/app/site-config.ts)
-- Image and favicon
 
 ### Icon Setup
-
-TODO: Verify that the icon stuff works
 
 - Create a single PNG icon (512x512px) and place in public/icon.png
 - Will be used for modern browsers and as source for favicon
