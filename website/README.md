@@ -10,6 +10,7 @@
 ## Setup
 
 - Fill in the values in [src/app/site-config.ts](src/app/site-config.ts)
+- And the domain in [next-sitemap.config.js](next-sitemap.config.js)
 
 ### Icon Setup
 
