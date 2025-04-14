@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/app/site-config";
 
-// TODO: Add image and twitter card?
-
 type SEOProps = {
   title?: string;
   description?: string;

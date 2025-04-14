@@ -11,6 +11,16 @@
 - Fill in the values in [src/app/site-config.ts](src/app/site-config.ts)
 - Image and favicon
 
+### Icon Setup
+
+TODO: Verify that the icon stuff works
+
+- Create a single PNG icon (512x512px) and place in public/icon.png
+- Will be used for modern browsers and as source for favicon
+- Create a favicon with e.g. [favicon.io](https://favicon.io/) and place under src/app/favico.ico
+
+- Create an Open Graph image (1200x630px) and place it in public directory as public/og-image.png
+
 ### Supabase
 
 - Create a project in Supabase and copy the config values to .env.local
