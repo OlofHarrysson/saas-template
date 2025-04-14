@@ -5,6 +5,7 @@
 - Verify that the icon stuff works
 - Stripe when I've got it working on some other site
 - Resend? Setup readme and supabase integration readme next time I create a domain
+- Fix this next time you setup a domain. See https://shipfa.st/docs/features/emails
 
 ## Setup
 
@@ -130,8 +131,6 @@ Follow the CLI prompts.
 - Add domain
 
 ### Resend / Emails
-
-TODO: Fix this next time you setup a domain. See https://shipfa.st/docs/features/emails
 
 Also need to check supabase integration
 
