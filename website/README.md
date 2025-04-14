@@ -4,15 +4,12 @@
 
 - Fix the SEO tags images etc. Look at shipfast
 - Stripe when I've got it working on some other site
-- Resend? Setup readme and supabase integration readme
-- Vercel Readme
+- Resend? Setup readme and supabase integration readme next time I create a domain
 
 ## Setup
 
 - Fill in the values in [src/app/site-config.ts](src/app/site-config.ts)
 - Image and favicon
-- Vercel
-- Plausible
 
 ### Supabase
 
@@ -124,3 +121,11 @@ Follow the CLI prompts.
 - Add git repository
 - Add env variables
 - Add domain
+
+### Resend / Emails
+
+TODO: Fix this next time you setup a domain. See https://shipfa.st/docs/features/emails
+
+Also need to check supabase integration
+
+And create some nice template for login emails and forgot password - maybe use the tulipsocial one?

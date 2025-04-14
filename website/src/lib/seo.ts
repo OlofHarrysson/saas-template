@@ -30,17 +30,17 @@ export function getSEOTags({
     title: title || siteConfig.name,
     description: description || siteConfig.description,
     keywords: keywords || [siteConfig.name],
+    applicationName: siteConfig.name,
 
     // Set base URL for all relative URLs
     metadataBase: new URL(baseUrl),
 
     // Open Graph
     openGraph: {
-      title: openGraph?.title || title || siteConfig.name,
-      description:
-        openGraph?.description || description || siteConfig.description,
+      title: openGraph?.title || siteConfig.name,
+      description: openGraph?.description || siteConfig.description,
       siteName: siteConfig.name,
-      url: baseUrl,
+      url: baseUrl, // Only affects the render, not the link
       locale: "en_US",
       type: "website",
     },
@@ -52,7 +52,7 @@ export function getSEOTags({
       description: description || siteConfig.description,
     },
 
-    // Canonical URL
+    // If a canonical URL is given, we add it. The metadataBase will turn the relative URL into a fully qualified URL
     ...(canonicalUrlRelative && {
       alternates: {
         canonical: canonicalUrlRelative,

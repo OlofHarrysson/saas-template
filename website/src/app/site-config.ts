@@ -22,9 +22,7 @@ export const siteConfig = {
     },
   },
   resend: {
-    // REQUIRED — Email 'From' field to be used when sending magic login links
     fromNoReply: `YourBrand <your@resend-email-address.com>`,
-    // REQUIRED — Email 'From' field to be used when sending other emails, like abandoned carts, updates etc..
     fromAdmin: `Olof at TandemFuture <olof@tandemfuture.com>`,
   },
 } as const;
