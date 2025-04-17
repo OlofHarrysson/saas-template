@@ -130,7 +130,7 @@ Follow the CLI prompts.
 
 - Add git repository
 - Add env variables
-- Add domain
+- Add domain, use www. as canoical version
 
 ### Resend / Emails
 
