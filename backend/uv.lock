@@ -50,7 +50,7 @@ wheels = [
 ]
 
 [[package]]
-name = "your-project-name"
+name = "social"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
