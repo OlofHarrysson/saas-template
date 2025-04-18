@@ -138,3 +138,7 @@ Follow the CLI prompts.
 Also need to check supabase integration
 
 And create some nice template for login emails and forgot password - maybe use the tulipsocial one?
+
+### Plausible
+
+Go to the website and add your domain. We're configuring the settings through code so just press continue.

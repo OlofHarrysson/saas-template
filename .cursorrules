@@ -2,9 +2,12 @@
 
 Built with Next.js 15, TypeScript, Tailwind CSS, DaisyUI and Python 3.12.
 
-The frontend code is under /website and the backend code is under /backend. I prefer clean code that lets me see where the code fails over verbose "production ready" code that catches all errors.
+The frontend code is under /website and the backend code is under /backend.
+
+IMPORTANT: I prefer clean code that doesn't try to catch all errors and sets backup default values (fallback values) all the time. This way I can strategically add the error handling logic where it's best needed. Fallback values are often bad because it makes it hard to fix the root issue.
 
 ## Tech Stack
+
 - **Framework**: Next.js 15 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS with custom theme
@@ -19,9 +22,11 @@ The frontend code is under /website and the backend code is under /backend. I pr
     - Modern type hints e.g. list[int] instead of List[int], dict[str, int] instead of Dict[str, int] and int | None instead of Optional[int]
 
 ## Theme Requirements
+
 The application should implement a consistent theme using:
 
 1. **Color System**:
+
    - Use semantic color pairs with DEFAULT/foreground pattern:
      ```typescript
      primary: {
