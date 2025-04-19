@@ -2,7 +2,7 @@
 
 ## TODOs
 
-- Verify that the icon stuff works
+- Verify that the open graph icon stuff works
 - Stripe when I've got it working on some other site
 - Resend? Setup readme and supabase integration readme next time I create a domain
 - Fix this next time you setup a domain. See https://shipfa.st/docs/features/emails
@@ -18,7 +18,7 @@
 
 - Create a single PNG icon (512x512px) and place in public/icon.png
 - Will be used for modern browsers and as source for favicon
-- Create a favicon with e.g. [favicon.io](https://favicon.io/) and place under src/app/favico.ico
+- Duplicate and crop your icon to maximize the size of the logo. Create a favicon with e.g. [favicon.io](https://favicon.io/) and place under src/app/favico.ico
 
 - Create an Open Graph image (1200x630px) and place it in public directory as public/og-image.png
 
@@ -142,3 +142,8 @@ And create some nice template for login emails and forgot password - maybe use t
 ### Plausible
 
 Go to the website and add your domain. We're configuring the settings through code so just press continue.
+
+### Google cloud
+
+- Go to [https://search.google.com/search-console](https://search.google.com/search-console) and add a domain. Add a txt record with blank host.
+- Submit your sitemaps and request indexing on important pages.
