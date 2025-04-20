@@ -129,7 +129,7 @@ Follow the CLI prompts.
 
 **Configure on Vercel Dashboard:**
 
-- Add git repository
+- Add git repository. Remove notifications e.g. Pull Request Comments
 - Add env variables
 - Add domain, use www. as canoical version
 

@@ -22,3 +22,6 @@ extend-select = [
   "UP",  # pyupgrade
   # "I",  # isort
 ]
+
+# Ignore unused variables
+ignore = ["F841"]
