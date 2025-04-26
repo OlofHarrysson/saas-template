@@ -1,0 +1,36 @@
+---
+description:
+globs: website/**
+alwaysApply: false
+---
+## Frontend (Website)
+
+The frontend code is located under `/website`.
+
+### Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS with custom theme
+- **UI Components**: DaisyUI (preferred), otherwise Tailwind CSS
+- **Authentication**: Google OAuth or email with Supabase
+- **Deployment**: Vercel
+- **State Management**: Zustand for global state management
+- **Responsive Design**: Mobile-first with desktop support. This includes smaller padding and font sizes for mobile since the screen is smaller, and sometimes requires a different design for mobile and desktop.
+
+### Theme Requirements
+
+The application should implement a consistent theme using:
+
+1.  **Color System**:
+    - Use semantic color pairs with DEFAULT/foreground pattern:
+      ```typescript
+      primary: {
+        DEFAULT: "var(--primary)",
+        foreground: "var(--primary-foreground)",
+      }
+      ```
+
+2.  **Design Philosophy**:
+    - Minimalist, clean interfaces with ample white space.
+    - Typography: Clear hierarchy using size and weight, not color.

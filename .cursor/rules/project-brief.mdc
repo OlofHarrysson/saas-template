@@ -1,0 +1,23 @@
+---
+description: High-level overview of the atprotoworld project, its goals, and general coding philosophy, including strict rules on error handling.
+globs:
+alwaysApply: true
+---
+
+# Project Overview
+
+This is a template project that I use to quickly create new high quality projects according to my personal taste.
+
+Built with Next.js 15 (frontend) and Python 3.12 (backend/utility scripts).
+
+The frontend code is under `/website` and the backend code is under `/backend`.
+
+## Core Coding Philosophy
+
+**Readability Over Premature Error Handling:**
+I prefer clean code that doesn't try to catch all errors and sets backup default values (fallback values) all the time.
+
+*   **DO NOT ADD ERROR HANDLING:** Unless explicitly asked or modifying existing error handling logic, you must **never** add new error handling constructs (like `try...catch` blocks, `if err != nil`, excessive default/fallback values, etc.).
+*   **Prioritize Clarity:** Focus on writing clear, straightforward code that reflects the primary logic. Assume valid inputs and successful operations in the initial code generation.
+*   **Strategic Handling:** Error handling will be added strategically by the developer where it's most impactful, rather than preemptively added everywhere. This prevents masking underlying issues with silent failures or overly defensive code.
+*   **Existing Code:** If the code you are modifying already includes error handling, maintain that existing pattern, but do not expand it without explicit instruction.
