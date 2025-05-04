@@ -7,6 +7,8 @@ alwaysApply: false
 
 The frontend code is located under `/website`.
 
+Here are some config values that could be important [site-config.ts](mdc:website/src/app/site-config.ts)
+
 ### Tech Stack
 
 - **Framework**: Next.js 15 (App Router)
@@ -17,6 +19,7 @@ The frontend code is located under `/website`.
 - **Deployment**: Vercel
 - **State Management**: Zustand for global state management
 - **Responsive Design**: Mobile-first with desktop support. This includes smaller padding and font sizes for mobile since the screen is smaller, and sometimes requires a different design for mobile and desktop.
+- **Icons**: Lucide icons instead of inline SVGs.
 
 ### Theme Requirements
 

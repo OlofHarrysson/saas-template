@@ -4,6 +4,9 @@ export const siteConfig = {
   // REQUIRED: a short description of your app for SEO tags (can be overwritten)
   description: "Your description",
 
+  // Add default keywords relevant to the whole site
+  seo_keywords: ["Your keywords"],
+
   // REQUIRED (no https://, not trialing slash at the end, just the naked domain)
   domain: "yourdomain.com",
 

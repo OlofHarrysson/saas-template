@@ -20,14 +20,20 @@ export function getSEOTags({
   canonicalUrlRelative,
   openGraph,
 }: SEOProps = {}): Metadata {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_APP_URL || `https://${siteConfig.domain}`;
+  const baseUrl = `https://${siteConfig.domain}`;
+
+  // Combine global keywords with page-specific keywords
+  const combinedKeywords = [
+    ...siteConfig.seo_keywords, // Add global keywords first
+    ...(keywords || []), // Add page-specific keywords if provided
+  ];
 
   return {
     // Basic SEO
     title: title || siteConfig.name,
     description: description || siteConfig.description,
-    keywords: keywords || [siteConfig.name],
+    // Use combined keywords, ensuring no duplicates
+    keywords: Array.from(new Set(combinedKeywords)),
     applicationName: siteConfig.name,
 
     // Set base URL for all relative URLs
