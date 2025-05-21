@@ -1,3 +1,5 @@
+"use client";
+
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { AuthButton } from "@/components/AuthButton";
@@ -6,6 +8,12 @@ const navigationLinks = [
   { href: "/", label: "Home" },
   { href: "/p/dashboard", label: "Dashboard" },
 ] as const;
+
+const closeDropdown = () => {
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur();
+  }
+};
 
 const MobileNav = () => {
   return (
@@ -22,12 +30,13 @@ const MobileNav = () => {
             <Link
               href={link.href}
               className="py-3 text-base hover:bg-accent hover:text-accent-foreground"
+              onClick={closeDropdown}
             >
               {link.label}
             </Link>
           </li>
         ))}
-        <li className="pt-2 mt-2 border-t">
+        <li className="pt-2 mt-2 border-t" onClick={closeDropdown}>
           <AuthButton />
         </li>
       </ul>
