@@ -15,7 +15,7 @@ const MobileNav = () => {
       </div>
       <ul
         tabIndex={0}
-        className="menu dropdown-content mt-3 z-[1] p-2 shadow rounded-md bg-popover w-52"
+        className="menu dropdown-content mt-3 z-[1] p-2 shadow rounded-md bg-popover w-52 right-0"
       >
         {navigationLinks.map((link) => (
           <li key={link.href}>
@@ -27,6 +27,9 @@ const MobileNav = () => {
             </Link>
           </li>
         ))}
+        <li className="pt-2 mt-2 border-t">
+          <AuthButton />
+        </li>
       </ul>
     </div>
   );
@@ -53,7 +56,6 @@ const Navbar = () => {
   return (
     <div className="navbar bg-background border-b border-accent">
       <div className="navbar-start">
-        <MobileNav />
         <Link href="/" className="btn btn-ghost text-xl">
           Your Logo
         </Link>
@@ -62,7 +64,10 @@ const Navbar = () => {
         <DesktopNav />
       </div>
       <div className="navbar-end">
-        <AuthButton />
+        <div className="hidden lg:flex">
+          <AuthButton />
+        </div>
+        <MobileNav />
       </div>
     </div>
   );
