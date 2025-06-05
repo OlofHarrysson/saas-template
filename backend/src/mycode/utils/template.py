@@ -3,10 +3,10 @@
 import dotenv
 
 # Note: Import the module namespace to make all functions available and more readable.
-from radar.utils import argument_parsing
+from mycode.utils import argument_parsing
 
 # Note: Use the logger instead of print statements
-from radar.utils.logger import logger
+from mycode.utils.logger import logger
 
 
 def main() -> None:
