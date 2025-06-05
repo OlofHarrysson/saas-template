@@ -2,7 +2,7 @@
 name = "mycode"
 version = "0.1.0"
 description = "TODO"
-authors = [{ name = "Olof Harrysson", email = "harrysson.olof@gmail.com" }]
+authors = [{ name = "Olof Harrysson", email = "olof@tandemfuture.com" }]
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = ["joblib>=1.4.2", "jsonargparse>=4.37.0", "python-dotenv>=1.0.1"]
