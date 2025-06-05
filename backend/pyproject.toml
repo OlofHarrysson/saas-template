@@ -1,17 +1,11 @@
 [project]
-name = "your_project_name"                              # Change this to be the same as your folder under src/ is named
+name = "mycode"
 version = "0.1.0"
 description = "TODO"
-authors = [
-    { name = "Olof Harrysson", email = "harrysson.olof@gmail.com" }
-]
+authors = [{ name = "Olof Harrysson", email = "harrysson.olof@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [
-    "joblib>=1.4.2",
-    "jsonargparse>=4.37.0",
-    "python-dotenv>=1.0.1",
-]
+dependencies = ["joblib>=1.4.2", "jsonargparse>=4.37.0", "python-dotenv>=1.0.1"]
 
 [build-system]
 requires = ["hatchling"]
@@ -19,7 +13,7 @@ build-backend = "hatchling.build"
 
 [tool.ruff.lint]
 extend-select = [
-  "UP",  # pyupgrade
+  "UP", # pyupgrade
   # "I",  # isort
 ]
 

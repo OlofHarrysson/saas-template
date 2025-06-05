@@ -8,9 +8,7 @@ A minimal template for modern Python projects.
 2. Clone the repository and open this README.md in your editor to continue from there.
 3. Go over the files in the created repository and understand what each tool/file does.
 4. Update this readme by replacing the "MY_AWESOME_PROJECT" name below and briefly describe the project.
-5. Update the project name in [src/your_project_name](src/your_project_name) and inside of [pyproject.toml](pyproject.toml)
-6. If you want to use mypy for typing, uncomment mypy related configs in [pyproject.toml](pyproject.toml) and [.pre-commit-config.yaml](.pre-commit-config.yaml)
-7. Finally, remove any information from this readme that is no longer required.
+5. If you want to use mypy for typing, uncomment mypy related configs in [pyproject.toml](pyproject.toml) and [.pre-commit-config.yaml](.pre-commit-config.yaml)
 
 ## How to contribute to this template
 
