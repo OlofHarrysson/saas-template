@@ -2,7 +2,7 @@
 
 import dotenv
 
-# Note: Import the module namespace to make all functions available and more readable.
+# Note: Import the module namespace to make all functions available and the code more readable.
 from mycode.utils import argument_parsing
 
 # Note: Use the logger instead of print statements
