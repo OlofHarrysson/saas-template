@@ -6,11 +6,12 @@
 - Stripe when I've got it working on some other site
 - Resend? Setup readme and supabase integration readme next time I create a domain
 - Fix this next time you setup a domain. See https://shipfa.st/docs/features/emails
+- Refactor the rules into a docs folder?
 
 ## Setup
 
 - Fill in the values in [src/app/site-config.ts](src/app/site-config.ts)
-- And the domain in [next-sitemap.config.js](next-sitemap.config.js)
+- Fill in the domain in [next-sitemap.config.js](next-sitemap.config.js)
 - Change the name in [package.json](package.json)
 - Change .cursorrules to describe your project
 

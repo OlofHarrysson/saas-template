@@ -3,10 +3,9 @@ description: High-level overview of the atprotoworld project, its goals, and gen
 globs:
 alwaysApply: true
 ---
-
 # Project Overview
 
-This is a template project that I use to quickly create new high quality projects according to my personal taste.
+This is a template project for creating new high-quality projects.
 
 Built with Next.js 15 (frontend) and Python 3.12 (backend/utility scripts).
 
@@ -14,10 +13,18 @@ The frontend code is under `/website` and the backend code is under `/backend`.
 
 ## Core Coding Philosophy
 
-**Readability Over Premature Error Handling:**
-I prefer clean code that doesn't try to catch all errors and sets backup default values (fallback values) all the time.
+**Happy Path First:**
+Focus on coding the happy path - the ideal, error-free scenario where everything works as expected. Write clean, straightforward code that reflects the primary business logic and assumes valid inputs and successful operations.
 
-*   **DO NOT ADD ERROR HANDLING:** Unless explicitly asked or modifying existing error handling logic, you must **never** add new error handling constructs (like `try...catch` blocks, `if err != nil`, excessive default/fallback values, etc.).
-*   **Prioritize Clarity:** Focus on writing clear, straightforward code that reflects the primary logic. Assume valid inputs and successful operations in the initial code generation.
-*   **Strategic Handling:** Error handling will be added strategically by the developer where it's most impactful, rather than preemptively added everywhere. This prevents masking underlying issues with silent failures or overly defensive code.
-*   **Existing Code:** If the code you are modifying already includes error handling, maintain that existing pattern, but do not expand it without explicit instruction.
+- Implement the main successful flow first
+- Assume valid inputs and successful operations
+- Prioritize clarity and readability
+- Error handling and edge cases will be added strategically later
+
+This prevents masking underlying issues with premature defensive code and keeps the core logic clear and maintainable.
+
+## Terminal Command Preferences
+
+Significant terminal commands, such as starting web servers, installing dependencies, or managing packages, are generally intended to be run by the developer in an external terminal. Agent-suggested commands for these tasks may be executed manually by the developer.
+
+Simpler, common commands, like file manipulations (e.g., moving, copying), can be executed directly by the agent.
