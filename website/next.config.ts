@@ -1,9 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    serverComponentsExternalPackages: ["node-appwrite"],
-  },
+  serverExternalPackages: ["node-appwrite"],
 };
 
 export default nextConfig;
