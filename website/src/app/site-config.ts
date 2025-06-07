@@ -11,10 +11,18 @@ export const siteConfig = {
   domain: "yourdomain.com",
 
   auth: {
-    // REQUIRED — the path to log in users.
+    // The path to log in users.
     loginUrl: "/login",
-    // REQUIRED — the path you want to redirect users after successfull login (i.e. /dashboard, /private).
+    // The path you want to redirect users after successfull login (i.e. /dashboard, /private).
     callbackUrl: "/p/dashboard",
+    // The path for email verification flow
+    verifyUrl: "/login/verify",
+    // The path for email verification callback (from email links)
+    verifyCallbackUrl: "/login/verify/callback",
+    // The path for password reset flow
+    resetUrl: "/login/reset",
+    // The path for password reset callback (from email links)
+    resetCallbackUrl: "/login/reset/callback",
   },
 
   // Analytics
