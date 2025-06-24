@@ -13,7 +13,7 @@
 - Fill in the values in [src/app/site-config.ts](src/app/site-config.ts)
 - Fill in the domain in [next-sitemap.config.js](next-sitemap.config.js)
 - Change the name in [package.json](package.json)
-- Change .cursorrules to describe your project
+- Change _git_root_/.cursor/rules/project-brief.mdc to describe your project
 
 ### Icon Setup
 
@@ -45,6 +45,15 @@ Follow the CLI prompts.
 - Add git repository. Remove notifications e.g. Pull Request Comments
 - Add env variables
 - Add domain, use www. as canoical version
+
+### Appwrites
+
+- Create a new project.
+- Connect a new Web platform for NextJs with localhost. You don't have to finish the setup.
+- Fill in the .env variables and create an API key.
+- Test to login with magic link.
+- Go to Auth -> Settings and enable Google OAuth. Copy the Redirect URI from Appwrite Google OAuth into Google Cloud OAuth Client and create the Google OAuth client. Then copy the OAuth client ID and Secret into Appwrites Google OAuth config.
+- Create/update your Appwrite Project platform hostname to your domain to make the OAuth work.
 
 ### Resend / Emails
 

@@ -8,7 +8,6 @@ interface User {
   id: string;
   email: string;
   name: string;
-  emailVerification: boolean;
 }
 
 interface UseAuthReturn {
@@ -30,12 +29,11 @@ export function useAuth(): UseAuthReturn {
       const userData = await getUserClient();
 
       if (userData) {
-        setIsAuthenticated(userData.emailVerification);
+        setIsAuthenticated(true);
         setUser({
           id: userData.$id,
           email: userData.email,
           name: userData.name,
-          emailVerification: userData.emailVerification,
         });
       } else {
         setIsAuthenticated(false);

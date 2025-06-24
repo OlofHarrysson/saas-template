@@ -18,10 +18,5 @@ export async function requireAuth() {
     redirect(siteConfig.auth.loginUrl);
   }
 
-  // Require email verification for access to protected areas
-  if (!user.emailVerification) {
-    redirect(siteConfig.auth.verifyUrl);
-  }
-
   return user;
 }
