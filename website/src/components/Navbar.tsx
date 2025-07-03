@@ -1,46 +1,83 @@
 "use client";
 
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { AuthButton } from "@/components/AuthButton";
+import { useState } from "react";
 
 const navigationLinks = [
   { href: "/", label: "Home" },
   { href: "/p/dashboard", label: "Dashboard" },
 ] as const;
 
-const closeDropdown = () => {
-  if (document.activeElement instanceof HTMLElement) {
-    document.activeElement.blur();
-  }
-};
+const MobileDrawer = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-const MobileNav = () => {
+  const openDrawer = () => setIsOpen(true);
+  const closeDrawer = () => setIsOpen(false);
+
   return (
-    <div className="dropdown">
-      <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-        <Menu className="h-5 w-5" />
-      </div>
-      <ul
-        tabIndex={0}
-        className="menu dropdown-content mt-3 z-[1] p-2 shadow rounded-md bg-popover w-52 right-0"
+    <>
+      {/* Hamburger Menu Button */}
+      <button
+        onClick={openDrawer}
+        className="btn btn-ghost lg:hidden"
+        aria-label="Open navigation menu"
       >
-        {navigationLinks.map((link) => (
-          <li key={link.href}>
-            <Link
-              href={link.href}
-              className="py-3 text-base hover:bg-accent hover:text-accent-foreground"
-              onClick={closeDropdown}
-            >
-              {link.label}
-            </Link>
-          </li>
-        ))}
-        <li className="pt-2 mt-2 border-t" onClick={closeDropdown}>
-          <AuthButton />
-        </li>
-      </ul>
-    </div>
+        <Menu className="h-5 w-5" />
+      </button>
+
+      {/* Backdrop Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={closeDrawer}
+        />
+      )}
+
+      {/* Side Drawer */}
+      <div
+        className={`fixed top-0 right-0 h-full w-80 bg-base-100 shadow-xl z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        {/* Drawer Header */}
+        <div className="flex items-center justify-between p-6 border-b">
+          <h2 className="text-lg font-semibold">Menu</h2>
+          <button
+            onClick={closeDrawer}
+            className="btn btn-ghost btn-sm"
+            aria-label="Close navigation menu"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        {/* Navigation Links */}
+        <nav className="p-6">
+          <ul className="space-y-2">
+            {navigationLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="block py-3 px-4 text-base hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+                  onClick={closeDrawer}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Auth Button */}
+          <div className="pt-6 mt-6 border-t">
+            <div onClick={closeDrawer}>
+              <AuthButton />
+            </div>
+          </div>
+        </nav>
+      </div>
+    </>
   );
 };
 
@@ -76,7 +113,7 @@ const Navbar = () => {
         <div className="hidden lg:flex">
           <AuthButton />
         </div>
-        <MobileNav />
+        <MobileDrawer />
       </div>
     </div>
   );
