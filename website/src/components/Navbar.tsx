@@ -2,34 +2,32 @@
 
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import { AuthButton } from "@/components/AuthButton";
+import { AvatarDropdown } from "@/components/AvatarDropdown";
+import { useAuth } from "@/lib/auth/useAuth";
+import { siteConfig } from "@/app/site-config";
+import { getNavigationLinks, NavigationLink } from "@/lib/navigation";
 import { useState } from "react";
-
-const marketingNavigationLinks = [
-  { href: "#features", label: "Features" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#faq", label: "FAQ" },
-] as const;
-
-const appNavigationLinks = [
-  { href: "/p/dashboard", label: "Dashboard" },
-  { href: "/p/projects", label: "Projects" },
-  { href: "/p/analytics", label: "Analytics" },
-] as const;
 
 interface NavbarProps {
   variant?: "marketing" | "app";
 }
 
-const MobileDrawer = ({
-  navigationLinks,
-}: {
-  navigationLinks: readonly { href: string; label: string }[];
-}) => {
+const MobileDrawer = ({ variant }: { variant: "marketing" | "app" }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated, logout } = useAuth();
 
   const openDrawer = () => setIsOpen(true);
   const closeDrawer = () => setIsOpen(false);
+
+  // Get all navigation links for mobile (no distinction needed)
+  const allLinks = getNavigationLinks(variant, "mobile");
+
+  const handleLinkClick = (href: string) => {
+    if (href === "/logout") {
+      logout();
+    }
+    closeDrawer();
+  };
 
   return (
     <>
@@ -71,39 +69,50 @@ const MobileDrawer = ({
         {/* Navigation Links */}
         <nav className="p-6">
           <ul className="space-y-2">
-            {navigationLinks.map((link) => (
+            {allLinks.map((link) => (
               <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="block py-3 px-4 text-base hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
-                  onClick={closeDrawer}
-                >
-                  {link.label}
-                </Link>
+                {link.href === "/logout" ? (
+                  <button
+                    onClick={() => handleLinkClick(link.href)}
+                    className="block w-full text-left py-3 px-4 text-base hover:bg-error/10 text-error rounded-md transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className="block py-3 px-4 text-base hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+                    onClick={() => handleLinkClick(link.href)}
+                  >
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
 
-          {/* Auth Button */}
-          <div className="pt-6 mt-6 border-t">
-            <div onClick={closeDrawer}>
-              <AuthButton />
+          {/* Login Button for non-authenticated users */}
+          {!isAuthenticated && (
+            <div className="pt-6 mt-6 border-t">
+              <Link
+                href={siteConfig.auth.loginUrl}
+                className="btn btn-primary w-full"
+                onClick={closeDrawer}
+              >
+                Login
+              </Link>
             </div>
-          </div>
+          )}
         </nav>
       </div>
     </>
   );
 };
 
-const DesktopNav = ({
-  navigationLinks,
-}: {
-  navigationLinks: readonly { href: string; label: string }[];
-}) => {
+const DesktopNav = ({ navbarLinks }: { navbarLinks: NavigationLink[] }) => {
   return (
     <ul className="menu menu-horizontal px-1">
-      {navigationLinks.map((link) => (
+      {navbarLinks.map((link) => (
         <li key={link.href}>
           <Link
             href={link.href}
@@ -118,9 +127,12 @@ const DesktopNav = ({
 };
 
 const Navbar = ({ variant = "marketing" }: NavbarProps) => {
-  const navigationLinks =
-    variant === "app" ? appNavigationLinks : marketingNavigationLinks;
-  const logoHref = variant === "app" ? "/p/dashboard" : "/";
+  const inApp = variant === "app";
+  const logoHref = inApp ? siteConfig.auth.callbackUrl : "/";
+
+  // Get navbar and avatar links separately
+  const navbarLinks = getNavigationLinks(variant, "navbar");
+  const avatarLinks = getNavigationLinks(variant, "avatar");
 
   return (
     <div className="navbar bg-background border-b border-accent">
@@ -130,13 +142,22 @@ const Navbar = ({ variant = "marketing" }: NavbarProps) => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <DesktopNav navigationLinks={navigationLinks} />
+        <DesktopNav navbarLinks={navbarLinks} />
       </div>
       <div className="navbar-end">
         <div className="hidden lg:flex">
-          <AuthButton />
+          {inApp ? (
+            <AvatarDropdown avatarLinks={avatarLinks} />
+          ) : (
+            <Link
+              href={siteConfig.auth.loginUrl}
+              className="btn btn-primary text-primary-foreground"
+            >
+              Login
+            </Link>
+          )}
         </div>
-        <MobileDrawer navigationLinks={navigationLinks} />
+        <MobileDrawer variant={variant} />
       </div>
     </div>
   );
