@@ -1,4 +1,3 @@
-import type { Metadata, Viewport } from "next";
 import { BaseLayout } from "@/components/layouts/BaseLayout";
 import Navbar from "@/components/Navbar";
 
