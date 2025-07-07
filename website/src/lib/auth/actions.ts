@@ -24,46 +24,20 @@ export type FormState = {
   success?: boolean;
   errors?: {
     email?: string[];
-    password?: string[];
     general?: string[];
   };
 };
 
-// Helper function to set session cookie
-export async function setSessionCookie(session: {
-  secret: string;
-  expire: string;
-}) {
+// Helper to set session cookie
+export async function setSessionCookie(session: any) {
   const cookieStore = await cookies();
   cookieStore.set(SESSION_COOKIE, session.secret, {
-    path: "/",
     httpOnly: true,
-    sameSite: "strict",
     secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
     expires: new Date(session.expire),
+    path: "/",
   });
-}
-
-// Helper function to validate email/password form data
-function validateEmailPassword(formData: FormData): FormState | null {
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
-
-  if (!email || !password) {
-    return {
-      errors: {
-        email: !email ? ["Email is required"] : undefined,
-        password: !password ? ["Password is required"] : undefined,
-      },
-    };
-  }
-
-  return null; // No validation errors
-}
-
-// Server action to get current user - can be called from client components
-export async function getUserClient() {
-  return await getUser();
 }
 
 // Google OAuth sign in
@@ -83,80 +57,45 @@ export async function signInWithGoogle() {
     redirect("/login?error=oauth_failed");
   }
 
-  // Redirect outside try-catch - clean and simple!
   redirect(redirectUrl);
 }
 
-export async function signInWithEmail(
+// Magic Link sign in
+export async function signInWithMagicLink(
   prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
-  // Validate form data
-  const validationError = validateEmailPassword(formData);
-  if (validationError) {
-    return validationError;
-  }
-
   const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
 
-  try {
-    const { account } = createAdminClient();
-    const session = await account.createEmailPasswordSession(email, password);
-
-    await setSessionCookie(session);
-  } catch (error: any) {
+  if (!email) {
     return {
       errors: {
-        general: [error.message || "Invalid email or password"],
+        email: ["Email is required"],
       },
     };
   }
 
-  revalidatePath("/");
-  redirect(siteConfig.auth.callbackUrl);
-}
-
-export async function signUpWithEmail(
-  prevState: FormState,
-  formData: FormData
-): Promise<FormState> {
-  // Validate form data
-  const validationError = validateEmailPassword(formData);
-  if (validationError) {
-    return validationError;
-  }
-
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
-
   try {
     const { account } = createAdminClient();
 
-    // Create account
-    const userId = ID.unique();
-    await account.create(userId, email, password);
-
-    // Create session
-    const session = await account.createEmailPasswordSession(email, password);
-
-    await setSessionCookie(session);
-
-    // Send verification email using session client (user must be logged in)
-    const { account: sessionAccount } = await createSessionClient();
-    await sessionAccount.createVerification(
-      `${APP_URL}${siteConfig.auth.verifyCallbackUrl}`
+    // Create magic URL token - this sends the email
+    await account.createMagicURLToken(
+      ID.unique(),
+      email,
+      `${APP_URL}/api/auth/magic-callback`
     );
+
+    return {
+      success: true,
+      message: "Sign-in link sent! Check your email to continue.",
+    };
   } catch (error: any) {
     return {
       errors: {
-        general: [error.message || "Failed to create account"],
+        general: [error.message || "Failed to send sign-in link"],
       },
     };
   }
-
-  revalidatePath("/");
-  redirect(siteConfig.auth.verifyUrl);
 }
 
 export async function signOut() {
@@ -173,90 +112,6 @@ export async function signOut() {
   redirect(siteConfig.auth.loginUrl);
 }
 
-// Send verification email for current user
-export async function sendVerificationEmail(): Promise<{
-  success: boolean;
-  error?: string;
-}> {
-  try {
-    const { account } = await createSessionClient();
-    await account.createVerification(
-      `${APP_URL}${siteConfig.auth.verifyCallbackUrl}`
-    );
-    return { success: true };
-  } catch (error: any) {
-    return {
-      success: false,
-      error: error.message || "Failed to send verification email",
-    };
-  }
-}
-
-// Send password reset email
-export async function sendPasswordResetEmail(
-  prevState: FormState,
-  formData: FormData
-): Promise<FormState> {
-  const email = formData.get("email") as string;
-
-  if (!email) {
-    return {
-      errors: {
-        email: ["Email is required"],
-      },
-    };
-  }
-
-  try {
-    const { account } = createAdminClient();
-    await account.createRecovery(
-      email,
-      `${APP_URL}${siteConfig.auth.resetCallbackUrl}`
-    );
-
-    return {
-      success: true,
-      message: "Password reset email sent. Check your inbox.",
-    };
-  } catch (error: any) {
-    return {
-      errors: {
-        general: [error.message || "Failed to send password reset email"],
-      },
-    };
-  }
-}
-
-// Reset password using secret from email
-export async function resetPassword(
-  prevState: FormState,
-  formData: FormData
-): Promise<FormState> {
-  const userId = formData.get("userId") as string;
-  const secret = formData.get("secret") as string;
-  const password = formData.get("password") as string;
-
-  if (!userId || !secret || !password) {
-    return {
-      errors: {
-        general: ["Invalid reset link or missing information"],
-      },
-    };
-  }
-
-  try {
-    const { account } = createAdminClient();
-    await account.updateRecovery(userId, secret, password);
-
-    return {
-      success: true,
-      message: "Password reset successfully. You can now sign in.",
-    };
-  } catch (error: any) {
-    return {
-      errors: {
-        general: [error.message || "Failed to reset password"],
-      },
-    };
-  }
+export async function getUserClient() {
+  return await getUser();
 }

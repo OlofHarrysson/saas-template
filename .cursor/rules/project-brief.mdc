@@ -11,6 +11,9 @@ Built with Next.js 15 (frontend) and Python 3.12 (backend/utility scripts).
 
 The frontend code is under `/website` and the backend code is under `/backend`.
 
+## MVP Plan
+[roadmap.md](mdc:docs/roadmap.md)
+
 ## Core Coding Philosophy
 
 **Happy Path First:**
@@ -19,6 +22,7 @@ Focus on coding the happy path - the ideal, error-free scenario where everything
 - Implement the main successful flow first
 - Assume valid inputs and successful operations
 - Prioritize clarity and readability
+- Avoid defensive programming
 - Error handling and edge cases will be added strategically later
 
 This prevents masking underlying issues with premature defensive code and keeps the core logic clear and maintainable.
