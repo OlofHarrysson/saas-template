@@ -102,7 +102,7 @@ export default function Home() {
       </section>
 
       {/* Pricing Section - Band 4 (Muted Background) */}
-      <section className="w-full bg-muted py-20 px-4 sm:px-8">
+      <section id="pricing" className="w-full bg-muted py-20 px-4 sm:px-8">
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="text-center space-y-4">
             <h2 className="text-4xl sm:text-5xl font-bold">
@@ -175,7 +175,7 @@ export default function Home() {
       </section>
 
       {/* FAQ Section - Band 5 (White Background) */}
-      <section className="w-full bg-background py-20 px-4 sm:px-8">
+      <section id="faq" className="w-full bg-background py-20 px-4 sm:px-8">
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="text-center space-y-4">
             <h2 className="text-4xl sm:text-5xl font-bold">🤔 FAQ</h2>

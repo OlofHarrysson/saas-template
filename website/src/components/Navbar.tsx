@@ -6,9 +6,9 @@ import { AuthButton } from "@/components/AuthButton";
 import { useState } from "react";
 
 const marketingNavigationLinks = [
-  { href: "/", label: "Home" },
-  { href: "/features", label: "Features" },
-  { href: "/pricing", label: "Pricing" },
+  { href: "#features", label: "Features" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "#faq", label: "FAQ" },
 ] as const;
 
 const appNavigationLinks = [
