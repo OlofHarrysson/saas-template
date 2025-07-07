@@ -5,12 +5,27 @@ import Link from "next/link";
 import { AuthButton } from "@/components/AuthButton";
 import { useState } from "react";
 
-const navigationLinks = [
+const marketingNavigationLinks = [
   { href: "/", label: "Home" },
-  { href: "/p/dashboard", label: "Dashboard" },
+  { href: "/features", label: "Features" },
+  { href: "/pricing", label: "Pricing" },
 ] as const;
 
-const MobileDrawer = () => {
+const appNavigationLinks = [
+  { href: "/p/dashboard", label: "Dashboard" },
+  { href: "/p/projects", label: "Projects" },
+  { href: "/p/analytics", label: "Analytics" },
+] as const;
+
+interface NavbarProps {
+  variant?: "marketing" | "app";
+}
+
+const MobileDrawer = ({
+  navigationLinks,
+}: {
+  navigationLinks: readonly { href: string; label: string }[];
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openDrawer = () => setIsOpen(true);
@@ -81,7 +96,11 @@ const MobileDrawer = () => {
   );
 };
 
-const DesktopNav = () => {
+const DesktopNav = ({
+  navigationLinks,
+}: {
+  navigationLinks: readonly { href: string; label: string }[];
+}) => {
   return (
     <ul className="menu menu-horizontal px-1">
       {navigationLinks.map((link) => (
@@ -98,22 +117,26 @@ const DesktopNav = () => {
   );
 };
 
-const Navbar = () => {
+const Navbar = ({ variant = "marketing" }: NavbarProps) => {
+  const navigationLinks =
+    variant === "app" ? appNavigationLinks : marketingNavigationLinks;
+  const logoHref = variant === "app" ? "/p/dashboard" : "/";
+
   return (
     <div className="navbar bg-background border-b border-accent">
       <div className="navbar-start">
-        <Link href="/" className="btn btn-ghost text-xl">
+        <Link href={logoHref} className="btn btn-ghost text-xl">
           Your Logo
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <DesktopNav />
+        <DesktopNav navigationLinks={navigationLinks} />
       </div>
       <div className="navbar-end">
         <div className="hidden lg:flex">
           <AuthButton />
         </div>
-        <MobileDrawer />
+        <MobileDrawer navigationLinks={navigationLinks} />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { siteConfig } from "./site-config";
+import { siteConfig } from "../site-config";
 import Link from "next/link";
 
 export default function Home() {

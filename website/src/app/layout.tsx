@@ -4,9 +4,6 @@ import PlausibleProvider from "next-plausible";
 import { siteConfig } from "@/app/site-config";
 import { getSEOTags } from "@/lib/seo";
 import "./globals.css";
-import { Toaster } from "react-hot-toast";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const font = Inter({ subsets: ["latin"] });
 
@@ -34,25 +31,7 @@ export default function RootLayout({
           enabled={process.env.NODE_ENV === "production"}
         />
       </head>
-      <body className={`${font.className} antialiased`}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <Toaster
-          position="bottom-right"
-          toastOptions={{
-            className: "!rounded-md !p-4 !shadow-md",
-            success: {
-              className: "toast-success",
-              duration: 4000,
-            },
-            error: {
-              className: "toast-error",
-              duration: 4000,
-            },
-          }}
-        />
-      </body>
+      <body className={`${font.className} antialiased`}>{children}</body>
     </html>
   );
 }
