@@ -1,10 +1,9 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { useAuth } from "@/lib/auth/useAuth";
 import { NavigationLink } from "@/lib/navigation";
+import { Menu } from "lucide-react";
 
 interface AvatarDropdownProps {
   avatarLinks: NavigationLink[];
@@ -24,15 +23,10 @@ export const AvatarDropdown = ({ avatarLinks }: AvatarDropdownProps) => {
       <div
         tabIndex={0}
         role="button"
-        className="btn btn-ghost btn-circle avatar hover:bg-accent flex items-center justify-center"
+        className="btn btn-ghost"
+        aria-label="Open menu"
       >
-        <Image
-          src="/assets/avatar.png"
-          alt="User avatar"
-          width={32}
-          height={32}
-          className="rounded-full object-cover"
-        />
+        <Menu className="h-5 w-5" />
       </div>
       <ul
         tabIndex={0}
