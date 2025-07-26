@@ -6,3 +6,6 @@ install_dependencies:
 
 run_precommit:
 	uv run pre-commit run --all-files
+
+start_api:
+	uv run python src/mycode/api/start_server.py
