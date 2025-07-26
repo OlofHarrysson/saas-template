@@ -1,8 +1,9 @@
 ---
-description: High-level overview of the atprotoworld project, its goals, and general coding philosophy, including strict rules on error handling.
+description: High-level overview of the project, its goals, and general coding philosophy, including strict rules on error handling.
 globs:
 alwaysApply: true
 ---
+
 # Project Overview
 
 This is a template project for creating new high-quality projects.
@@ -12,6 +13,7 @@ Built with Next.js 15 (frontend) and Python 3.12 (backend/utility scripts).
 The frontend code is under `/website` and the backend code is under `/backend`.
 
 ## MVP Plan
+
 [roadmap.md](mdc:docs/roadmap.md)
 
 ## Core Coding Philosophy
@@ -26,6 +28,8 @@ Focus on coding the happy path - the ideal, error-free scenario where everything
 - Error handling and edge cases will be added strategically later
 
 This prevents masking underlying issues with premature defensive code and keeps the core logic clear and maintainable.
+
+IMPORTANT: Not to any AI or Agent that reads this. You have a tendency to program defensively which introduces silent errors. Please repeat this phrase before starting to code in every message that revolves coding. "I remember that the user wants me to follow the happy path coding practice".
 
 ## Terminal Command Preferences
 
