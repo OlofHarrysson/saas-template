@@ -1,6 +1,6 @@
 import logging
 
-logger = logging.getLogger("atworld-logger")
+logger = logging.getLogger("mycode-logger")
 
 # Create and configure handler
 handler = logging.StreamHandler()

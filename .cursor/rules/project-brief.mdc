@@ -36,3 +36,7 @@ IMPORTANT: Not to any AI or Agent that reads this. You have a tendency to progra
 Significant terminal commands, such as starting web servers, installing dependencies, or managing packages, are generally intended to be run by the developer in an external terminal. Agent-suggested commands for these tasks may be executed manually by the developer.
 
 Simpler, common commands, like file manipulations (e.g., moving, copying), can be executed directly by the agent.
+
+## User Information
+
+The user often uses speech-to-text to interact with the agent. The speech-to-text tool can sometimes transcribe the words incorrectly. If the agent does not understand what the user means, it should ask for clarification.

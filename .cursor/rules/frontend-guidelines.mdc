@@ -3,6 +3,7 @@ description:
 globs: website/**
 alwaysApply: false
 ---
+
 ## Frontend (Website)
 
 The frontend code is located under `/website`.
@@ -15,7 +16,7 @@ Here are some config values that could be important [site-config.ts](mdc:website
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS with custom theme
 - **UI Components**: DaisyUI (preferred), otherwise Tailwind CSS
-- **Authentication**: Google OAuth or email with Supabase
+- **Authentication**: Google OAuth or magic link via Appwrite
 - **Deployment**: Vercel
 - **State Management**: Zustand for global state management
 - **Responsive Design**: Mobile-first with desktop support. This includes smaller padding and font sizes for mobile since the screen is smaller, and sometimes requires a different design for mobile and desktop.
@@ -26,6 +27,7 @@ Here are some config values that could be important [site-config.ts](mdc:website
 The application should implement a consistent theme using:
 
 1.  **Color System**:
+
     - Use semantic color pairs with DEFAULT/foreground pattern:
       ```typescript
       primary: {
