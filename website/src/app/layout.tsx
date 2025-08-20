@@ -7,12 +7,6 @@ import "./globals.css";
 
 const font = Inter({ subsets: ["latin"] });
 
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
-};
-
 // Uses default values from siteConfig
 export const metadata: Metadata = getSEOTags();
 

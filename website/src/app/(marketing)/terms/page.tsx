@@ -78,6 +78,7 @@ For questions about these Terms, please contact us at ${
 
 export const metadata = getSEOTags({
   title: `Terms of Service | ${siteConfig.name}`,
+  keywords: ["terms of service", "legal"],
   canonicalUrlRelative: "/terms",
 });
 

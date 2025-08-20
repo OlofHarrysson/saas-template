@@ -5,9 +5,9 @@ export type NavigationLink = {
 };
 
 const marketingNavigationLinks: NavigationLink[] = [
-  { href: "#features", label: "Features", showInNavbar: true },
-  { href: "#pricing", label: "Pricing", showInNavbar: true },
-  { href: "#faq", label: "FAQ", showInNavbar: true },
+  { href: "/#features", label: "Features", showInNavbar: true },
+  { href: "/#pricing", label: "Pricing", showInNavbar: true },
+  { href: "/#faq", label: "FAQ", showInNavbar: true },
 ] as const;
 
 const appNavigationLinks: NavigationLink[] = [

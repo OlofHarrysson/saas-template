@@ -137,7 +137,10 @@ const Navbar = ({ variant = "marketing" }: NavbarProps) => {
   return (
     <div className="navbar bg-background border-b border-accent">
       <div className="navbar-start">
-        <Link href={logoHref} className="btn btn-ghost text-xl">
+        <Link
+          href={logoHref}
+          className="btn btn-ghost text-xl hover:bg-transparent"
+        >
           Your Logo
         </Link>
       </div>

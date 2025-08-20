@@ -75,6 +75,7 @@ This policy is governed by Swedish law.`;
 
 export const metadata = getSEOTags({
   title: `Privacy Policy | ${siteConfig.name}`,
+  keywords: ["privacy policy", "legal"],
   canonicalUrlRelative: "/privacy",
 });
 
