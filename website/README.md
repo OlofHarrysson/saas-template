@@ -60,9 +60,13 @@ Also need to check appwrite integration
 
 And create some nice template for login emails and forgot password - maybe use the tulipsocial one?
 
-### Plausible
+### PostHog
 
-Go to the website and add your domain. We're configuring the settings through code so just press continue.
+- Login at [PostHog](https://posthog.com/)
+- Create a new project for your website (under the sidebar/breadcrumbs)
+- Go to Project Settings sidebar and copy your "Project API Key"
+- Add the API key to your `.env.local` file as `NEXT_PUBLIC_POSTHOG_KEY=your_api_key_here`
+- The PostHog integration is already configured in the codebase with proxy settings to avoid ad-blockers
 
 ### Google cloud
 
