@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import PlausibleProvider from "next-plausible";
 import { siteConfig } from "@/app/site-config";
 import { getSEOTags } from "@/lib/seo";
 import "./globals.css";
@@ -17,14 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <PlausibleProvider
-          domain={siteConfig.domain}
-          trackOutboundLinks={siteConfig.analytics.plausible.trackOutboundLinks}
-          hash={siteConfig.analytics.plausible.hash}
-          enabled={process.env.NODE_ENV === "production"}
-        />
-      </head>
+      <head></head>
       <body className={`${font.className} antialiased`}>{children}</body>
     </html>
   );

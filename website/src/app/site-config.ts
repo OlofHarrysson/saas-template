@@ -17,13 +17,6 @@ export const siteConfig = {
     callbackUrl: "/p/dashboard",
   },
 
-  // Analytics
-  analytics: {
-    plausible: {
-      trackOutboundLinks: true,
-      hash: true,
-    },
-  },
   resend: {
     fromNoReply: `YourBrand <your@resend-email-address.com>`,
     fromAdmin: `Olof at TandemFuture <olof@tandemfuture.com>`,
