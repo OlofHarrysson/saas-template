@@ -6,7 +6,7 @@ import LoginForm from "@/components/auth/LoginForm";
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: { error?: string };
+  searchParams: Promise<{ error?: string }>;
 }) {
   // Check if user is already authenticated on the server
   const session = await auth();
@@ -16,6 +16,9 @@ export default async function LoginPage({
     redirect(siteConfig.auth.callbackUrl);
   }
 
+  // Await searchParams before accessing its properties
+  const params = await searchParams;
+
   // Otherwise, show the login form
-  return <LoginForm error={searchParams.error} />;
+  return <LoginForm error={params.error} />;
 }
