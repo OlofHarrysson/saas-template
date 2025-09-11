@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useAuth } from "@/lib/auth/hooks";
+import { signOutAction } from "@/lib/auth/nextauth-actions";
 import { NavigationLink } from "@/lib/navigation";
 import { Menu } from "lucide-react";
 
@@ -10,14 +10,6 @@ interface AvatarDropdownProps {
 }
 
 export const AvatarDropdown = ({ avatarLinks }: AvatarDropdownProps) => {
-  const { logout } = useAuth();
-
-  const handleLinkClick = (href: string) => {
-    if (href === "/logout") {
-      logout();
-    }
-  };
-
   return (
     <div className="dropdown dropdown-end">
       <div
@@ -36,12 +28,14 @@ export const AvatarDropdown = ({ avatarLinks }: AvatarDropdownProps) => {
         {avatarLinks.map((link) => (
           <li key={link.href}>
             {link.href === "/logout" ? (
-              <button
-                onClick={() => handleLinkClick(link.href)}
-                className="text-error hover:bg-error/10"
-              >
-                {link.label}
-              </button>
+              <form action={signOutAction} className="w-full">
+                <button
+                  type="submit"
+                  className="text-error hover:bg-error/10 w-full text-left"
+                >
+                  {link.label}
+                </button>
+              </form>
             ) : (
               <Link href={link.href} className="hover:bg-accent">
                 {link.label}

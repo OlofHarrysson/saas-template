@@ -1,17 +1,12 @@
 "use server";
 
 import { signIn, signOut } from "@/auth";
+import { siteConfig } from "@/app/site-config";
 
-/**
- * Server action for Google OAuth sign in
- */
 export async function signInWithGoogle() {
-  await signIn("google", { redirectTo: "/p/dashboard" });
+  await signIn("google", { redirectTo: siteConfig.auth.callbackUrl });
 }
 
-/**
- * Server action for signing out
- */
 export async function signOutAction() {
-  await signOut();
+  await signOut({ redirectTo: siteConfig.auth.loginUrl });
 }
