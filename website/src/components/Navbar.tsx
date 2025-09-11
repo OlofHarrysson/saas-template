@@ -6,7 +6,7 @@ import { AvatarDropdown } from "@/components/AvatarDropdown";
 import { useAuth } from "@/lib/auth/hooks";
 import { siteConfig } from "@/app/site-config";
 import { getNavigationLinks, NavigationLink } from "@/lib/navigation";
-import { signOutAction } from "@/lib/auth/nextauth-actions";
+import { signOut } from "next-auth/react";
 import { useState } from "react";
 
 interface NavbarProps {
@@ -25,7 +25,7 @@ const MobileDrawer = ({ variant }: { variant: "marketing" | "app" }) => {
 
   const handleLinkClick = async (href: string) => {
     if (href === "/logout") {
-      await signOutAction();
+      await signOut({ redirectTo: siteConfig.auth.loginUrl });
     }
     closeDrawer();
   };

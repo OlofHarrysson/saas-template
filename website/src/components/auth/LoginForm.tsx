@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { signInWithGoogle } from "@/lib/auth/nextauth-actions";
+import { signIn } from "next-auth/react";
 import GoogleSignInButton from "@/components/auth/GoogleSignInButton";
+import { siteConfig } from "@/app/site-config";
 
 interface LoginFormProps {
   error?: string;
@@ -54,9 +55,13 @@ export default function LoginForm({ error }: LoginFormProps) {
         )}
 
         {/* Google OAuth Button */}
-        <form action={signInWithGoogle}>
+        <div
+          onClick={() =>
+            signIn("google", { redirectTo: siteConfig.auth.callbackUrl })
+          }
+        >
           <GoogleSignInButton />
-        </form>
+        </div>
 
         <div className="relative">
           <div className="absolute inset-0 flex items-center">

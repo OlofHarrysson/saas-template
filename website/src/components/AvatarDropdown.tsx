@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { signOutAction } from "@/lib/auth/nextauth-actions";
+import { signOut } from "next-auth/react";
 import { NavigationLink } from "@/lib/navigation";
 import { Menu } from "lucide-react";
+import { siteConfig } from "@/app/site-config";
 
 interface AvatarDropdownProps {
   avatarLinks: NavigationLink[];
@@ -30,7 +31,9 @@ export const AvatarDropdown = ({ avatarLinks }: AvatarDropdownProps) => {
           <li key={link.href}>
             {link.href === "/logout" ? (
               <div
-                onClick={() => signOutAction()}
+                onClick={() =>
+                  signOut({ redirectTo: siteConfig.auth.loginUrl })
+                }
                 className="text-error hover:bg-error/10 cursor-pointer"
               >
                 {link.label}

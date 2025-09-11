@@ -1,5 +1,4 @@
 import { requireAuth } from "@/lib/auth/server";
-import { signOutAction } from "@/lib/auth/nextauth-actions";
 
 export default async function DashboardPage() {
   const user = await requireAuth();
@@ -37,12 +36,6 @@ export default async function DashboardPage() {
             </div>
           </div>
         </div>
-
-        <form action={signOutAction}>
-          <button type="submit" className="btn btn-outline btn-error">
-            Sign Out
-          </button>
-        </form>
       </div>
     </main>
   );
