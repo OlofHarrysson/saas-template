@@ -9,6 +9,7 @@ interface AvatarDropdownProps {
   avatarLinks: NavigationLink[];
 }
 
+// Used in the logged in state for desktop
 export const AvatarDropdown = ({ avatarLinks }: AvatarDropdownProps) => {
   return (
     <div className="dropdown dropdown-end">

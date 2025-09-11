@@ -6,6 +6,7 @@ import { AvatarDropdown } from "@/components/AvatarDropdown";
 import { useAuth } from "@/lib/auth/hooks";
 import { siteConfig } from "@/app/site-config";
 import { getNavigationLinks, NavigationLink } from "@/lib/navigation";
+import { signOutAction } from "@/lib/auth/nextauth-actions";
 import { useState } from "react";
 
 interface NavbarProps {
@@ -22,7 +23,10 @@ const MobileDrawer = ({ variant }: { variant: "marketing" | "app" }) => {
   // Get all navigation links for mobile (no distinction needed)
   const allLinks = getNavigationLinks(variant, "mobile");
 
-  const handleLinkClick = () => {
+  const handleLinkClick = async (href: string) => {
+    if (href === "/logout") {
+      await signOutAction();
+    }
     closeDrawer();
   };
 
@@ -68,13 +72,22 @@ const MobileDrawer = ({ variant }: { variant: "marketing" | "app" }) => {
           <ul className="space-y-2">
             {allLinks.map((link) => (
               <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="block py-3 px-4 text-base hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
-                  onClick={handleLinkClick}
-                >
-                  {link.label}
-                </Link>
+                {link.href === "/logout" ? (
+                  <button
+                    onClick={() => handleLinkClick(link.href)}
+                    className="block w-full text-left py-3 px-4 text-base hover:bg-error/10 text-error rounded-md transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className="block py-3 px-4 text-base hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+                    onClick={() => handleLinkClick(link.href)}
+                  >
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
