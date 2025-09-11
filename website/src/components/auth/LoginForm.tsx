@@ -11,11 +11,27 @@ interface LoginFormProps {
 
 export default function LoginForm({ error }: LoginFormProps) {
   const [email, setEmail] = useState("");
+  const [isEmailLoading, setIsEmailLoading] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
 
-  // Placeholder action for email form (does nothing for now)
-  const handleEmailSubmit = (e: React.FormEvent) => {
+  const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement magic link functionality later
+    setIsEmailLoading(true);
+
+    try {
+      const result = await signIn("resend", {
+        email,
+        redirect: false,
+      });
+
+      if (!result?.error) {
+        setEmailSent(true);
+      }
+    } catch (error) {
+      console.error("Email sign-in failed:", error);
+    } finally {
+      setIsEmailLoading(false);
+    }
   };
 
   const getErrorMessage = (error: string) => {
@@ -28,6 +44,10 @@ export default function LoginForm({ error }: LoginFormProps) {
         return "Google sign-in failed. Please try again.";
       case "OAuthAccountNotLinked":
         return "Account already exists with different provider.";
+      case "EmailSignin":
+        return "Unable to send magic link. Please check your email address and try again.";
+      case "Verification":
+        return "Invalid or expired magic link. Please request a new one.";
       case "SessionRequired":
         return "Please sign in to access this page.";
       default:
@@ -74,7 +94,7 @@ export default function LoginForm({ error }: LoginFormProps) {
           </div>
         </div>
 
-        {/* Email Sign-in Form - UI only, functionality to be added later */}
+        {/* Email Sign-in Form */}
         <form onSubmit={handleEmailSubmit} className="mt-8 space-y-6">
           <div>
             <label htmlFor="email" className="sr-only">
@@ -90,15 +110,31 @@ export default function LoginForm({ error }: LoginFormProps) {
               onChange={(e) => setEmail(e.target.value)}
               className="input input-bordered w-full"
               placeholder="Enter your email address"
+              disabled={isEmailLoading || emailSent}
             />
           </div>
 
-          <button type="submit" className="btn btn-primary w-full">
-            Send Sign-in Link
+          <button
+            type="submit"
+            className="btn btn-primary w-full"
+            disabled={isEmailLoading || emailSent}
+          >
+            {isEmailLoading ? (
+              <>
+                <span className="loading loading-spinner loading-sm"></span>
+                Sending...
+              </>
+            ) : emailSent ? (
+              "Email Sent"
+            ) : (
+              "Send Sign-in Link"
+            )}
           </button>
 
           <p className="text-xs text-center text-base-content/60">
-            We'll email you a secure link to sign in instantly
+            {emailSent
+              ? "Check your email for the sign-in link"
+              : "We'll email you a secure link to sign in instantly"}
           </p>
         </form>
       </div>

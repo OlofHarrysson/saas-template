@@ -1,5 +1,6 @@
 import type { NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
+import Resend from "next-auth/providers/resend";
 import NeonAdapter from "@auth/neon-adapter";
 import { Pool } from "@neondatabase/serverless";
 
@@ -17,6 +18,9 @@ export const authConfig = (): NextAuthConfig => {
       Google({
         clientId: process.env.GOOGLE_CLIENT_ID!,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      }),
+      Resend({
+        from: process.env.AUTH_RESEND_FROM!,
       }),
     ],
     pages: {
