@@ -2,10 +2,6 @@
 
 import { useSession } from "next-auth/react";
 
-/**
- * Simple auth hook that wraps NextAuth's useSession
- * Use this instead of directly importing useSession
- */
 export function useAuth() {
   const { data: session, status } = useSession();
 

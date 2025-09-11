@@ -2,6 +2,8 @@ import "server-only";
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth/auth";
 
+import { siteConfig } from "@/app/site-config";
+
 export async function getSession() {
   return await auth();
 }
@@ -14,7 +16,7 @@ export async function getUser() {
 export async function requireAuth() {
   const user = await getUser();
   if (!user) {
-    redirect("/login");
+    redirect(siteConfig.auth.loginUrl);
   }
   return user;
 }

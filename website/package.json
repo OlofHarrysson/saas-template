@@ -13,7 +13,6 @@
     "@auth/neon-adapter": "^1.10.0",
     "@neondatabase/serverless": "^1.0.1",
     "daisyui": "^4.12.23",
-    "dotenv": "^17.2.2",
     "lucide-react": "^0.475.0",
     "next": "^15.3.5",
     "next-auth": "^5.0.0-beta.29",
