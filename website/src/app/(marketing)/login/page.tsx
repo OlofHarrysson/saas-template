@@ -3,12 +3,12 @@
 import { useState, useEffect, Suspense } from "react";
 import { useActionState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import {
   signInWithMagicLink,
-  signInWithGoogle,
   type FormState,
-} from "@/lib/auth/actions";
-import { useAuth } from "@/lib/auth/useAuth";
+} from "@/lib/auth/nextauth-actions";
+import { useAuth } from "@/lib/auth/hooks";
 import { siteConfig } from "@/app/site-config";
 import GoogleSignInButton from "@/components/auth/GoogleSignInButton";
 
@@ -93,9 +93,9 @@ function LoginContent() {
           )}
 
           {/* Google OAuth Button */}
-          <form action={signInWithGoogle}>
+          <div onClick={() => signIn("google")}>
             <GoogleSignInButton />
-          </form>
+          </div>
 
           <div className="relative">
             <div className="absolute inset-0 flex items-center">

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useAuth } from "@/lib/auth/useAuth";
+import { useAuth } from "@/lib/auth/hooks";
 import { NavigationLink } from "@/lib/navigation";
 import { Menu } from "lucide-react";
 

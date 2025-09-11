@@ -1,5 +1,6 @@
 import { siteConfig } from "../site-config";
 import Link from "next/link";
+import NextAuthTest from "@/components/NextAuthTest";
 
 export default function Home() {
   return (
@@ -45,6 +46,19 @@ export default function Home() {
               Learn More ↓
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* NextAuth Test Section */}
+      <section className="w-full bg-accent/10 py-12 px-4 sm:px-8 border-y border-accent/20">
+        <div className="max-w-2xl mx-auto space-y-4">
+          <h2 className="text-2xl font-bold text-center text-accent">
+            🧪 NextAuth Test Component
+          </h2>
+          <p className="text-center text-muted-foreground text-sm">
+            Testing Google OAuth integration (temporary component)
+          </p>
+          <NextAuthTest />
         </div>
       </section>
 

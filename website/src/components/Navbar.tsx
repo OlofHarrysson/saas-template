@@ -3,7 +3,7 @@
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { AvatarDropdown } from "@/components/AvatarDropdown";
-import { useAuth } from "@/lib/auth/useAuth";
+import { useAuth } from "@/lib/auth/hooks";
 import { siteConfig } from "@/app/site-config";
 import { getNavigationLinks, NavigationLink } from "@/lib/navigation";
 import { useState } from "react";

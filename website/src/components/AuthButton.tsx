@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { siteConfig } from "@/app/site-config";
-import { useAuth } from "@/lib/auth/useAuth";
+import { useAuth } from "@/lib/auth/hooks";
 
 export const AuthButton = () => {
   const { isAuthenticated, logout } = useAuth();
