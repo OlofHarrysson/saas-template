@@ -1,22 +1,10 @@
-import "server-only";
-import { redirect } from "next/navigation";
-import { createSessionClient } from "@/lib/appwrite/server";
-import { siteConfig } from "@/app/site-config";
+// Re-export everything from the auth module for easy imports
 
-export async function getUser() {
-  try {
-    const { account } = await createSessionClient();
-    return await account.get();
-  } catch {
-    return null;
-  }
-}
+// Server-side functions
+export { getSession, getUser, requireAuth } from "./server";
 
-export async function requireAuth() {
-  const user = await getUser();
-  if (!user) {
-    redirect(siteConfig.auth.loginUrl);
-  }
+// Client-side hooks
+export { useAuth } from "./hooks";
 
-  return user;
-}
+// Server actions
+export { signInWithGoogle, signOutAction } from "./nextauth-actions";

@@ -1,21 +1,13 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
-import { useActionState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-import {
-  signInWithMagicLink,
-  type FormState,
-} from "@/lib/auth/nextauth-actions";
 import { useAuth } from "@/lib/auth/hooks";
 import { siteConfig } from "@/app/site-config";
 import GoogleSignInButton from "@/components/auth/GoogleSignInButton";
 
-const initialState: FormState = {
-  message: undefined,
-  errors: {},
-};
+// Placeholder for future magic link functionality
 
 // Component that handles search params - needs to be wrapped in Suspense
 function SearchParamsHandler({
@@ -47,10 +39,11 @@ function LoginContent() {
     }
   }, [isAuthenticated, isLoading, router]);
 
-  const [emailSignInState, emailSignInAction] = useActionState(
-    signInWithMagicLink,
-    initialState
-  );
+  // Placeholder action for email form (does nothing for now)
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // TODO: Implement magic link functionality later
+  };
 
   const getErrorMessage = (error: string) => {
     switch (error) {
@@ -108,8 +101,8 @@ function LoginContent() {
             </div>
           </div>
 
-          {/* Email Sign-in Form */}
-          <form action={emailSignInAction} className="mt-8 space-y-6">
+          {/* Email Sign-in Form - UI only, functionality to be added later */}
+          <form onSubmit={handleEmailSubmit} className="mt-8 space-y-6">
             <div>
               <label htmlFor="email" className="sr-only">
                 Email address
@@ -122,36 +115,17 @@ function LoginContent() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`input input-bordered w-full ${
-                  emailSignInState?.errors?.email ? "input-error" : ""
-                }`}
+                className="input input-bordered w-full"
                 placeholder="Enter your email address"
               />
-              {emailSignInState?.errors?.email && (
-                <div className="text-error text-sm mt-1">
-                  {emailSignInState.errors.email[0]}
-                </div>
-              )}
             </div>
 
-            {emailSignInState?.errors?.general && (
-              <div className="alert alert-error">
-                <span>{emailSignInState.errors.general[0]}</span>
-              </div>
-            )}
-
-            <button
-              type="submit"
-              className="btn btn-primary w-full"
-              disabled={emailSignInState?.success}
-            >
-              {emailSignInState?.success ? "Email Sent" : "Send Sign-in Link"}
+            <button type="submit" className="btn btn-primary w-full">
+              Send Sign-in Link
             </button>
 
             <p className="text-xs text-center text-base-content/60">
-              {emailSignInState?.success
-                ? emailSignInState.message
-                : "We'll email you a secure link to sign in instantly"}
+              We'll email you a secure link to sign in instantly
             </p>
           </form>
         </div>
