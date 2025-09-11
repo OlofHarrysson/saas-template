@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { auth } from "@/lib/auth/auth";
 import { siteConfig } from "@/app/site-config";
 import LoginForm from "@/components/auth/LoginForm";
 
