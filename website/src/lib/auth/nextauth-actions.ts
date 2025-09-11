@@ -1,6 +1,6 @@
 "use server";
 
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut } from "@/auth";
 import { redirect } from "next/navigation";
 import { siteConfig } from "@/app/site-config";
 
@@ -18,7 +18,7 @@ export type FormState = {
  * Server action for Google OAuth sign in
  */
 export async function signInWithGoogle() {
-  redirect("/api/auth/signin/google");
+  await signIn("google", { redirectTo: siteConfig.auth.callbackUrl });
 }
 
 /**
@@ -49,8 +49,8 @@ export async function signInWithMagicLink(
   }
 
   try {
-    // Redirect to NextAuth email signin
-    redirect(`/api/auth/signin/email?email=${encodeURIComponent(email)}`);
+    // Note: Email provider needs to be configured in auth.ts first
+    await signIn("email", { email, redirectTo: siteConfig.auth.callbackUrl });
   } catch (error) {
     return {
       errors: {
@@ -64,5 +64,5 @@ export async function signInWithMagicLink(
  * Server action for signing out
  */
 export async function signOutAction() {
-  redirect("/api/auth/signout");
+  await signOut({ redirectTo: "/" });
 }

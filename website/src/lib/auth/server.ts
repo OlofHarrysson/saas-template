@@ -1,8 +1,7 @@
 import "server-only";
-import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
 import { siteConfig } from "@/app/site-config";
-import { authOptions } from "./config";
+import { auth } from "@/auth";
 
 /**
  * Get the current user session on the server side
@@ -10,7 +9,7 @@ import { authOptions } from "./config";
  */
 export async function getUser() {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     return session?.user || null;
   } catch {
     return null;
@@ -36,7 +35,7 @@ export async function requireAuth() {
  */
 export async function getSession() {
   try {
-    return await getServerSession(authOptions);
+    return await auth();
   } catch {
     return null;
   }
