@@ -16,7 +16,9 @@ Here are some config values that could be important [site-config.ts](mdc:website
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS with custom theme
 - **UI Components**: DaisyUI (preferred), otherwise Tailwind CSS
-- **Authentication**: Google OAuth or magic link via Appwrite
+- **Authentication**: Auth.js (NextAuth v5) with Google OAuth and Resend magic links
+- **Database**: Neon PostgreSQL with Auth.js adapter
+- **Email Provider**: Resend for magic link authentication
 - **Deployment**: Vercel
 - **State Management**: Zustand for global state management
 - **Responsive Design**: Mobile-first with desktop support. This includes smaller padding and font sizes for mobile since the screen is smaller, and sometimes requires a different design for mobile and desktop.

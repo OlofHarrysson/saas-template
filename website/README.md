@@ -4,7 +4,6 @@
 
 - Verify that the open graph icon stuff works
 - Stripe when I've got it working on some other site
-- Resend? Setup readme and appwrite integration readme next time I create a domain
 - Fix this next time you setup a domain. See https://shipfa.st/docs/features/emails
 
 ## Setup
@@ -45,20 +44,31 @@ Follow the CLI prompts.
 - Add env variables
 - Add domain, use www. as canoical version
 
-### Appwrites
+### Authentication Setup (Auth.js + Neon)
 
-- Create a new project.
-- Connect a new Web platform for NextJs with localhost. You don't have to finish the setup.
-- Fill in the .env variables and create an API key.
-- Test to login with magic link.
-- Go to Auth -> Settings and enable Google OAuth. Copy the Redirect URI from Appwrite Google OAuth into Google Cloud OAuth Client and create the Google OAuth client. Then copy the OAuth client ID and Secret into Appwrites Google OAuth config.
-- Create/update your Appwrite Project platform hostname to your domain to make the OAuth work.
+**Neon Database:**
 
-### Resend / Emails
+- Login at [neon.tech](https://neon.tech)
+- Create a new database project
+- Copy the connection string from your Neon dashboard
+- Add it to `.env.local` as `DATABASE_URL=your_neon_connection_string`
+- The required Auth.js tables are automatically created on first run # TODO: Verify this step
 
-Also need to check appwrite integration
+**Google OAuth:**
 
-And create some nice template for login emails and forgot password - maybe use the tulipsocial one?
+- Go to [Google Cloud Console](https://console.cloud.google.com/)
+- Create a new project or select existing one
+- Create OAuth 2.0 credentials (Web application)
+- Add your domains to authorized origins and redirect URIs
+- Copy Client ID and Secret to `.env.local`
+
+**Resend (Magic Links):**
+
+- Login at [resend.com](https://resend.com)
+- Add and verify your domain
+- Generate API key from dashboard
+- Add to `.env.local` as `AUTH_RESEND_KEY=your_api_key`
+- Set sender email as `AUTH_RESEND_FROM=noreply@yourdomain.com`
 
 ### PostHog
 
