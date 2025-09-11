@@ -1,23 +1,36 @@
 import type { NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
+import NeonAdapter from "@auth/neon-adapter";
+import { Pool } from "@neondatabase/serverless";
 
-export const authConfig = {
-  providers: [
-    Google({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
-  ],
-  pages: {
-    signIn: "/login",
-    error: "/login",
-  },
-  callbacks: {
-    async session({ session, token }) {
-      if (token.sub) {
-        session.user.id = token.sub;
-      }
-      return session;
+export const authConfig = (): NextAuthConfig => {
+  // Create a Pool inside the request handler as recommended by Neon
+  const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+
+  return {
+    debug: process.env.NODE_ENV === "development",
+    adapter: NeonAdapter(pool),
+    session: {
+      strategy: "database",
     },
-  },
-} satisfies NextAuthConfig;
+    providers: [
+      Google({
+        clientId: process.env.GOOGLE_CLIENT_ID!,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      }),
+    ],
+    pages: {
+      signIn: "/login",
+      error: "/login",
+    },
+    callbacks: {
+      async session({ session, user }) {
+        // When using database sessions, user object is available instead of token
+        if (user?.id) {
+          session.user.id = user.id;
+        }
+        return session;
+      },
+    },
+  };
+};
