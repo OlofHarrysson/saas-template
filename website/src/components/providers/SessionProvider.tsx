@@ -7,5 +7,14 @@ export default function SessionProvider({
 }: {
   children: React.ReactNode;
 }) {
-  return <NextAuthSessionProvider>{children}</NextAuthSessionProvider>;
+  return (
+    <NextAuthSessionProvider
+      // Re-fetch session every 5 minutes
+      refetchInterval={5 * 60}
+      // Re-fetch session when window is focused
+      refetchOnWindowFocus={true}
+    >
+      {children}
+    </NextAuthSessionProvider>
+  );
 }

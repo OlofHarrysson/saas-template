@@ -1,10 +1,10 @@
 "use client";
 
 import { useAuth } from "@/lib/auth/hooks";
-import { signInWithGoogle } from "@/lib/auth/nextauth-actions";
+import { signInWithGoogle, signOutAction } from "@/lib/auth/nextauth-actions";
 
 export default function NextAuthTest() {
-  const { user, isLoading, isAuthenticated, signOut } = useAuth();
+  const { user, isLoading, isAuthenticated } = useAuth();
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -16,9 +16,11 @@ export default function NextAuthTest() {
         </h3>
         <p>Signed in as {user.email}</p>
         <p>Name: {user.name}</p>
-        <button onClick={signOut} className="btn btn-secondary mt-2">
-          Sign out
-        </button>
+        <form action={signOutAction} className="inline">
+          <button type="submit" className="btn btn-secondary mt-2">
+            Sign out
+          </button>
+        </form>
       </div>
     );
   }

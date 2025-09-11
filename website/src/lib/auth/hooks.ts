@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 /**
  * Simple auth hook that wraps NextAuth's useSession
@@ -14,6 +14,5 @@ export function useAuth() {
     user: session?.user ?? null,
     isLoading: status === "loading",
     isAuthenticated: status === "authenticated",
-    signOut: () => signOut({ callbackUrl: "/login" }),
   };
 }

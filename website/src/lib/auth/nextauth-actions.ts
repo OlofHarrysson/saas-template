@@ -13,5 +13,5 @@ export async function signInWithGoogle() {
  * Server action for signing out
  */
 export async function signOutAction() {
-  await signOut({ redirectTo: "/" });
+  await signOut();
 }

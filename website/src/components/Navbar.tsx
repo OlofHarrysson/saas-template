@@ -14,7 +14,7 @@ interface NavbarProps {
 
 const MobileDrawer = ({ variant }: { variant: "marketing" | "app" }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   const openDrawer = () => setIsOpen(true);
   const closeDrawer = () => setIsOpen(false);
@@ -22,10 +22,7 @@ const MobileDrawer = ({ variant }: { variant: "marketing" | "app" }) => {
   // Get all navigation links for mobile (no distinction needed)
   const allLinks = getNavigationLinks(variant, "mobile");
 
-  const handleLinkClick = (href: string) => {
-    if (href === "/logout") {
-      logout();
-    }
+  const handleLinkClick = () => {
     closeDrawer();
   };
 
@@ -71,22 +68,13 @@ const MobileDrawer = ({ variant }: { variant: "marketing" | "app" }) => {
           <ul className="space-y-2">
             {allLinks.map((link) => (
               <li key={link.href}>
-                {link.href === "/logout" ? (
-                  <button
-                    onClick={() => handleLinkClick(link.href)}
-                    className="block w-full text-left py-3 px-4 text-base hover:bg-error/10 text-error rounded-md transition-colors"
-                  >
-                    {link.label}
-                  </button>
-                ) : (
-                  <Link
-                    href={link.href}
-                    className="block py-3 px-4 text-base hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
-                    onClick={() => handleLinkClick(link.href)}
-                  >
-                    {link.label}
-                  </Link>
-                )}
+                <Link
+                  href={link.href}
+                  className="block py-3 px-4 text-base hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+                  onClick={handleLinkClick}
+                >
+                  {link.label}
+                </Link>
               </li>
             ))}
           </ul>
