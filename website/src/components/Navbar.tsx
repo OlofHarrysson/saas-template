@@ -3,9 +3,10 @@
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { AvatarDropdown } from "@/components/AvatarDropdown";
-import { useAuth } from "@/lib/auth/useAuth";
+import { useAuth } from "@/lib/auth/hooks";
 import { siteConfig } from "@/app/site-config";
 import { getNavigationLinks, NavigationLink } from "@/lib/navigation";
+import { signOut } from "next-auth/react";
 import { useState } from "react";
 
 interface NavbarProps {
@@ -14,7 +15,7 @@ interface NavbarProps {
 
 const MobileDrawer = ({ variant }: { variant: "marketing" | "app" }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   const openDrawer = () => setIsOpen(true);
   const closeDrawer = () => setIsOpen(false);
@@ -22,9 +23,9 @@ const MobileDrawer = ({ variant }: { variant: "marketing" | "app" }) => {
   // Get all navigation links for mobile (no distinction needed)
   const allLinks = getNavigationLinks(variant, "mobile");
 
-  const handleLinkClick = (href: string) => {
+  const handleLinkClick = async (href: string) => {
     if (href === "/logout") {
-      logout();
+      await signOut({ redirectTo: siteConfig.auth.loginUrl });
     }
     closeDrawer();
   };

@@ -1,15 +1,16 @@
 import "server-only";
 import { redirect } from "next/navigation";
-import { createSessionClient } from "@/lib/appwrite/server";
+import { auth } from "@/lib/auth/auth";
+
 import { siteConfig } from "@/app/site-config";
 
+export async function getSession() {
+  return await auth();
+}
+
 export async function getUser() {
-  try {
-    const { account } = await createSessionClient();
-    return await account.get();
-  } catch {
-    return null;
-  }
+  const session = await getSession();
+  return session?.user ?? null;
 }
 
 export async function requireAuth() {
@@ -17,6 +18,5 @@ export async function requireAuth() {
   if (!user) {
     redirect(siteConfig.auth.loginUrl);
   }
-
   return user;
 }

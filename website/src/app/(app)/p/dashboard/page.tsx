@@ -1,5 +1,4 @@
-import { requireAuth } from "@/lib/auth";
-import { signOut } from "@/lib/auth/actions";
+import { requireAuth } from "@/lib/auth/server";
 
 export default async function DashboardPage() {
   const user = await requireAuth();
@@ -19,25 +18,24 @@ export default async function DashboardPage() {
                 <span className="font-semibold">Email:</span> {user.email}
               </p>
               <p>
-                <span className="font-semibold">User ID:</span> {user.$id}
+                <span className="font-semibold">User ID:</span> {user.id}
               </p>
               <p>
-                <span className="font-semibold">Account Created:</span>{" "}
-                {new Date(user.$createdAt).toLocaleDateString()}
+                <span className="font-semibold">Name:</span> {user.name}
               </p>
-              <p>
-                <span className="font-semibold">Email Verified:</span>{" "}
-                {user.emailVerification ? "Yes" : "No"}
-              </p>
+              {user.image && (
+                <p>
+                  <span className="font-semibold">Profile Image:</span>{" "}
+                  <img
+                    src={user.image}
+                    alt="Profile"
+                    className="w-8 h-8 rounded-full inline-block ml-2"
+                  />
+                </p>
+              )}
             </div>
           </div>
         </div>
-
-        <form action={signOut}>
-          <button type="submit" className="btn btn-outline btn-error">
-            Sign Out
-          </button>
-        </form>
       </div>
     </main>
   );

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { siteConfig } from "@/app/site-config";
 import { getSEOTags } from "@/lib/seo";
+import SessionProvider from "@/components/providers/SessionProvider";
 import "./globals.css";
 
 const font = Inter({ subsets: ["latin"] });
@@ -17,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head></head>
-      <body className={`${font.className} antialiased`}>{children}</body>
+      <body className={`${font.className} antialiased`}>
+        <SessionProvider>{children}</SessionProvider>
+      </body>
     </html>
   );
 }
