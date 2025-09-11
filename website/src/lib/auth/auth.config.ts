@@ -10,7 +10,7 @@ export const authConfig = (): NextAuthConfig => {
 
   return {
     debug: process.env.NODE_ENV === "development",
-    adapter: NeonAdapter(pool),
+    adapter: NeonAdapter(pool as any),
     session: {
       strategy: "database",
     },
