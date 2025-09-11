@@ -47,15 +47,16 @@ function LoginContent() {
 
   const getErrorMessage = (error: string) => {
     switch (error) {
-      case "oauth_error":
-      case "oauth_failed":
-      case "oauth_callback_failed":
+      case "OAuthSignin":
+      case "OAuthCallback":
+      case "OAuthCreateAccount":
+      case "EmailCreateAccount":
+      case "Callback":
         return "Google sign-in failed. Please try again.";
-      case "missing_magic_params":
-      case "magic_link_failed":
-        return "Sign-in link expired or invalid. Please request a new one.";
-      case "auth_failed":
-        return "Authentication failed. Please try signing in again.";
+      case "OAuthAccountNotLinked":
+        return "Account already exists with different provider.";
+      case "SessionRequired":
+        return "Please sign in to access this page.";
       default:
         return "Something went wrong. Please try again.";
     }
