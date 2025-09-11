@@ -28,14 +28,12 @@ export const AvatarDropdown = ({ avatarLinks }: AvatarDropdownProps) => {
         {avatarLinks.map((link) => (
           <li key={link.href}>
             {link.href === "/logout" ? (
-              <form action={signOutAction} className="w-full">
-                <button
-                  type="submit"
-                  className="text-error hover:bg-error/10 w-full text-left"
-                >
-                  {link.label}
-                </button>
-              </form>
+              <div
+                onClick={() => signOutAction()}
+                className="text-error hover:bg-error/10 cursor-pointer"
+              >
+                {link.label}
+              </div>
             ) : (
               <Link href={link.href} className="hover:bg-accent">
                 {link.label}
