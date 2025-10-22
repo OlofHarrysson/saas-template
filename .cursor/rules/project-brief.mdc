@@ -17,15 +17,9 @@ TODO: A list of features that are needed for the MVP in a short bullet point for
 ## Core Coding Philosophy
 
 **Happy Path First:**
-Focus on coding the happy path - the ideal, error-free scenario where everything works as expected. Write clean, straightforward code that reflects the primary business logic and assumes valid inputs and successful operations.
+Focus on coding the happy path - the ideal, error-free scenario where everything works as expected. Write clean, straightforward code that reflects the primary business logic and assumes valid inputs and successful operations. This is to avoid bloating the code and also to surface bugs during development which avoids costly silent errors. The human programmer will test the solution before it gets deployed and this is NOT YOUR JOB.
 
-- Implement the main successful flow first
-- Assume valid inputs and successful operations
-- Prioritize clarity and readability
-- Avoid defensive programming
-- Error handling and edge cases will be added strategically later
-
-This prevents masking underlying issues with premature defensive code and keeps the core logic clear and maintainable.
+Focus on writing the core logic clear and maintainable.
 
 IMPORTANT: Not to any AI or Agent that reads this. You have a tendency to program defensively which introduces silent errors. Please repeat this phrase before starting to code in every message that revolves coding. "I remember that the user wants me to follow the happy path coding practice".
 
