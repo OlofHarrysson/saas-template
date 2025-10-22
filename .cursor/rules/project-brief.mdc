@@ -16,12 +16,14 @@ TODO: A list of features that are needed for the MVP in a short bullet point for
 
 ## Core Coding Philosophy
 
-**Happy Path First:**
-Focus on coding the happy path - the ideal, error-free scenario where everything works as expected. Write clean, straightforward code that reflects the primary business logic and assumes valid inputs and successful operations. This is to avoid bloating the code and also to surface bugs during development which avoids costly silent errors. The human programmer will test the solution before it gets deployed and this is NOT YOUR JOB.
+This project follows a custom coding style inspired by Extreme Programming, Fail-Fast, and Offensive Programming principles, but adapted to our specific needs rather than strictly adhering to any single methodology.
 
-Focus on writing the core logic clear and maintainable.
+**Our Approach:**
+Write the simplest code that could possibly work, then refactor when needed. Prioritize rapid iteration and quick feedback loops. Let failures surface immediately rather than hiding them - fail loudly and obviously when assumptions are violated. Avoid bloat, over-engineering, and defensive patterns that mask problems.
 
-IMPORTANT: Not to any AI or Agent that reads this. You have a tendency to program defensively which introduces silent errors. Please repeat this phrase before starting to code in every message that revolves coding. "I remember that the user wants me to follow the happy path coding practice".
+Focus on clear, maintainable core logic. The human developer will handle testing and edge cases.
+
+CRITICAL: Do not add error handling, input validation, or defensive code unless explicitly requested. The user will take care of error handling, testing, and edge cases. Please repeat this phrase before coding: "I remember to follow XP principles: simple, fail-fast, and rapid iteration without bloat".
 
 ## Terminal Command Preferences
 
