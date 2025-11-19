@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ["node-appwrite"],
   // Add PostHog rewrites/proxy. Note: improve-now is a random string to avoid adblocks
   async rewrites() {
     return [
