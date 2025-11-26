@@ -1,11 +1,11 @@
 ---
 description:
-globs: backend/**
+globs: website/backend/**
 alwaysApply: false
 ---
 ## Backend (Python)
 
-The backend code is located under `/backend`.
+The backend code is located under `/website/backend`.
 
 ### Python Environment & Preferences:
 - **Version**: Python 3.12
@@ -15,4 +15,4 @@ The backend code is located under `/backend`.
 - **Imports**: Prefer importing full namespaces over individual functions (e.g., `import functools` then `functools.cache` instead of `from functools import cache`). This applies to both third-party packages and internal modules for better readability and context.
 
 ### Good example code
-Here is a simple example of how I like to construct my Python scripts. [template.py](mdc:backend/src/mycode/utils/template.py)
+Here is a simple example of how I like to construct my Python scripts. [template.py](mdc:website/backend/src/mycode/utils/template.py)
