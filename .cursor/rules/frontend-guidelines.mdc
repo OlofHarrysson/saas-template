@@ -56,3 +56,4 @@ The application should implement a consistent theme using:
 2.  **Design Philosophy**:
     - Minimalist, clean interfaces with ample white space.
     - Typography: Clear hierarchy using size and weight, not color.
+    - Layout: Prefer edge-to-edge lists over cards to maximize content width (especially on mobile). Use alternating backgrounds or dividers for separation.
