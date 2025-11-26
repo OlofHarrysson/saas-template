@@ -6,9 +6,7 @@ alwaysApply: true
 
 This is a template project for creating new high-quality projects.
 
-Built with Next.js 15 (frontend) and Python 3.12 (backend/utility scripts).
-
-The frontend code is under `/website` and the backend code is under `/backend`.
+Built with Next.js 15 and Python 3.12. All code is under `/website`, with Python backend in `/website/backend`.
 
 ## Features for MVP
 
