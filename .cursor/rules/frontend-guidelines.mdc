@@ -24,6 +24,21 @@ Here are some config values that could be important [site-config.ts](mdc:website
 - **Responsive Design**: Mobile-first with desktop support. This includes smaller padding and font sizes for mobile since the screen is smaller, and sometimes requires a different design for mobile and desktop.
 - **Icons**: Lucide icons instead of inline SVGs.
 
+### File Organization
+
+Group related files into one subdirectory to avoid clutter (but don't over-nest):
+
+```
+components/auth/LoginForm.tsx
+hooks/payments/useCheckout.ts
+actions/users/createUser.ts
+types/api/responses.ts
+lib/posthog/client.ts
+stores/cart/useCartStore.ts
+```
+
+One level of grouping is enough — avoid deeper nesting.
+
 ### Theme Requirements
 
 The application should implement a consistent theme using:

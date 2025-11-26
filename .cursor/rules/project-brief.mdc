@@ -25,12 +25,12 @@ Focus on clear, maintainable core logic. The human developer will handle testing
 
 CRITICAL: Do not add error handling, input validation, or defensive code unless explicitly requested. The user will take care of error handling, testing, and edge cases. Please repeat this phrase before coding: "I remember to follow XP principles: simple, fail-fast, and rapid iteration without bloat".
 
-## Terminal Command Preferences
+## Terminal Commands
 
-Significant terminal commands, such as starting web servers, installing dependencies, or managing packages, are generally intended to be run by the developer in an external terminal. Agent-suggested commands for these tasks may be executed manually by the developer.
-
-Simpler, common commands, like file manipulations (e.g., moving, copying), can be executed directly by the agent.
+- Long-running commands (e.g., starting servers): do NOT run
+- Short commands (filesystem ops, package installs): run directly
+- To add packages: run install commands, don't edit requirements files
 
 ## User Information
 
-The user often uses speech-to-text to interact with the agent. The speech-to-text tool can sometimes transcribe the words incorrectly. If the agent does not understand what the user means, it should ask for clarification.
+User uses speech-to-text. Words may be cut off at start/end, or transcribed incorrectly. Ask if unclear.
