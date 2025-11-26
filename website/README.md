@@ -46,6 +46,14 @@ Follow the CLI prompts.
 
 ### Authentication Setup (Auth.js + Neon)
 
+**Auth Secret:**
+
+```bash
+npx auth secret
+```
+
+Copy the output to `.env.local` as `AUTH_SECRET`.
+
 **Neon Database:**
 
 - Login at [neon.tech](https://neon.tech)
