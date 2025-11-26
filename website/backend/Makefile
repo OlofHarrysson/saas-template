@@ -9,3 +9,6 @@ run_precommit:
 
 start_api:
 	uv run python src/mycode/api/start_server.py
+
+export_api_requirements:
+	uv export --format requirements-txt --no-hashes --no-install-project > ../api/requirements.txt
