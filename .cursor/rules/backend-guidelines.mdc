@@ -5,7 +5,7 @@ alwaysApply: false
 ---
 ## Backend (Python)
 
-The backend code is located under `/website/backend`. The FastAPI app is exposed at `/python-api/*` (via `/website/api/index.py` for Vercel).
+The backend code is located under `/website/backend`.
 
 ### Python Environment & Preferences:
 - **Version**: Python 3.12

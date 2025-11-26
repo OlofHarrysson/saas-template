@@ -8,6 +8,8 @@ This is a template project for creating new high-quality projects.
 
 Built with Next.js 15 and Python 3.12. All code is under `/website`, with Python backend in `/website/backend`.
 
+**API Routes:** `/api/*` → Next.js (TypeScript), `/python-api/*` → FastAPI (Python, via Vercel rewrite)
+
 ## Features for MVP
 
 TODO: A list of features that are needed for the MVP in a short bullet point format

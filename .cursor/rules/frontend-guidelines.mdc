@@ -1,9 +1,7 @@
 ---
-description:
 globs: website/**
 alwaysApply: false
 ---
-
 ## Frontend (Website)
 
 The frontend code is located under `/website`.
