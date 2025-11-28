@@ -12,9 +12,10 @@
   "dependencies": {
     "@auth/neon-adapter": "^1.10.0",
     "@neondatabase/serverless": "^1.0.1",
+    "@sentry/nextjs": "^10.26.0",
     "daisyui": "^4.12.23",
     "lucide-react": "^0.475.0",
-    "next": "^15.3.5",
+    "next": "^15.5.6",
     "next-auth": "^5.0.0-beta.29",
     "next-sitemap": "^4.2.3",
     "posthog-js": "^1.261.7",
@@ -32,7 +33,7 @@
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.20",
     "eslint": "^9",
-    "eslint-config-next": "^15.3.5",
+    "eslint-config-next": "^15.5.6",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
