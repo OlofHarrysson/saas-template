@@ -21,6 +21,13 @@ export const siteConfig = {
     fromNoReply: `YourBrand <your@resend-email-address.com>`,
     fromAdmin: `Olof at TandemFuture <olof@tandemfuture.com>`,
   },
+
+  sentry: {
+    // Sentry organization slug (found in Sentry dashboard URL)
+    org: "tandem-future",
+    // Sentry project name
+    project: "javascript-nextjs",
+  },
 } as const;
 
 export type SiteConfig = typeof siteConfig;

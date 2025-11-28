@@ -86,6 +86,20 @@ Copy the output to `.env.local` as `AUTH_SECRET`.
 - Add the API key to your `.env.local` file as `NEXT_PUBLIC_POSTHOG_KEY=your_api_key_here`
 - The PostHog integration is already configured in the codebase with proxy settings to avoid ad-blockers
 
+### Sentry
+
+- Login at [Sentry](https://sentry.io/)
+- Create a new project for your website (select Next.js as the platform)
+- Copy your DSN from the project settings
+- Add the DSN to your `.env.local` file as `NEXT_PUBLIC_SENTRY_DSN=your_dsn_here`
+- Update the Sentry project name in [src/app/site-config.ts](src/app/site-config.ts):
+  - Set `sentry.project` to your project name
+- **Optional:** For readable stack traces in production, create a Sentry auth token for source map uploads:
+  - Go to Settings → Auth Tokens in Sentry
+  - Create a new token with `project:releases` scope
+  - Add it to `.env.local` as `SENTRY_AUTH_TOKEN=your_token_here`
+  - Without this token, Sentry will still track errors but stack traces will show minified code
+
 ### Google cloud
 
 - Go to [https://search.google.com/search-console](https://search.google.com/search-console) and add a domain. Add a txt record with blank host.
