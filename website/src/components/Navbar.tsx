@@ -7,7 +7,7 @@ import { useAuth } from "@/lib/auth/hooks";
 import { siteConfig } from "@/app/site-config";
 import { getNavigationLinks, NavigationLink } from "@/lib/navigation";
 import { signOut } from "next-auth/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface NavbarProps {
   variant?: "marketing" | "app";
@@ -130,13 +130,44 @@ const DesktopNav = ({ navbarLinks }: { navbarLinks: NavigationLink[] }) => {
 const Navbar = ({ variant = "marketing" }: NavbarProps) => {
   const inApp = variant === "app";
   const logoHref = inApp ? siteConfig.auth.callbackUrl : "/";
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Always show navbar near top of page
+      if (currentScrollY < 50) {
+        setIsVisible(true);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling down
+        setIsVisible(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   // Get navbar and avatar links separately
   const navbarLinks = getNavigationLinks(variant, "navbar");
   const avatarLinks = getNavigationLinks(variant, "avatar");
 
   return (
-    <div className="navbar bg-background border-b border-accent">
+    <>
+      {/* Spacer to compensate for fixed navbar */}
+      <div className="h-16" />
+      <div
+        className={`navbar bg-background border-b border-accent fixed top-0 left-0 right-0 z-30 transition-transform duration-300 lg:translate-y-0 ${
+          isVisible ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
       <div className="navbar-start">
         <Link
           href={logoHref}
@@ -164,6 +195,7 @@ const Navbar = ({ variant = "marketing" }: NavbarProps) => {
         <MobileDrawer variant={variant} />
       </div>
     </div>
+    </>
   );
 };
 
