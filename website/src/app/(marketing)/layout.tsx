@@ -1,5 +1,6 @@
 import { BaseLayout } from "@/components/layouts/BaseLayout";
 import Navbar from "@/components/Navbar";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 export default function MarketingLayout({
   children,
@@ -7,6 +8,9 @@ export default function MarketingLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <BaseLayout navbar={<Navbar variant="marketing" />}>{children}</BaseLayout>
+    <BaseLayout navbar={<Navbar variant="marketing" />}>
+      {children}
+      <ScrollToTop />
+    </BaseLayout>
   );
 }
