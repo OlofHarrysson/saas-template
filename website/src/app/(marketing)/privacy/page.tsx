@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { siteConfig } from "../../site-config";
+import { siteConfig } from "@/app/site-config";
 import { getSEOTags } from "@/lib/seo";
 
 // You are an excellent lawyer.
