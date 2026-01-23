@@ -15,7 +15,7 @@ export default function AboutPage() {
       <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 max-w-2xl">
         <div className="flex flex-col items-center text-center">
           <Image
-            src="/assets/profile.jpg"
+            src="/assets/profile.png"
             alt="Olof Harrysson"
             width={200}
             height={200}
@@ -40,7 +40,7 @@ export default function AboutPage() {
 
         <div className="text-center">
           <Link
-            href="https://tandemfuture.com"
+            href="https://www.madebyolof.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 btn btn-primary text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3"
