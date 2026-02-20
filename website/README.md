@@ -123,6 +123,7 @@ On Vercel, the same app is served under `/python-api/*` through:
 - Prefer smallest reversible edits.
 - Leave unused scaffolding untouched by default; ignore it unless the task requires it.
 - Do not remove template sections unless explicitly asked, or unless they block the requested change.
+- Example: do not delete the authentication system only because the current feature does not use auth yet.
 - Start productization in this order:
   1. `src/app/site-config.ts`
   2. `src/app/(marketing)/page.tsx`
