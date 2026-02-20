@@ -1,92 +1,132 @@
-# Website
+# SaaS Boilerplate (AI Operator README)
 
-## TODOs
+This template is designed for fast MVP shipping. Treat it as a starting point, not a fixed product.
+Default behavior: keep optional boilerplate in place and ignore unused parts unless removal is explicitly requested.
 
-- Verify that the open graph icon stuff works
-- Stripe when I've got it working on some other site
-- Fix this next time you setup a domain. See https://shipfa.st/docs/features/emails
+## What Is Included
 
-## Setup
+- Next.js 15 + React 19 + TypeScript (strict)
+- Tailwind CSS + daisyUI theme setup
+- Auth.js v5 (beta) with Google OAuth + Resend magic-link login
+- Neon adapter for Auth.js session/user storage
+- PostHog client + server utilities with proxy rewrites
+- SEO helper and sitemap generation
+- FastAPI backend (Python 3.12) for API endpoints and scripts
+- Vercel Python routing via `/python-api/*`
 
-- Fill in the values in [src/app/site-config.ts](src/app/site-config.ts)
-- Fill in the domain in [next-sitemap.config.js](next-sitemap.config.js)
-- cp template.env .env.local
-- Change _git_root_/.cursor/rules/project-brief.mdc to describe your project
+## Project Map
 
-### Icon Setup
-
-- Create a single PNG icon (512x512px) and place in public/icon.png
-- Will be used for modern browsers and as source for favicon
-- Duplicate and crop your icon to maximize the size of the logo. Create a favicon with e.g. [favicon.io](https://favicon.io/) and place under src/app/favico.ico
-
-- Create an Open Graph image (1200x630px) and place it in public directory as public/og-image.png
-
-### Terms of Service + Privacy Policy
-
-Go to /privacy/page.tsx and terms/page.tsx and use cursor to create the real TOS by adding some relevant files into the prompt.
-
-### Vercel Deployment
-
-**Initiate Setup:**
-
-```bash
-cd git/root
-vercel login
-vercel
-# Answer questions and specify ./website for code dir
+```text
+website/
+  src/
+    app/
+      (marketing)/                 # Public pages: landing, login, about, terms, privacy
+      (app)/                       # Authenticated app area (dashboard)
+      api/auth/[...nextauth]/      # Auth.js route handlers
+      layout.tsx                   # Root layout + SessionProvider
+      site-config.ts               # Global app metadata/config
+    components/                    # UI components (navbar, footer, auth forms)
+    lib/
+      auth/                        # Auth.js config + server/client auth helpers
+      posthog/                     # Server-side PostHog client wrapper
+      navigation.ts                # Marketing/app nav definitions
+      seo.ts                       # Metadata helper
+    instrumentation-client.ts      # Client-side PostHog init
+  public/                          # Static assets + sitemap output
+  api/index.py                     # Vercel Python entrypoint, mounts FastAPI at /python-api
+  backend/
+    src/mycode/api/                # FastAPI app, models, local server bootstrap
+    src/mycode/utils/              # Logger, arg parsing, script template, cache helper
+    Makefile                       # Python workflow commands
+    pyproject.toml                 # Python deps and tool config
+  template.env                     # Frontend env template
+  backend/env.template             # Backend env template
+  next.config.ts                   # PostHog proxy rewrites
+  next-sitemap.config.js           # Sitemap config
+  vercel.json                      # /python-api rewrite -> /api/index.py
 ```
 
-Follow the CLI prompts.
+## First Setup
 
-**Configure on Vercel Dashboard:**
+1. Create env files.
+   - `cp template.env .env.local`
+   - `cp backend/env.template backend/.env`
+2. Update core product config in `src/app/site-config.ts`.
+3. Set the real domain in `next-sitemap.config.js`.
+4. Replace landing page placeholder copy in `src/app/(marketing)/page.tsx`.
+5. Replace placeholder brand text in `src/components/Navbar.tsx`.
 
-- Add git repository. Remove notifications e.g. Pull Request Comments
-- Add env variables
-- Add domain, use www. as canoical version
+## Local Development
 
-### Authentication Setup (Auth.js + Neon)
-
-**Auth Secret:**
+Frontend:
 
 ```bash
-npx auth secret
+cd website
+npm install
+npm run dev
 ```
 
-Copy the output to `.env.local` as `AUTH_SECRET`.
+Backend (FastAPI on `localhost:8080`):
 
-**Neon Database:**
+```bash
+cd website/backend
+uv sync
+make start_api
+```
 
-- Login at [neon.tech](https://neon.tech)
-- Create a new database project
-- Copy the connection string from your Neon dashboard
-- Add it to `.env.local` as `DATABASE_URL=your_neon_connection_string`
-- The required Auth.js tables are automatically created on first run # TODO: Verify this step
+Validation:
 
-**Google OAuth:**
+```bash
+cd website && npm run lint
+cd website/backend && make run_precommit
+```
 
-- Go to [Google Cloud Console](https://console.cloud.google.com/)
-- Create a new project or select existing one
-- Create OAuth 2.0 credentials (Web application)
-- Add your domains to authorized origins and redirect URIs
-- Copy Client ID and Secret to `.env.local`
+## Auth and App Behavior
 
-**Resend (Magic Links):**
+- Auth route: `src/app/api/auth/[...nextauth]/route.ts`
+- Auth config: `src/lib/auth/auth.config.ts`
+- Session helper: `src/lib/auth/server.ts`
+- Protected page pattern: `src/app/(app)/p/dashboard/page.tsx` uses `requireAuth()`
+- Enabled providers: Google OAuth and Resend email links
+- Session strategy: database sessions via Neon adapter
 
-- Login at [resend.com](https://resend.com)
-- Add and verify your domain
-- Generate API key from dashboard
-- Add to `.env.local` as `AUTH_RESEND_KEY=your_api_key`
-- Set sender email as `AUTH_RESEND_FROM=noreply@yourdomain.com`
+## Analytics and SEO
 
-### PostHog
+- Client PostHog bootstrap: `src/instrumentation-client.ts`
+- Server PostHog helper: `src/lib/posthog/posthog-server.ts`
+- Proxy rewrites for PostHog: `next.config.ts` (`/improve-now/*`)
+- SEO metadata utility: `src/lib/seo.ts`
+- Sitemap generation runs in `postbuild` (`npm run build`)
 
-- Login at [PostHog](https://posthog.com/)
-- Create a new project for your website (under the sidebar/breadcrumbs)
-- Go to Project Settings sidebar and copy your "Project API Key"
-- Add the API key to your `.env.local` file as `NEXT_PUBLIC_POSTHOG_KEY=your_api_key_here`
-- The PostHog integration is already configured in the codebase with proxy settings to avoid ad-blockers
+## Python API Shape
 
-### Google cloud
+Local FastAPI app (`backend/src/mycode/api/app.py`) exposes:
 
-- Go to [https://search.google.com/search-console](https://search.google.com/search-console) and add a domain. Add a txt record with blank host.
-- Submit your sitemaps and request indexing on important pages.
+- `GET /`
+- `GET /health`
+- `GET /items`
+
+On Vercel, the same app is served under `/python-api/*` through:
+
+- `vercel.json` rewrite
+- `api/index.py` mount
+
+## Known Template Placeholders
+
+- `src/app/site-config.ts` has placeholder app metadata/domain/email values.
+- `src/app/(marketing)/page.tsx` contains placeholder sections and text.
+- `src/lib/navigation.ts` includes `/p/settings`, but that page is not scaffolded yet.
+- `src/components/InlineSurvey.tsx` has an empty `SURVEY_ID`.
+
+## AI Editing Guidance
+
+- Prefer smallest reversible edits.
+- Leave unused scaffolding untouched by default; ignore it unless the task requires it.
+- Do not remove template sections unless explicitly asked, or unless they block the requested change.
+- Start productization in this order:
+  1. `src/app/site-config.ts`
+  2. `src/app/(marketing)/page.tsx`
+  3. `src/lib/navigation.ts`
+  4. `src/components/Navbar.tsx`
+  5. `src/app/(app)/p/dashboard/page.tsx`
+- After edits, verify `/, /login, /p/dashboard` and run lint.

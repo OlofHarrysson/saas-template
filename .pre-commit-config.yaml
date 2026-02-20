@@ -7,6 +7,7 @@ repos:
   - id: check-yaml
   - id: check-toml
   - id: check-added-large-files
+    args: [--maxkb=5000]
   - id: debug-statements
     language_version: python3
 - repo: https://github.com/astral-sh/uv-pre-commit
