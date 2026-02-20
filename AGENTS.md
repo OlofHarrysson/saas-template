@@ -1,5 +1,32 @@
 # Repository Guidelines
 
+## Active Project Brief (Template: Fill During Project Init)
+
+Keep this section in the template. When cloning for a new project, fill these fields first.
+
+- Project summary: `TBD`
+  Example inputs: one-line pitch, what it does, why it matters.
+- Current objective: `TBD`
+  Example inputs: what you want to achieve in the next 30-60 days, current milestone, immediate goal.
+- Users and use cases (optional): `TBD`
+  Example inputs: target users, key jobs-to-be-done, core workflow.
+- Scope for now: `TBD`
+  Example inputs: MVP must-haves, non-goals, known constraints.
+- Technical context: `TBD`
+  Example inputs: required integrations, platform constraints, important architecture notes.
+- Open questions and assumptions: `TBD`
+  Example inputs: biggest unknowns, risky bets, assumptions to validate first.
+
+## Project Bootstrap Workflow (Agent Behavior)
+
+When a new project is initialized from this template:
+
+1. Check the `Active Project Brief` section for `TBD` values.
+2. Ask a short batch of focused initialization questions to fill only missing, high-impact fields.
+3. Update this `AGENTS.md` section with the answers and clearly labeled assumptions.
+4. Use the filled brief as the default context for prioritization and implementation decisions.
+5. Do not block progress for non-critical unknowns; proceed with explicit assumptions.
+
 ## Purpose & Template Intent
 
 This repo is a reusable starter for fast project setup, not a single fixed product. Default behavior is retention-first: keep boilerplate modules in place (for example auth, analytics, and API scaffolding) unless removal is explicitly requested or a concrete implementation conflict requires it. The Python side is dual-purpose: it can run as a FastAPI backend, but it is also used for short scripts, exploratory analysis, and data preparation.
