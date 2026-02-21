@@ -33,6 +33,8 @@ This repo is a reusable starter for fast project setup, not a single fixed produ
 
 ## Project Structure & Module Organization
 
+- `docs/index.md`: documentation hub and summary of available project docs.
+- `docs/*.md`: focused documentation pages (architecture, decisions, workflows, runbooks, etc.), all linked from the index.
 - `website/src/app`: Next.js App Router pages (`(marketing)` and `(app)` route groups).
 - `website/src/components`: reusable UI components.
 - `website/src/lib`: shared app logic (auth, analytics, SEO, utilities).
@@ -76,6 +78,9 @@ This repo is a reusable starter for fast project setup, not a single fixed produ
 
 ## Additional Conventions
 
+- Documentation lives in the root `docs/` folder.
+- `docs/index.md` is the required starting point and should summarize/document-map all docs files.
+- Any new docs page should be added as a separate `docs/*.md` file and linked from `docs/index.md`.
 - Runtime split: `/api/*` routes are Next.js (TypeScript) and `/python-api/*` routes are FastAPI (Python via Vercel).
 - Command policy: avoid running long-lived commands unless explicitly requested; run short commands directly.
 - Dependency updates: use package manager commands (`npm`, `uv`) instead of manually editing dependency files.
