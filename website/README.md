@@ -66,6 +66,8 @@ npm install
 npm run dev
 ```
 
+`next dev` uses `.next`, while `next build` writes to `.next-build` so local production builds do not interfere with a running dev server.
+
 Backend (FastAPI on `localhost:8080`):
 
 ```bash
