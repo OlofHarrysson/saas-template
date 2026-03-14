@@ -1,40 +1,55 @@
 # Repository Guidelines
 
-## Active Project Brief (Template: Fill During Project Init)
+## Active Project Context (Tier 1 Memory)
 
-Keep this section in the template. When cloning for a new project, fill these fields first.
+Keep this section short and high signal.
 
-- Project summary: `TBD`
-  Example inputs: one-line pitch, what it does, why it matters.
-- Current objective: `TBD`
-  Example inputs: what you want to achieve in the next 30-60 days, current milestone, immediate goal.
-- Users and use cases (optional): `TBD`
-  Example inputs: target users, key jobs-to-be-done, core workflow.
-- Scope for now: `TBD`
-  Example inputs: MVP must-haves, non-goals, known constraints.
-- Technical context: `TBD`
-  Example inputs: required integrations, platform constraints, important architecture notes.
-- Open questions and assumptions: `TBD`
-  Example inputs: biggest unknowns, risky bets, assumptions to validate first.
+This is the first-pass memory for the current project: only the minimum context needed to understand what we are building and how to prioritize. Skip anything low-value, unstable, or obvious. For deeper planning context, read `docs/project-vision.md` and other project docs.
+
+- Project: `TBD`
+- What we are building: `TBD`
+- Current focus: `TBD`
+- Biggest current risk / unknown: `TBD`
+- Who this is for: `TBD`
+- Key constraint or important context: `TBD`
+- More context: `docs/project-vision.md`
+
+## Project Vision Template
+
+Use `docs/project-vision.md` as the planning document for a new project.
+
+It is intentionally a template, not a source of truth. Fill what you know, leave the rest empty or `TBD`, and revise it as the project becomes clearer.
+
+This repo uses a two-tier project memory system:
+
+- Tier 1: `AGENTS.md` keeps a compact working summary in `Active Project Context (Tier 1 Memory)`.
+- Tier 2: `docs/project-vision.md` and other docs hold the fuller planning context and details.
 
 ## Project Bootstrap Workflow (Agent Behavior)
 
 When a new project is initialized from this template:
 
-1. Check the `Active Project Brief` section for `TBD` values.
+1. Open `docs/project-vision.md` first.
 2. Ask a short batch of focused initialization questions to fill only missing, high-impact fields.
-3. Update this `AGENTS.md` section with the answers and clearly labeled assumptions.
-4. Use the filled brief as the default context for prioritization and implementation decisions.
-5. Do not block progress for non-critical unknowns; proceed with explicit assumptions.
+3. Update `docs/project-vision.md` with the answers and clearly labeled assumptions.
+4. At the end of bootstrapping, update this AGENTS.md file and any docs. Make sure to remove unneeded "bootstrapping" instructions to finalize the bootstrapping phase.
 
 ## Purpose & Template Intent
 
 This repo is a reusable starter for fast project setup, not a single fixed product. Default behavior is retention-first: keep boilerplate modules in place (for example auth, analytics, and API scaffolding) unless removal is explicitly requested or a concrete implementation conflict requires it. The Python side is dual-purpose: it can run as a FastAPI backend, but it is also used for short scripts, exploratory analysis, and data preparation.
 
+## Documentation Index
+
+Start here for repository documentation. Any new shared docs page should be added as a separate `docs/*.md` file and linked from the `Documentation Index` section in `AGENTS.md`.
+
+- `AGENTS.md`: canonical documentation index, repository operating guidance, and the short active project summary.
+- `docs/project-vision.md`: planning template for project idea, vision, MVP, risks, audience, business model, and early assumptions.
+- `docs/*.md`: shared project documentation pages such as architecture notes, decisions, workflows, and runbooks.
+- `website/README.md`: app-level setup, runtime, and template notes for the Next.js/Vercel app.
+- `website/backend/README.md`: Python/backend template setup and workflow notes.
+
 ## Project Structure & Module Organization
 
-- `docs/index.md`: documentation hub and summary of available project docs.
-- `docs/*.md`: focused documentation pages (architecture, decisions, workflows, runbooks, etc.), all linked from the index.
 - `website/src/app`: Next.js App Router pages (`(marketing)` and `(app)` route groups).
 - `website/src/components`: reusable UI components.
 - `website/src/lib`: shared app logic (auth, analytics, SEO, utilities).
@@ -79,8 +94,6 @@ This repo is a reusable starter for fast project setup, not a single fixed produ
 ## Additional Conventions
 
 - Documentation lives in the root `docs/` folder.
-- `docs/index.md` is the required starting point and should summarize/document-map all docs files.
-- Any new docs page should be added as a separate `docs/*.md` file and linked from `docs/index.md`.
 - Runtime split: `/api/*` routes are Next.js (TypeScript) and `/python-api/*` routes are FastAPI (Python via Vercel).
 - Command policy: avoid running long-lived commands unless explicitly requested; run short commands directly.
 - Dependency updates: use package manager commands (`npm`, `uv`) instead of manually editing dependency files.
