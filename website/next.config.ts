@@ -2,11 +2,18 @@ import type { NextConfig } from "next";
 import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
 
 const DEV_DIST_DIR = ".next";
-const BUILD_DIST_DIR = ".next-build";
+const LOCAL_BUILD_DIST_DIR = ".next-build";
 
 const createNextConfig = (phase: string): NextConfig => ({
-  // Keep production builds separate so `next build` does not clobber a live `next dev` cache.
-  distDir: phase === PHASE_DEVELOPMENT_SERVER ? DEV_DIST_DIR : BUILD_DIST_DIR,
+  // Keep local production builds separate so `next build` does not clobber a live
+  // `next dev` cache, but use the default output dir on Vercel because its build
+  // pipeline expects `.next`.
+  distDir:
+    phase === PHASE_DEVELOPMENT_SERVER
+      ? DEV_DIST_DIR
+      : process.env.VERCEL
+        ? DEV_DIST_DIR
+        : LOCAL_BUILD_DIST_DIR,
   // Add PostHog rewrites/proxy. Note: improve-now is a random string to avoid adblocks
   async rewrites() {
     return [
