@@ -27,15 +27,15 @@ export default function LoginForm({ error }: LoginFormProps) {
       if (!result?.error) {
         setEmailSent(true);
       }
-    } catch (error) {
-      console.error("Email sign-in failed:", error);
+    } catch (submitError) {
+      console.error("Email sign-in failed:", submitError);
     } finally {
       setIsEmailLoading(false);
     }
   };
 
-  const getErrorMessage = (error: string) => {
-    switch (error) {
+  const getErrorMessage = (currentError: string) => {
+    switch (currentError) {
       case "OAuthSignin":
       case "OAuthCallback":
       case "OAuthCreateAccount":
@@ -56,87 +56,76 @@ export default function LoginForm({ error }: LoginFormProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-100 px-4">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-base-content">
-            Sign in to your account
-          </h2>
-          <p className="mt-2 text-center text-sm text-base-content/60">
-            Choose your preferred sign-in method
-          </p>
-        </div>
-
-        {/* URL Error Display */}
-        {error && (
-          <div className="alert alert-error">
-            <span>{getErrorMessage(error)}</span>
+    <div className="bg-base-200 px-4 py-10">
+      <div className="card mx-auto w-full max-w-md border border-base-300 bg-base-100 shadow-xl">
+        <div className="card-body gap-6">
+          <div className="space-y-2 text-center">
+            <h2 className="text-3xl font-extrabold text-base-content">
+              Sign in to your account
+            </h2>
+            <p className="text-sm text-base-content/70">
+              Choose your preferred sign-in method
+            </p>
           </div>
-        )}
 
-        {/* Google OAuth Button */}
-        <div
-          onClick={() =>
-            signIn("google", { redirectTo: siteConfig.auth.callbackUrl })
-          }
-        >
-          <GoogleSignInButton />
-        </div>
+          {error && (
+            <div className="alert alert-error alert-soft">
+              <span>{getErrorMessage(error)}</span>
+            </div>
+          )}
 
-        <div className="relative">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-base-300" />
+          <GoogleSignInButton
+            onClick={() =>
+              signIn("google", { redirectTo: siteConfig.auth.callbackUrl })
+            }
+            disabled={isEmailLoading}
+          />
+
+          <div className="divider text-sm text-base-content/60">
+            Or sign in with email
           </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-base-100 text-base-content">
-              Or sign in with email
-            </span>
-          </div>
-        </div>
 
-        {/* Email Sign-in Form */}
-        <form onSubmit={handleEmailSubmit} className="mt-8 space-y-6">
-          <div>
-            <label htmlFor="email" className="sr-only">
-              Email address
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="input input-bordered w-full"
-              placeholder="Enter your email address"
+          <form onSubmit={handleEmailSubmit} className="space-y-5">
+            <fieldset className="fieldset">
+              <legend className="fieldset-legend">Email address</legend>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="input w-full"
+                placeholder="Enter your email address"
+                disabled={isEmailLoading || emailSent}
+              />
+            </fieldset>
+
+            <button
+              type="submit"
+              className="btn btn-primary w-full"
               disabled={isEmailLoading || emailSent}
-            />
-          </div>
+            >
+              {isEmailLoading ? (
+                <>
+                  <span className="loading loading-spinner loading-sm"></span>
+                  Sending...
+                </>
+              ) : emailSent ? (
+                "Email Sent"
+              ) : (
+                "Send Sign-in Link"
+              )}
+            </button>
 
-          <button
-            type="submit"
-            className="btn btn-primary w-full"
-            disabled={isEmailLoading || emailSent}
-          >
-            {isEmailLoading ? (
-              <>
-                <span className="loading loading-spinner loading-sm"></span>
-                Sending...
-              </>
-            ) : emailSent ? (
-              "Email Sent"
-            ) : (
-              "Send Sign-in Link"
-            )}
-          </button>
-
-          <p className="text-xs text-center text-base-content/60">
-            {emailSent
-              ? "Check your email for the sign-in link"
-              : "We'll email you a secure link to sign in instantly"}
-          </p>
-        </form>
+            <p className="text-center text-xs text-base-content/70">
+              {emailSent
+                ? "Check your email for the sign-in link"
+                : "We'll email you a secure link to sign in instantly"}
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   );

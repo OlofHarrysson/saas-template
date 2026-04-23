@@ -1,8 +1,18 @@
-export default function GoogleSignInButton() {
+interface GoogleSignInButtonProps {
+  disabled?: boolean;
+  onClick?: () => void;
+}
+
+export default function GoogleSignInButton({
+  disabled = false,
+  onClick,
+}: GoogleSignInButtonProps) {
   return (
     <button
-      type="submit"
-      className="btn btn-outline w-full flex items-center justify-center gap-2"
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      className="btn btn-outline flex w-full items-center justify-center gap-2"
     >
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
         <path

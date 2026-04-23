@@ -14,32 +14,32 @@ interface AvatarDropdownProps {
 export const AvatarDropdown = ({ avatarLinks }: AvatarDropdownProps) => {
   return (
     <div className="dropdown dropdown-end">
-      <div
+      <button
+        type="button"
         tabIndex={0}
-        role="button"
         className="btn btn-ghost"
         aria-label="Open menu"
       >
         <Menu className="h-5 w-5" />
-      </div>
+      </button>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-lg bg-base-100 rounded-box w-52 border border-accent"
+        className="menu menu-sm dropdown-content z-10 mt-3 w-52 rounded-box border border-base-300 bg-base-100 p-2 shadow-xl"
       >
-        {/* Navigation Links */}
         {avatarLinks.map((link) => (
           <li key={link.href}>
             {link.href === "/logout" ? (
-              <div
+              <button
+                type="button"
                 onClick={() =>
                   signOut({ redirectTo: siteConfig.auth.loginUrl })
                 }
-                className="text-error hover:bg-error/10 cursor-pointer"
+                className="text-error"
               >
                 {link.label}
-              </div>
+              </button>
             ) : (
-              <Link href={link.href} className="hover:bg-accent">
+              <Link href={link.href}>
                 {link.label}
               </Link>
             )}

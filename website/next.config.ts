@@ -14,7 +14,16 @@ const createNextConfig = (phase: string): NextConfig => ({
       : process.env.VERCEL
         ? DEV_DIST_DIR
         : LOCAL_BUILD_DIST_DIR,
+  allowedDevOrigins: ["localhost", "127.0.0.1"],
   // Add PostHog rewrites/proxy. Note: improve-now is a random string to avoid adblocks
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
+    ],
+  },
   async rewrites() {
     return [
       {

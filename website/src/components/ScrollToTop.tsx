@@ -3,8 +3,6 @@
 import { ArrowUp } from "lucide-react";
 import { useState, useEffect } from "react";
 
-
-
 const SCROLL_TO_TOP_THRESHOLD = 600;
 
 export function ScrollToTop() {
@@ -25,9 +23,12 @@ export function ScrollToTop() {
 
   return (
     <button
+      type="button"
       onClick={scrollToTop}
-      className={`fixed bottom-6 right-6 p-3 rounded-full bg-base-300/70 text-base-content/60 shadow-sm backdrop-blur-sm transition-all duration-300 hover:bg-base-300 hover:text-base-content z-40 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+      className={`btn btn-primary btn-circle btn-sm fixed bottom-6 right-6 z-40 shadow-lg transition-all duration-300 ${
+        isVisible
+          ? "translate-y-0 opacity-100"
+          : "pointer-events-none translate-y-4 opacity-0"
       }`}
       aria-label="Scroll to top"
     >
@@ -35,4 +36,3 @@ export function ScrollToTop() {
     </button>
   );
 }
-

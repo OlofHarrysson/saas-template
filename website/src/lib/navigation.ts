@@ -14,7 +14,6 @@ const appNavigationLinks: NavigationLink[] = [
   { href: "/p/dashboard", label: "Dashboard", showInNavbar: true },
   // These would show in avatar dropdown
   { href: "/p/settings", label: "Settings", showInNavbar: false },
-  { href: "/", label: "Homepage", showInNavbar: false },
   { href: "/logout", label: "Logout", showInNavbar: false },
 ] as const;
 

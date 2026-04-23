@@ -1,200 +1,102 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import Link from "next/link";
-import { AvatarDropdown } from "@/components/AvatarDropdown";
-import { useAuth } from "@/lib/auth/hooks";
+import { useEffect, useRef, useState } from "react";
 import { siteConfig } from "@/app/site-config";
+import { AvatarDropdown } from "@/components/AvatarDropdown";
 import { getNavigationLinks, NavigationLink } from "@/lib/navigation";
-import { signOut } from "next-auth/react";
-import { useState, useEffect } from "react";
 
 interface NavbarProps {
   variant?: "marketing" | "app";
+  mobileDrawerId: string;
 }
 
-const MobileDrawer = ({ variant }: { variant: "marketing" | "app" }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { isAuthenticated } = useAuth();
+function openDrawer(drawerId: string) {
+  const drawerToggle = document.getElementById(drawerId);
 
-  const openDrawer = () => setIsOpen(true);
-  const closeDrawer = () => setIsOpen(false);
-
-  // Get all navigation links for mobile (no distinction needed)
-  const allLinks = getNavigationLinks(variant, "mobile");
-
-  const handleLinkClick = async (href: string) => {
-    if (href === "/logout") {
-      await signOut({ redirectTo: siteConfig.auth.loginUrl });
-    }
-    closeDrawer();
-  };
-
-  return (
-    <>
-      {/* Hamburger Menu Button */}
-      <button
-        onClick={openDrawer}
-        className="btn btn-ghost lg:hidden"
-        aria-label="Open navigation menu"
-      >
-        <Menu className="h-5 w-5" />
-      </button>
-
-      {/* Backdrop Overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-          onClick={closeDrawer}
-        />
-      )}
-
-      {/* Side Drawer */}
-      <div
-        className={`fixed top-0 right-0 h-full w-80 bg-base-100 shadow-xl z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        {/* Drawer Header */}
-        <div className="flex items-center justify-between p-6 border-b">
-          <h2 className="text-lg font-semibold">Menu</h2>
-          <button
-            onClick={closeDrawer}
-            className="btn btn-ghost btn-sm"
-            aria-label="Close navigation menu"
-          >
-            <X className="h-5 w-5" />
-          </button>
-        </div>
-
-        {/* Navigation Links */}
-        <nav className="p-6">
-          <ul className="space-y-2">
-            {allLinks.map((link) => (
-              <li key={link.href}>
-                {link.href === "/logout" ? (
-                  <button
-                    onClick={() => handleLinkClick(link.href)}
-                    className="block w-full text-left py-3 px-4 text-base hover:bg-error/10 text-error rounded-md transition-colors"
-                  >
-                    {link.label}
-                  </button>
-                ) : (
-                  <Link
-                    href={link.href}
-                    className="block py-3 px-4 text-base hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
-                    onClick={() => handleLinkClick(link.href)}
-                  >
-                    {link.label}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
-
-          {/* Login Button for non-authenticated users */}
-          {!isAuthenticated && (
-            <div className="pt-6 mt-6 border-t">
-              <Link
-                href={siteConfig.auth.loginUrl}
-                className="btn btn-primary w-full"
-                onClick={closeDrawer}
-              >
-                Login
-              </Link>
-            </div>
-          )}
-        </nav>
-      </div>
-    </>
-  );
-};
+  if (drawerToggle instanceof HTMLInputElement) {
+    drawerToggle.checked = true;
+  }
+}
 
 const DesktopNav = ({ navbarLinks }: { navbarLinks: NavigationLink[] }) => {
   return (
-    <ul className="menu menu-horizontal px-1">
+    <ul className="menu menu-horizontal gap-1 px-1">
       {navbarLinks.map((link) => (
         <li key={link.href}>
-          <Link
-            href={link.href}
-            className="hover:bg-accent hover:text-accent-foreground"
-          >
-            {link.label}
-          </Link>
+          <Link href={link.href}>{link.label}</Link>
         </li>
       ))}
     </ul>
   );
 };
 
-const Navbar = ({ variant = "marketing" }: NavbarProps) => {
+const Navbar = ({ variant = "marketing", mobileDrawerId }: NavbarProps) => {
   const inApp = variant === "app";
   const logoHref = inApp ? siteConfig.auth.callbackUrl : "/";
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollYRef = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Always show navbar near top of page
-      if (currentScrollY < 50) {
+      if (currentScrollY < 50 || currentScrollY < lastScrollYRef.current) {
         setIsVisible(true);
-      } else if (currentScrollY < lastScrollY) {
-        // Scrolling up
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY) {
-        // Scrolling down
+      } else if (currentScrollY > lastScrollYRef.current) {
         setIsVisible(false);
       }
 
-      setLastScrollY(currentScrollY);
+      lastScrollYRef.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
-  // Get navbar and avatar links separately
   const navbarLinks = getNavigationLinks(variant, "navbar");
   const avatarLinks = getNavigationLinks(variant, "avatar");
 
   return (
     <>
-      {/* Spacer to compensate for fixed navbar */}
-      <div className="h-16" />
+      <div className="h-[var(--app-navbar-height)]" />
       <div
-        className={`navbar bg-background border-b border-accent fixed top-0 left-0 right-0 z-30 transition-transform duration-300 lg:translate-y-0 ${
+        className={`navbar fixed left-0 right-0 top-0 z-30 min-h-[var(--app-navbar-height)] border-b border-base-300 bg-base-100/90 shadow-xs backdrop-blur-md transition-transform duration-300 lg:translate-y-0 ${
           isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
-      <div className="navbar-start">
-        <Link
-          href={logoHref}
-          className="btn btn-ghost text-xl hover:bg-transparent"
-        >
-          Your Logo
-        </Link>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <DesktopNav navbarLinks={navbarLinks} />
-      </div>
-      <div className="navbar-end">
-        <div className="hidden lg:flex">
-          {inApp ? (
-            <AvatarDropdown avatarLinks={avatarLinks} />
-          ) : (
-            <Link
-              href={siteConfig.auth.loginUrl}
-              className="btn btn-primary text-primary-foreground"
-            >
-              Login
-            </Link>
-          )}
+        <div className="navbar-start">
+          <Link
+            href={logoHref}
+            className="inline-flex items-center rounded-box px-3 py-2 text-xl font-semibold tracking-tight text-base-content/90 transition duration-[2000ms] ease-out hover:text-base-content motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+          >
+            Your Logo
+          </Link>
         </div>
-        <MobileDrawer variant={variant} />
+        <div className="navbar-center hidden lg:flex">
+          <DesktopNav navbarLinks={navbarLinks} />
+        </div>
+        <div className="navbar-end">
+          <div className="hidden lg:flex">
+            {inApp ? (
+              <AvatarDropdown avatarLinks={avatarLinks} />
+            ) : (
+              <Link href={siteConfig.auth.loginUrl} className="btn btn-primary">
+                Login
+              </Link>
+            )}
+          </div>
+          <button
+            type="button"
+            onClick={() => openDrawer(mobileDrawerId)}
+            className="btn btn-ghost lg:hidden"
+            aria-label="Open navigation menu"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
+        </div>
       </div>
-    </div>
     </>
   );
 };

@@ -9,30 +9,26 @@ export default function Error({
   error: Error & { digest?: string };
 }) {
   useEffect(() => {
-    // Log the error to your error reporting service
     console.error(error);
   }, [error]);
 
   return (
-    <div className="min-h-[80vh] flex flex-col items-center justify-center p-4">
-      <div className="max-w-md w-full text-center space-y-6">
-        {/* Error Illustration */}
-        <div className="text-6xl mb-4">😅</div>
-
-        <h1 className="text-2xl font-bold">Whoops! Something went wrong.</h1>
-
-        <p className="text-muted-foreground text-lg">
-          Looks like there's a glitch on this page. Our mistake!
-        </p>
-
-        <p className="text-muted-foreground">
-          Our team has been notified and will get this fixed up. Sorry about
-          that!
-        </p>
-
-        <Link href="/" className="btn btn-primary w-full max-w-xs mx-auto mt-8">
-          Back to Home
-        </Link>
+    <div className="flex min-h-[80vh] items-center justify-center bg-base-200 p-4">
+      <div className="card w-full max-w-md border border-base-300 bg-base-100 shadow-xl">
+        <div className="card-body items-center text-center">
+          <div className="mb-2 text-6xl">😅</div>
+          <h1 className="text-2xl font-bold">Whoops! Something went wrong.</h1>
+          <p className="text-lg text-base-content/70">
+            Looks like there&apos;s a glitch on this page. Our mistake!
+          </p>
+          <p className="text-base-content/70">
+            The page hit an unexpected error. Try heading back home and retrying
+            from there.
+          </p>
+          <Link href="/" className="btn btn-primary mt-4 w-full max-w-xs">
+            Back to Home
+          </Link>
+        </div>
       </div>
     </div>
   );

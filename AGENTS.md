@@ -51,6 +51,7 @@ Start here for repository documentation. Any new shared docs page should be adde
 ## Project Structure & Module Organization
 
 - `website/src/app`: Next.js App Router pages (`(marketing)` and `(app)` route groups).
+- `website/src/app/globals.css`: Tailwind CSS 4 import plus daisyUI 5 theme/config; use this as the primary styling config entrypoint.
 - `website/src/components`: reusable UI components.
 - `website/src/lib`: shared app logic (auth, analytics, SEO, utilities).
 - `website/public`: static files (icons, images, sitemap files).
@@ -60,10 +61,10 @@ Start here for repository documentation. Any new shared docs page should be adde
 
 ## Tech Stack
 
-- Frontend: Next.js 15, React 19, TypeScript (strict), Tailwind CSS, daisyUI.
+- Frontend: Next.js 16, React 19, TypeScript (strict), Tailwind CSS 4, daisyUI 5.
 - Auth/data integrations: Auth.js v5 (beta), Neon adapter, Resend, PostHog.
 - Backend/runtime: Python 3.12, FastAPI, Uvicorn.
-- Tooling: `uv` for Python env/deps, Ruff + pre-commit hooks, ESLint for Next.js/TypeScript.
+- Tooling: `uv` for Python env/deps, Ruff + pre-commit hooks, Biome for frontend JS/TS linting.
 - Deployment target: Vercel (Next.js + Python function routing).
 
 ## Build and Development Commands
@@ -102,10 +103,15 @@ Start here for repository documentation. Any new shared docs page should be adde
 ## Frontend Conventions
 
 - Prefer daisyUI components before custom Tailwind implementations when both are viable.
+- Keep Tailwind/daisyUI styling config in `website/src/app/globals.css`.
+- Default to the built-in daisyUI `dark` theme unless a project-specific theme decision is documented.
 - Build mobile-first responsive layouts and validate desktop behavior.
+- Use Biome for frontend linting; formatting and import-organizing are intentionally disabled unless the project explicitly opts in.
 - Use Lucide icons instead of inline SVGs.
 - Keep frontend organization shallow (one level of grouping); avoid deep nesting.
-- Use semantic theme pairs such as `primary`/`primary-foreground` backed by CSS variables.
+- Token hierarchy: use daisyUI theme values for semantic UI colors and component-system values, Tailwind `@theme` for extra reusable utility tokens, and app-specific CSS variables only for domain/layout-specific values.
+- Prefer daisyUI semantic theme colors (`base-*`, `primary`, `secondary`, `accent`, `*-content`) over custom parallel token systems.
+- Current examples in `globals.css`: Tailwind utility tokens like `font-display`/`shadow-glow`, and app-specific layout tokens like `--app-navbar-height`.
 - Use Zustand for shared global client state when global state is needed.
 
 ## Backend Conventions

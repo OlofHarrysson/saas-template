@@ -84,35 +84,43 @@ export const metadata = getSEOTags({
 
 const Terms = () => {
   return (
-    <main className="max-w-xl mx-auto">
-      <div className="p-5">
-        <Link href="/" className="btn btn-ghost">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="w-5 h-5"
-          >
-            <path
-              fillRule="evenodd"
-              d="M15 10a.75.75 0 01-.75.75H7.612l2.158 1.96a.75.75 0 11-1.04 1.08l-3.5-3.25a.75.75 0 010-1.08l3.5-3.25a.75.75 0 111.04 1.08L7.612 9.25h6.638A.75.75 0 0115 10z"
-              clipRule="evenodd"
-            />
-          </svg>
-          Back
-        </Link>
-        <h1 className="text-3xl font-extrabold pb-6">
-          Terms of Service for {siteConfig.name}
-        </h1>
+    <div className="bg-base-200 px-4 py-12">
+      <div className="mx-auto max-w-3xl">
+        <div className="card border border-base-300 bg-base-100 shadow-xl">
+          <div className="card-body gap-6">
+            <div className="flex items-center justify-between gap-4">
+              <Link href="/" className="btn btn-ghost btn-sm">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="h-5 w-5"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M15 10a.75.75 0 01-.75.75H7.612l2.158 1.96a.75.75 0 11-1.04 1.08l-3.5-3.25a.75.75 0 010-1.08l3.5-3.25a.75.75 0 111.04 1.08L7.612 9.25h6.638A.75.75 0 0115 10z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                Back
+              </Link>
+              <p className="text-sm text-base-content/60">
+                Last Updated: {lastUpdated}
+              </p>
+            </div>
 
-        <div className="prose prose-sm sm:prose-base max-w-none">
-          <p className="text-sm text-muted-foreground mb-4">
-            Last Updated: {lastUpdated}
-          </p>
-          <div className="leading-relaxed whitespace-pre-line">{TermsText}</div>
+            <div className="space-y-4">
+              <h1 className="text-3xl font-extrabold text-base-content">
+                Terms of Service for {siteConfig.name}
+              </h1>
+              <div className="whitespace-pre-line leading-8 text-base-content/80">
+                {TermsText}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 

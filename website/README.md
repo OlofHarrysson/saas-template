@@ -5,8 +5,10 @@ Default behavior: keep optional boilerplate in place and ignore unused parts unl
 
 ## What Is Included
 
-- Next.js 15 + React 19 + TypeScript (strict)
-- Tailwind CSS + daisyUI theme setup
+- Next.js 16 + React 19 + TypeScript (strict)
+- Tailwind CSS 4 + daisyUI 5 CSS-first theme setup
+- Biome for frontend linting
+- Playwright smoke tests for core public flows
 - Auth.js v5 (beta) with Google OAuth + Resend magic-link login
 - Neon adapter for Auth.js session/user storage
 - PostHog client + server utilities with proxy rewrites
@@ -80,7 +82,16 @@ Validation:
 
 ```bash
 cd website && npm run lint
+cd website && npm run playwright:install
+cd website && npm run test:e2e
 cd website/backend && make run_precommit
+```
+
+If you already have a dev server running and want the smoke tests to reuse it, set `PLAYWRIGHT_BASE_URL` first:
+
+```bash
+cd website
+PLAYWRIGHT_BASE_URL=http://127.0.0.1:3007 npm run test:e2e
 ```
 
 ## Auth and App Behavior
