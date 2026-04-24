@@ -5,9 +5,9 @@ const DEV_DIST_DIR = ".next";
 const LOCAL_BUILD_DIST_DIR = ".next-build";
 
 const createNextConfig = (phase: string): NextConfig => ({
-  // Keep local production builds separate so `next build` does not clobber a live
-  // `next dev` cache, but use the default output dir on Vercel because its build
-  // pipeline expects `.next`.
+  // Keep local production builds separate so agent-run `next build` calls do not
+  // clobber a live `next dev` cache. Use `.next` on Vercel because its build
+  // pipeline expects the default output directory.
   distDir:
     phase === PHASE_DEVELOPMENT_SERVER
       ? DEV_DIST_DIR

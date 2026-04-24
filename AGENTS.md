@@ -12,7 +12,7 @@ This is the first-pass memory for the current project: only the minimum context 
 - Biggest current risk / unknown: `TBD`
 - Who this is for: `TBD`
 - Key constraint or important context: `TBD`
-- More context: `docs/project-vision.md`
+- More context: `docs/project-vision.md`, `docs/project-log.md`
 
 ## Project Vision Template
 
@@ -24,6 +24,12 @@ This repo uses a two-tier project memory system:
 
 - Tier 1: `AGENTS.md` keeps a compact working summary in `Active Project Context (Tier 1 Memory)`.
 - Tier 2: `docs/project-vision.md` and other docs hold the fuller planning context and details.
+
+## Project Log
+
+Before starting meaningful work, read `docs/project-log.md` to understand recent context.
+
+Use it as the running project diary for goals, decision rationale, tradeoffs, validation results, blockers, and follow-up. Add new dated sections at the bottom, but keep the currently active entry updated while that branch or feature is still in progress.
 
 ## Project Bootstrap Workflow (Agent Behavior)
 
@@ -44,6 +50,7 @@ Start here for repository documentation. Any new shared docs page should be adde
 
 - `AGENTS.md`: canonical documentation index, repository operating guidance, and the short active project summary.
 - `docs/project-vision.md`: planning template for project idea, vision, MVP, risks, audience, business model, and early assumptions.
+- `docs/project-log.md`: running project diary for notable implementation context, decisions, validation, failed attempts, and follow-ups.
 - `docs/*.md`: shared project documentation pages such as architecture notes, decisions, workflows, and runbooks.
 - `website/README.md`: app-level setup, runtime, and template notes for the Next.js/Vercel app.
 - `website/backend/README.md`: Python/backend template setup and workflow notes.
@@ -57,7 +64,7 @@ Start here for repository documentation. Any new shared docs page should be adde
 - `website/public`: static files (icons, images, sitemap files).
 - `website/backend/src/mycode`: Python codebase (API modules and utilities; also a good home for project scripts).
 - `website/api/index.py`: Vercel Python entrypoint mounting FastAPI at `/python-api`.
-- `website/template.env` and `website/backend/env.template`: environment variable templates.
+- `website/.env.template` and `website/backend/.env.template`: environment variable templates.
 
 ## Tech Stack
 

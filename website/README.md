@@ -41,8 +41,8 @@ website/
     src/mycode/utils/              # Logger, arg parsing, script template, cache helper
     Makefile                       # Python workflow commands
     pyproject.toml                 # Python deps and tool config
-  template.env                     # Frontend env template
-  backend/env.template             # Backend env template
+  .env.template                    # Frontend env template
+  backend/.env.template            # Backend env template
   next.config.ts                   # PostHog proxy rewrites
   next-sitemap.config.js           # Sitemap config
   vercel.json                      # /python-api rewrite -> /api/index.py
@@ -51,8 +51,8 @@ website/
 ## First Setup
 
 1. Create env files.
-   - `cp template.env .env.local`
-   - `cp backend/env.template backend/.env`
+   - `cp .env.template .env.local`
+   - `cp backend/.env.template backend/.env`
 2. Update core product config in `src/app/site-config.ts`.
 3. Set the real domain in `next-sitemap.config.js`.
 4. Replace landing page placeholder copy in `src/app/(marketing)/page.tsx`.
@@ -128,7 +128,7 @@ On Vercel, the same app is served under `/python-api/*` through:
 
 - `src/app/site-config.ts` has placeholder app metadata/domain/email values.
 - `src/app/(marketing)/page.tsx` contains placeholder sections and text.
-- `src/lib/navigation.ts` includes `/p/settings`, but that page is not scaffolded yet.
+- `src/app/(app)/p/settings/page.tsx` contains placeholder account settings.
 - `src/components/InlineSurvey.tsx` has an empty `SURVEY_ID`.
 
 ## AI Editing Guidance

@@ -1,8 +1,10 @@
 import { PostHog } from "posthog-node";
 
+const POSTHOG_EU_HOST = "https://eu.i.posthog.com";
+
 export default function PostHogClient() {
   const posthogClient = new PostHog(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
-    host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+    host: POSTHOG_EU_HOST,
     flushAt: 1,
     flushInterval: 0,
   });
