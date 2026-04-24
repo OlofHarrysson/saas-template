@@ -30,3 +30,10 @@ This is not a strict schema. Use whatever shape best preserves useful context.
 
 - Added this `docs/project-log.md` file as the canonical project diary for meaningful session notes.
 - Updated `AGENTS.md` so future agents read this file before meaningful work and maintain it as a living context log for active work.
+
+### 2026-04-24 - Dev auth and Playwright harness
+
+- Added a development-only auth entrypoint at `website/src/app/api/dev-auth/login/route.ts`.
+- The route seeds a short-lived Auth.js email verification token for `codex-dev@example.test`, redirects through the normal Auth.js Resend callback, and lets Auth.js create the database session plus `authjs.session-token` cookie.
+- Added Playwright coverage for anonymous protected-route redirects and a dev-auth dashboard/settings flow.
+- Added `npm run test:e2e:dev` for running Playwright against the Devrun dev server on `http://127.0.0.1:3007`.

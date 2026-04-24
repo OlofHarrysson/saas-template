@@ -87,6 +87,14 @@ cd website && npm run test:e2e
 cd website/backend && make run_precommit
 ```
 
+Dev-server authenticated browser checks:
+
+```bash
+cd website
+npm run dev
+npm run test:e2e:dev
+```
+
 If you already have a dev server running and want the smoke tests to reuse it, set `PLAYWRIGHT_BASE_URL` first:
 
 ```bash
@@ -102,6 +110,11 @@ PLAYWRIGHT_BASE_URL=http://127.0.0.1:3007 npm run test:e2e
 - Protected page pattern: `src/app/(app)/p/dashboard/page.tsx` uses `requireAuth()`
 - Enabled providers: Google OAuth and Resend email links
 - Session strategy: database sessions via Neon adapter
+- Local dev auth harness: `src/app/api/dev-auth/login/route.ts`
+  - Only responds when `NODE_ENV === "development"`
+  - Creates a short-lived Auth.js email verification token for `codex-dev@example.test`
+  - Redirects through Auth.js so the normal `authjs.session-token` cookie is set
+  - Use `GET /api/dev-auth/login?redirect=/p/dashboard` to enter the authenticated app locally
 
 ## Analytics and SEO
 
