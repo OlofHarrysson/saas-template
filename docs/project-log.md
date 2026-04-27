@@ -37,3 +37,10 @@ This is not a strict schema. Use whatever shape best preserves useful context.
 - The route seeds a short-lived Auth.js email verification token for `codex-dev@example.test`, redirects through the normal Auth.js Resend callback, and lets Auth.js create the database session plus `authjs.session-token` cookie.
 - Added Playwright coverage for anonymous protected-route redirects and a dev-auth dashboard/settings flow.
 - Added `npm run test:e2e:dev` for running Playwright against the Devrun dev server on `http://127.0.0.1:3007`.
+
+### 2026-04-27 - Read-only linting and production sitemap generation
+
+- Added backend dev dependencies for `ruff` and `pre-commit` so lint commands use the project environment instead of global tools.
+- Made pre-commit non-mutating by removing formatter/fixer hooks, running `uv lock --check`, and using Ruff in check-only mode.
+- Added explicit backend `make lint` and `make format` targets so formatting is opt-in.
+- Changed website `postbuild` to generate sitemap files only on Vercel production builds; local builds now skip sitemap generation, and `npm run sitemap` remains the explicit opt-in path.

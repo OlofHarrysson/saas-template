@@ -3,23 +3,22 @@ repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v5.0.0
   hooks:
-  - id: trailing-whitespace
   - id: check-yaml
   - id: check-toml
   - id: check-added-large-files
     args: [--maxkb=5000]
   - id: debug-statements
     language_version: python3
-- repo: https://github.com/astral-sh/uv-pre-commit
-  rev: 0.6.1
+- repo: local
   hooks:
-  - id: uv-lock
-- repo: https://github.com/astral-sh/ruff-pre-commit
-  # Ruff version.
-  rev: v0.9.6
-  hooks:
-    # Run the linter.
-  - id: ruff
-    args: [--fix]
-    # Run the formatter.
-  - id: ruff-format
+  - id: uv-lock-check
+    name: uv lock check
+    entry: uv --project website/backend lock --check
+    language: system
+    pass_filenames: false
+    files: ^website/backend/(pyproject\.toml|uv\.lock|uv\.toml)$
+  - id: ruff-check
+    name: ruff check
+    entry: uv --project website/backend run ruff check --no-cache --config website/backend/pyproject.toml
+    language: system
+    types_or: [python, pyi]

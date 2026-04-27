@@ -84,6 +84,7 @@ Validation:
 cd website && npm run lint
 cd website && npm run playwright:install
 cd website && npm run test:e2e
+cd website/backend && make lint
 cd website/backend && make run_precommit
 ```
 
@@ -122,7 +123,7 @@ PLAYWRIGHT_BASE_URL=http://127.0.0.1:3007 npm run test:e2e
 - Server PostHog helper: `src/lib/posthog/posthog-server.ts`
 - Proxy rewrites for PostHog: `next.config.ts` (`/improve-now/*`)
 - SEO metadata utility: `src/lib/seo.ts`
-- Sitemap generation runs in `postbuild` (`npm run build`)
+- Sitemap generation runs automatically only for Vercel production builds. Use `npm run sitemap` after a local build when you want to refresh generated sitemap files explicitly.
 
 ## Python API Shape
 

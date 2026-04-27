@@ -11,4 +11,3 @@ from mycode.api.app import app as api_router
 # Create wrapper app and mount the API at /python-api
 app = FastAPI()
 app.mount("/python-api", api_router)
-

@@ -7,6 +7,12 @@ install_dependencies:
 run_precommit:
 	uv run pre-commit run --all-files
 
+lint:
+	uv run ruff check --no-cache . ../api
+
+format:
+	uv run ruff format . ../api
+
 start_api:
 	uv run python src/mycode/api/start_server.py
 
