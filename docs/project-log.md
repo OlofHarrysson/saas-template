@@ -44,3 +44,11 @@ This is not a strict schema. Use whatever shape best preserves useful context.
 - Made pre-commit non-mutating by removing formatter/fixer hooks, running `uv lock --check`, and using Ruff in check-only mode.
 - Added explicit backend `make lint` and `make format` targets so formatting is opt-in.
 - Changed website `postbuild` to generate sitemap files only on Vercel production builds; local builds now skip sitemap generation, and `npm run sitemap` remains the explicit opt-in path.
+
+### 2026-07-19 - Canonical Python models, constants, and settings
+
+- Replaced the misleading `utils/datatypes.py` cache initializer with explicit `models.py`, `constants.py`, `settings.py`, and `cache.py` responsibilities at the `mycode` package root.
+- Centralized the template Pydantic response model and FastAPI metadata, and changed cache construction to avoid import-time filesystem writes.
+- Added one typed `Settings` model with documented fields, actionable validation errors, and deterministic backend `.env.template` generation through `uv run python -m mycode.settings`.
+- Added direct Pydantic and Pydantic Settings dependencies, refreshed Vercel requirements, and documented the Python code map and agent conventions.
+- Kept `utils/template.py` intentionally explanatory: it demonstrates namespace imports, early settings validation, typed settings access, shared logging, argument parsing, and the main guard convention.

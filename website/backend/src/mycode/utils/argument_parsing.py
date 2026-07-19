@@ -1,3 +1,5 @@
+"""Build command-line interfaces from typed Python function signatures."""
+
 from collections.abc import Callable
 
 import jsonargparse

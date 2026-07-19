@@ -1,10 +1,13 @@
-import uvicorn
-import dotenv
+"""Run the FastAPI application with local development defaults."""
 
+import uvicorn
+
+from mycode import settings
 from mycode.utils import argument_parsing
 
 
 def start_server():
+    settings.get_settings()
     uvicorn.run(
         "mycode.api.app:app",
         host="0.0.0.0",
@@ -16,6 +19,5 @@ def start_server():
 
 
 if __name__ == "__main__":
-    dotenv.load_dotenv(".env")
     args = argument_parsing.parse_args(start_server)
     start_server(**args)

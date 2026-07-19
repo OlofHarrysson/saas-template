@@ -62,7 +62,11 @@ Start here for repository documentation. Any new shared docs page should be adde
 - `website/src/components`: reusable UI components.
 - `website/src/lib`: shared app logic (auth, analytics, SEO, utilities).
 - `website/public`: static files (icons, images, sitemap files).
-- `website/backend/src/mycode`: Python codebase (API modules and utilities; also a good home for project scripts).
+- `website/backend/src/mycode`: Python codebase for API modules, scripts, shared models, settings, constants, and infrastructure helpers.
+- `website/backend/src/mycode/models.py`: canonical home for reusable Pydantic models and shared type definitions.
+- `website/backend/src/mycode/constants.py`: stable, code-controlled defaults and invariant values.
+- `website/backend/src/mycode/settings.py`: typed environment configuration and the `.env.template` generator.
+- `website/backend/src/mycode/cache.py`: lazy construction of the shared joblib disk cache.
 - `website/api/index.py`: Vercel Python entrypoint mounting FastAPI at `/python-api`.
 - `website/.env.template` and `website/backend/.env.template`: environment variable templates.
 
@@ -126,3 +130,9 @@ Start here for repository documentation. Any new shared docs page should be adde
 - Use `pathlib` instead of `os.path`.
 - Use modern Python type hints (`list[int]`, `dict[str, str]`, `X | None`).
 - Prefer namespace imports over direct symbol imports when practical (`import functools` then `functools.cache`).
+- Put reusable Pydantic models and shared type definitions in `mycode/models.py`; import them instead of redefining equivalent local schemas.
+- Put code-controlled defaults, hyperparameters, paths, and invariant values in `mycode/constants.py`. Constants must not read environment variables or perform I/O.
+- Access environment-controlled values through the single `mycode.settings.Settings` model and `get_settings()`, not scattered `os.environ` or `dotenv` calls.
+- Define every settings field with an explicit environment-variable alias and useful description. Regenerate `website/backend/.env.template` with `uv run python -m mycode.settings` after changing the model.
+- Keep resource construction and side effects out of constants and models; for example, cache directory creation belongs in `mycode/cache.py`.
+- Start non-trivial Python modules with a concise module docstring that explains the file's intended responsibility.

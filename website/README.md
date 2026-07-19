@@ -37,8 +37,12 @@ website/
   public/                          # Static assets + sitemap output
   api/index.py                     # Vercel Python entrypoint, mounts FastAPI at /python-api
   backend/
-    src/mycode/api/                # FastAPI app, models, local server bootstrap
-    src/mycode/utils/              # Logger, arg parsing, script template, cache helper
+    src/mycode/api/                # FastAPI app and local server bootstrap
+    src/mycode/models.py           # Shared Pydantic models and type definitions
+    src/mycode/constants.py        # Code-controlled defaults and invariant values
+    src/mycode/settings.py         # Typed env settings and .env.template generator
+    src/mycode/cache.py            # Lazy joblib cache construction
+    src/mycode/utils/              # Logger, argument parsing, and script template
     Makefile                       # Python workflow commands
     pyproject.toml                 # Python deps and tool config
   .env.template                    # Frontend env template
@@ -76,6 +80,13 @@ Backend (FastAPI on `localhost:8080`):
 cd website/backend
 uv sync
 make start_api
+```
+
+After changing backend environment settings, regenerate the documented template:
+
+```bash
+cd website/backend
+uv run python -m mycode.settings
 ```
 
 Validation:

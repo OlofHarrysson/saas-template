@@ -1,15 +1,17 @@
+"""Define the FastAPI application and template endpoints."""
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .models import MockResponse
+from mycode import constants, models
 
 
-app = FastAPI(title="Template API", version="1.0.0")
+app = FastAPI(title=constants.API_TITLE, version=constants.API_VERSION)
 
 # Add CORS middleware for frontend communication
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=constants.LOCAL_CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -28,7 +30,7 @@ async def health_check():
     return {"status": "healthy"}
 
 
-@app.get("/items", response_model=MockResponse)
+@app.get("/items", response_model=models.MockResponse)
 async def get_items():
     """Get mock items data"""
-    return MockResponse(count=3)
+    return models.MockResponse(count=3)

@@ -1,3 +1,5 @@
+"""Mount the packaged FastAPI application at Vercel's Python route."""
+
 import sys
 from pathlib import Path
 

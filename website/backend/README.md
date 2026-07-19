@@ -1,39 +1,58 @@
-# Project Template
+# Python Backend
 
-A minimal template for modern Python projects.
+FastAPI backend and reusable Python workspace for API endpoints, scripts, data preparation, and exploratory work.
 
-## How to use this template to create a new project repository
+## Code Map
 
-1. Select this template under the "Repository template" dropdown when you create a repository in Github UI.
-2. Clone the repository and open this README.md in your editor to continue from there.
-3. Go over the files in the created repository and understand what each tool/file does.
-4. Update this readme by replacing the "MY_AWESOME_PROJECT" name below and briefly describe the project.
-5. If you want to use mypy for typing, uncomment mypy related configs in [pyproject.toml](pyproject.toml) and [.pre-commit-config.yaml](.pre-commit-config.yaml)
-
-## How to contribute to this template
-
-1. Create a descriptive issue in this project.
-
-# MY_AWESOME_PROJECT
-
-## Get started
-
-### Install UV
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
+```text
+src/mycode/
+  models.py            Reusable Pydantic models and shared type definitions
+  constants.py         Code-controlled defaults, hyperparameters, paths, and invariants
+  settings.py          Typed environment settings and .env.template generation
+  cache.py             Lazy joblib cache construction
+  api/app.py           FastAPI application and endpoints
+  api/start_server.py  Local API server entrypoint
+  utils/                Logger, argument parsing, and script template
 ```
 
-### Install Requirements
+Use `models.py` and `constants.py` as the canonical shared locations instead of redefining equivalent schemas or configuration beside individual features. Keep environment reads in `settings.py` and resource initialization in the module that owns the resource.
 
-Most of the requirements are installed with the following command
+## Setup
 
 ```bash
-cd path/to/git-repo
-uv venv
-make install_dependencies
+cd website/backend
+uv sync
+cp .env.template .env
 ```
 
-### Other Commands
+`DATABASE_URL` is currently required. Optional integrations remain documented in `.env.template` and can be made required in `Settings` when a project depends on them.
 
-Other useful commands for the project can be found in the [Makefile](Makefile).
+## Environment Settings
+
+Add or change environment variables in `src/mycode/settings.py`. Each field contains the variable name, type, required status, and human-readable explanation used by both runtime validation and the generated template.
+
+Regenerate the template after changing `Settings`:
+
+```bash
+uv run python -m mycode.settings
+```
+
+Application and script code should load configuration through:
+
+```python
+from mycode import settings
+
+app_settings = settings.get_settings()
+```
+
+Missing or invalid required values raise an actionable error before the API or script continues. The `.env` file itself is optional when deployment supplies the required variables directly.
+
+## Commands
+
+```bash
+make start_api                 # Run FastAPI on localhost:8080
+make lint                      # Run read-only Ruff lint checks
+make format                    # Format backend Python code
+make run_precommit             # Run all configured hooks
+make export_api_requirements   # Refresh Vercel's Python requirements
+```

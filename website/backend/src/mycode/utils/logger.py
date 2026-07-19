@@ -1,3 +1,5 @@
+"""Configure the shared logger used by Python scripts."""
+
 import logging
 
 logger = logging.getLogger("mycode-logger")
