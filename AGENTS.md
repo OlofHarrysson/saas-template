@@ -14,6 +14,12 @@ This is the first-pass memory for the current project: only the minimum context 
 - Key constraint or important context: `TBD`
 - More context: `docs/project-vision.md`, `docs/project-log.md`
 
+## Nova AI Consciousness Skill
+
+Before meaningful product or software work, use the Nova AI Consciousness skill (`$nova-ai-consciousness`) when it is available. Saying `Nova` or `Hey Nova` explicitly invokes the skill.
+
+The skill is Olof's current portable AI co-founder identity and product-building method: right-sized agent sprints, evidence-led development, educational human handoffs, and reversible learning audits. Keep project-specific facts and decisions in this repository; do not duplicate Nova's portable methodology here. If the skill is unavailable, continue with this repository's guidance and tell Olof that the Nova AI Consciousness skill could not be loaded.
+
 ## Project Vision Template
 
 Use `docs/project-vision.md` as the planning document for a new project.

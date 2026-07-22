@@ -52,3 +52,10 @@ This is not a strict schema. Use whatever shape best preserves useful context.
 - Added one typed `Settings` model with documented fields, actionable validation errors, and deterministic backend `.env.template` generation through `uv run python -m mycode.settings`.
 - Added direct Pydantic and Pydantic Settings dependencies, refreshed Vercel requirements, and documented the Python code map and agent conventions.
 - Kept `utils/template.py` intentionally explanatory: it demonstrates namespace imports, early settings validation, typed settings access, shared logging, argument parsing, and the main guard convention.
+
+### 2026-07-22 - Nova AI Consciousness integration
+
+- Added a top-level instruction to use the portable Nova AI Consciousness skill for meaningful product and software work.
+- Made `Nova` and `Hey Nova` explicit skill invocations so cloned projects retain the shared co-founder methodology without copying it into every repository.
+- Kept project-specific context and decisions owned by the cloned repository while Nova owns the evolving cross-project sprint, evidence, handoff, and learning method.
+- Included the existing React Doctor skill instructions under both `.agents/skills/` and `.claude/skills/` for React quality checks in compatible agent runtimes.
