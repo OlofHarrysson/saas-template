@@ -5,6 +5,7 @@ const DEV_DIST_DIR = ".next";
 const LOCAL_BUILD_DIST_DIR = ".next-build";
 
 const createNextConfig = (phase: string): NextConfig => ({
+  agentRules: false,
   // Keep local production builds separate so agent-run `next build` calls do not
   // clobber a live `next dev` cache. Use `.next` on Vercel because its build
   // pipeline expects the default output directory.

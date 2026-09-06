@@ -1,9 +1,9 @@
 """Build command-line interfaces from typed Python function signatures."""
 
 from collections.abc import Callable
+from typing import Any
 
 import jsonargparse
-from typing import Any
 
 
 def parse_args(func: Callable[..., Any]) -> jsonargparse.Namespace:

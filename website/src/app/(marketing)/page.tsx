@@ -23,7 +23,7 @@ export default function Home() {
             <Link href={siteConfig.auth.loginUrl} className="btn btn-primary btn-lg">
               Get Started
             </Link>
-            <a href="#features" className="btn btn-outline btn-lg">
+            <a href="#features" className="btn btn-outline btn-lg" aria-label="Learn more about the features">
               Learn More
             </a>
           </div>

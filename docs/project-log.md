@@ -103,3 +103,42 @@ This is not a strict schema. Use whatever shape best preserves useful context.
   visual acceptance remains separate from technical passes. No portable skill or
   memory changes were needed. A small evidence loop transferred successfully;
   broader measurement/catalog tooling should follow demonstrated need.
+
+### 2026-09-06 - Refresh dependencies and resolve package advisories
+
+- Updated frontend packages within their existing major versions, including
+  Next.js 16.3.4, React 19.2.8, Auth.js v5 beta.32, Tailwind 4.3.3, daisyUI
+  5.7.28, Playwright 1.63.0, and Biome 2.5.12. Kept TypeScript 6 and the current
+  Node type major; npm's `latest` Auth.js tag is v4 and is not the upgrade path
+  for this v5 application.
+- Refreshed Python dependencies and the uv lock, including FastAPI 0.141.1,
+  Pydantic 2.13.5, Uvicorn 0.52.4, and Ruff 0.16.6. Vercel requirements now
+  export with `--no-dev` so lint and hook tools stay out of deployment packages.
+- Used Biome's configuration migration. New lint checks required an explicit
+  accessible description for the homepage features link and three bounded Python
+  import-spacing/order repairs; formatting and import automation remain disabled
+  in the frontend configuration.
+- `npm ci` completed and `npm audit` went from 24 vulnerable dependency entries
+  to zero. `pip-audit` found no known vulnerabilities in all pinned exported
+  runtime requirements. The Auth.js update resolves
+  [GHSA-7rqj-j65f-68wh](https://github.com/advisories/GHSA-7rqj-j65f-68wh);
+  a local check of the installed normalizer accepted a normal address and rejected
+  homoglyph and quoted multi-address inputs without sending mail.
+- Production build, frontend/backend lint, all pre-commit hooks, settings
+  validation, env-template equivalence, and in-process ASGI checks of `/`,
+  `/health`, and `/items` passed. The same endpoint checks passed through Vercel's
+  `/python-api` mount. These do not claim live hosting or provider verification.
+- React Doctor reported no issues on this change and a score of 72/100, up from
+  the earlier 40/100 with the Auth.js advisory. No rules were suppressed.
+- Browser validation passed using installed Chrome 152.0.7977.82 with Olof's
+  approval and a temporary configuration outside the repository: 5 production
+  checks passed, the credentialed development-auth check remained skipped, and
+  all 12 desktop/mobile visual checks passed. Inspected the style guide on both
+  viewports, mobile homepage, and open navigation; captured diagnostics report
+  no browser errors or horizontal overflow. Test-owned servers were stopped.
+- Playwright's bundled Chromium 153 download timed out with the default timeout
+  and on one focused retry with a 120-second timeout. The normal Playwright
+  configuration remains unchanged; bundled-browser installation is still an
+  environment limitation, separate from the successful Chrome validation.
+- Disabled Next.js's new automatic agent-rules generation and removed the two
+  files created by the test run, keeping the root documentation authoritative.

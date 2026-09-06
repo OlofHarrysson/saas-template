@@ -5,7 +5,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from mycode import constants, models
 
-
 app = FastAPI(title=constants.API_TITLE, version=constants.API_VERSION)
 
 # Add CORS middleware for frontend communication

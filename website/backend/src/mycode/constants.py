@@ -2,7 +2,6 @@
 
 from pathlib import Path
 
-
 BACKEND_ROOT = Path(__file__).resolve().parents[2]
 ENV_FILE = BACKEND_ROOT / ".env"
 ENV_TEMPLATE_FILE = BACKEND_ROOT / ".env.template"

@@ -24,14 +24,14 @@ The [vision](project-vision.md) is intentionally unfilled.
 | Outcome | State | Acceptance evidence / next checkpoint |
 | --- | --- | --- |
 | Refresh documentation and visual review | Implemented; founder review available | 12 visual checks, 5 production checks, lint/build, and inspected desktop/mobile captures; [results](project-log.md) |
+| Refresh package dependencies | Implemented and locally verified | Clean npm/Python audits, build/lint/API checks, 5 production and 12 visual checks using installed Chrome; [results and limits](project-log.md) |
 | Establish the first product | Not started | Name the first user, painful job, riskiest assumption, and smallest useful test |
 
 ## Next checkpoint
 
-Review the template's story/testing workflow and visual evidence before extending
-the harness. Package upgrades are a separate maintenance pass; React Doctor
-flags the existing Auth.js beta dependency. Advanced visual measurement and
-generated documentation remain deferred.
+Review the template's documentation and captured UI before using it for the next
+product. Package upgrades are verified locally; TypeScript 7, a Node type-major
+change, advanced visual measurement, and generated documentation remain deferred.
 
 ## On project initialization
 

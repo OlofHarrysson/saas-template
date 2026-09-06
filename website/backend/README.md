@@ -56,3 +56,6 @@ make format                    # Format backend Python code
 make run_precommit             # Run all configured hooks
 make export_api_requirements   # Refresh Vercel's Python requirements
 ```
+
+The exported Vercel requirements contain runtime dependencies only. Ruff and
+pre-commit remain in the local development group.
