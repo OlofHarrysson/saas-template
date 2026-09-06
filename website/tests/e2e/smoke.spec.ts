@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { siteConfig } from "../../src/app/site-config";
 
-test("marketing homepage renders core CTAs", async ({ page }) => {
+test("marketing homepage renders core CTAs", { tag: "@US-001" }, async ({ page }) => {
   await page.goto("/");
 
   await expect(page.getByRole("link", { name: /get started/i }).first()).toHaveAttribute(
@@ -15,7 +15,7 @@ test("marketing homepage renders core CTAs", async ({ page }) => {
   await expect(page.locator("#features")).toBeVisible();
 });
 
-test("mobile navigation drawer opens and closes", async ({ page }) => {
+test("mobile navigation drawer opens and closes", { tag: "@US-001" }, async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
 
@@ -29,7 +29,7 @@ test("mobile navigation drawer opens and closes", async ({ page }) => {
   await expect(drawer).not.toBeVisible();
 });
 
-test("login page renders both sign-in options", async ({ page }) => {
+test("login page renders both sign-in options", { tag: "@US-001" }, async ({ page }) => {
   await page.goto(siteConfig.auth.loginUrl);
 
   await expect(page.getByRole("heading", { name: /sign in to your account/i })).toBeVisible();

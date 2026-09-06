@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("protected dashboard redirects anonymous route requests to login", async ({
+test("protected dashboard redirects anonymous route requests to login", { tag: "@US-002" }, async ({
   request,
 }) => {
   const response = await request.get("/p/dashboard", { maxRedirects: 0 });

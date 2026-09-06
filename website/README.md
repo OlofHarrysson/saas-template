@@ -9,6 +9,7 @@ Default behavior: keep optional boilerplate in place and ignore unused parts unl
 - Tailwind CSS 4 + daisyUI 5 CSS-first theme setup
 - Biome for frontend linting
 - Playwright smoke tests for core public flows
+- Development-only style guide, component fixtures, and desktop/mobile visual captures
 - Auth.js v5 (beta) with Google OAuth + Resend magic-link login
 - Neon adapter for Auth.js session/user storage
 - PostHog client + server utilities with proxy rewrites
@@ -89,30 +90,14 @@ cd website/backend
 uv run python -m mycode.settings
 ```
 
-Validation:
+Install the test browser once with `npm run playwright:install` from `website/`.
+The [testing guide](../docs/testing.md) owns validation commands, story-driven
+red–green development, temporary test servers, and credentialed auth checks.
 
-```bash
-cd website && npm run lint
-cd website && npm run playwright:install
-cd website && npm run test:e2e
-cd website/backend && make lint
-cd website/backend && make run_precommit
-```
-
-Dev-server authenticated browser checks:
-
-```bash
-cd website
-npm run dev
-npm run test:e2e:dev
-```
-
-If you already have a dev server running and want the smoke tests to reuse it, set `PLAYWRIGHT_BASE_URL` first:
-
-```bash
-cd website
-PLAYWRIGHT_BASE_URL=http://127.0.0.1:3007 npm run test:e2e
-```
+For visual review, open `/internal/style-guide` in development or run
+`npm run design:capture`. The [visual harness guide](../docs/design-harness.md)
+explains named artifacts, fixtures, and the report. Internal review routes are
+unavailable in production builds.
 
 ## Auth and App Behavior
 

@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 const devAuthEnabled = process.env.PLAYWRIGHT_USE_DEV_AUTH === "1";
 
-test.describe("authenticated app routes", () => {
+test.describe("authenticated app routes", { tag: "@US-002" }, () => {
   test.skip(
     !devAuthEnabled,
     "Dev auth tests require PLAYWRIGHT_USE_DEV_AUTH=1 against next dev."

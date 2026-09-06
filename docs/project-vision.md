@@ -87,6 +87,6 @@ How to use it:
 
 ## Near-Term Plan
 
-- Immediate next step: `TBD`
-- What to learn in the first 7 days: `TBD`
-- What would change the plan materially: `TBD`
+Current milestones, the immediate next step, and the next learning checkpoint
+live in [project status](project-status.md). Keep this document focused on
+durable direction, audience, and product assumptions.

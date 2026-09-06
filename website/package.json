@@ -13,7 +13,9 @@
     "playwright:install": "playwright install chromium",
     "test:e2e": "playwright test",
     "test:e2e:dev": "PLAYWRIGHT_BASE_URL=http://127.0.0.1:3007 PLAYWRIGHT_USE_DEV_AUTH=1 playwright test",
-    "test:e2e:headed": "playwright test --headed"
+    "test:e2e:headed": "playwright test --headed",
+    "design:capture": "PLAYWRIGHT_DESIGN=1 playwright test",
+    "design:report": "playwright show-report playwright-report/design"
   },
   "dependencies": {
     "@auth/neon-adapter": "^1.11.2",

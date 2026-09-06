@@ -12,7 +12,13 @@ This is the first-pass memory for the current project: only the minimum context 
 - Biggest current risk / unknown: `TBD`
 - Who this is for: `TBD`
 - Key constraint or important context: `TBD`
-- More context: `docs/project-vision.md`, `docs/project-log.md`
+- More context: `docs/project-vision.md`, `docs/project-status.md`, `docs/user-stories.md`
+
+For routine orientation, read `README.md` and `docs/project-status.md`, then
+only the documents relevant to the task. The vision owns durable direction;
+status owns current milestones. Read relevant user stories before changing
+user-facing behavior, `docs/testing.md` for the red–green loop, and `DESIGN.md`
+before visual work. Verify current behavior in source and tests.
 
 ## Nova AI Consciousness Skill
 
@@ -33,9 +39,12 @@ This repo uses a two-tier project memory system:
 
 ## Project Log
 
-Before starting meaningful work, read `docs/project-log.md` to understand recent context.
-
-Use it as the running project diary for goals, decision rationale, tradeoffs, validation results, blockers, and follow-up. Add new dated sections at the bottom, but keep the currently active entry updated while that branch or feature is still in progress.
+Use `docs/project-log.md` for historical evidence, not routine orientation.
+Search it with `rg -n '<term>' docs/project-log.md` and read the matching range.
+Inspect the newest 120 lines before adding an entry. Read the whole log only for
+an explicit retrospective. Keep an active entry updated; append a dated entry
+when moving to a new substantial outcome. Preserve goals, rationale, validation,
+failures, and follow-up rather than routine command output.
 
 ## Project Bootstrap Workflow (Agent Behavior)
 
@@ -43,8 +52,13 @@ When a new project is initialized from this template:
 
 1. Open `docs/project-vision.md` first.
 2. Ask a short batch of focused initialization questions to fill only missing, high-impact fields.
-3. Update `docs/project-vision.md` with the answers and clearly labeled assumptions.
-4. At the end of bootstrapping, update this AGENTS.md file and any docs. Make sure to remove unneeded "bootstrapping" instructions to finalize the bootstrapping phase.
+3. Update `docs/project-vision.md` with answers and explicit assumptions. Keep audience there.
+4. Replace template status and starter stories with the first product milestone,
+   its observable acceptance criteria, and the next checkpoint. Keep near-term
+   milestones in `docs/project-status.md` until a separate plan earns its place.
+5. Update the compact context in this file and relevant setup/design defaults.
+   Remove completed bootstrap instructions in the initialized product; retain
+   them while maintaining this reusable template.
 
 ## Purpose & Template Intent
 
@@ -52,12 +66,21 @@ This repo is a reusable starter for fast project setup, not a single fixed produ
 
 ## Documentation Index
 
-Start here for repository documentation. Any new shared docs page should be added as a separate `docs/*.md` file and linked from the `Documentation Index` section in `AGENTS.md`.
+Start here for repository documentation. Shared topic pages live under `docs/`
+and are linked below; root `README.md`, `AGENTS.md`, and `DESIGN.md` own entry
+points, contributor guidance, and visual intent respectively.
 
 - `AGENTS.md`: canonical documentation index, repository operating guidance, and the short active project summary.
+- `README.md`: human entry point and project initialization pointers.
 - `docs/project-vision.md`: planning template for project idea, vision, MVP, risks, audience, business model, and early assumptions.
+- `docs/project-status.md`: short current outcome, active milestone, uncertainty, and next checkpoint.
+- `docs/user-stories.md`: important user/operator outcomes, acceptance criteria, and direct evidence links.
+- `docs/testing.md`: red–green workflow, story selection, validation commands, and evidence boundaries.
+- `DESIGN.md`: visual direction, styling ownership, references, and review workflow.
+- `docs/design-harness.md`: development-only style guide, deterministic fixtures, and Playwright capture/review workflow.
 - `docs/project-log.md`: running project diary for notable implementation context, decisions, validation, failed attempts, and follow-ups.
-- `docs/*.md`: shared project documentation pages such as architecture notes, decisions, workflows, and runbooks.
+- Add shared docs only when they have a distinct job; avoid duplicating status,
+  acceptance criteria, commands, or component inventories across files.
 - `website/README.md`: app-level setup, runtime, and template notes for the Next.js/Vercel app.
 - `website/backend/README.md`: Python/backend template setup and workflow notes.
 
@@ -87,8 +110,10 @@ Start here for repository documentation. Any new shared docs page should be adde
 ## Build and Development Commands
 
 - `cd website && npm run dev`: run frontend locally.
-- `cd website && npm run build`: production build (includes sitemap generation).
+- `cd website && npm run build`: production build (sitemap generation runs automatically only on Vercel production builds).
 - `cd website && npm run lint`: lint frontend.
+- `cd website && npm run test:e2e`: production smoke and route-isolation checks.
+- `cd website && npm run design:capture`: desktop/mobile rendered evidence from a development server.
 - `cd website/backend && uv sync`: install/sync Python dependencies.
 - `cd website/backend && make start_api`: run FastAPI service on `localhost:8080`.
 - `cd website/backend && uv run python path/to/script.py`: run ad hoc Python scripts.
@@ -105,6 +130,11 @@ Start here for repository documentation. Any new shared docs page should be adde
 ## Validation & Version Control (Solo)
 
 - Default to lightweight validation: manual flow checks plus targeted linting.
+- For changed user-facing behavior, update the story, demonstrate a failing
+  acceptance test, implement the smallest fix, then run related checks. Technical
+  tests do not require story IDs. `docs/testing.md` owns this workflow.
+- Visual work includes inspected desktop/mobile evidence; technical passes do
+  not substitute for founder taste. Keep generated captures out of Git.
 - For API changes, at minimum verify `/`, `/health`, and changed endpoints.
 - Use short, imperative commit messages (`fix auth callback`, `add survey block`).
 - PR checklist requirements are optional unless collaborating externally.
