@@ -121,6 +121,8 @@ unavailable in production builds.
 - SEO metadata utility: `src/lib/seo.ts`
 - Sitemap generation runs automatically only for Vercel production builds. Use `npm run sitemap` after a local build when you want to refresh generated sitemap files explicitly.
 
+For founder browser testing, visit any page with `?analytics=off` once in each browser. PostHog stores the opt-out choice in a cookie shared across subdomains using the same consent name. New apex domains and browsers need their own visit; clearing cookies resets the choice.
+
 ## Python API Shape
 
 Local FastAPI app (`backend/src/mycode/api/app.py`) exposes:
