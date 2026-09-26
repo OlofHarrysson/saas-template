@@ -1,4 +1,5 @@
 SHELL := /bin/bash
+API_FILES := $(wildcard ../api)
 
 install_dependencies:
 	uv sync
@@ -8,10 +9,10 @@ run_precommit:
 	uv run pre-commit run --all-files
 
 lint:
-	uv run ruff check --no-cache . ../api
+	uv run ruff check --no-cache . $(API_FILES)
 
 format:
-	uv run ruff format . ../api
+	uv run ruff format . $(API_FILES)
 
 start_api:
 	uv run python src/mycode/api/start_server.py

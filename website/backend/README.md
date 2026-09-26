@@ -20,12 +20,21 @@ Use `models.py` and `constants.py` as the canonical shared locations instead of 
 ## Setup
 
 ```bash
-cd website/backend
+# Run inside the directory containing pyproject.toml.
 uv sync
 cp .env.template .env
 ```
 
-`DATABASE_URL` is currently required. Optional integrations remain documented in `.env.template` and can be made required in `Settings` when a project depends on them.
+No credentials are required for the example script or sample API. Integrations
+are optional in `.env.template`; make a setting required when the product
+actually depends on it. This directory can be exported independently as `python/`.
+
+```bash
+uv run python -m mycode.utils.template --message "Hello" --repeat_count 1
+```
+
+FastAPI is included but starting a server is optional. For scripts and analysis,
+use the same uv environment without running an API.
 
 ## Environment Settings
 
@@ -59,3 +68,7 @@ make export_api_requirements   # Refresh Vercel's Python requirements
 
 The exported Vercel requirements contain runtime dependencies only. Ruff and
 pre-commit remain in the local development group.
+
+`export_api_requirements` needs the full Next.js starter's sibling `api/`
+directory. Hook commands need a Git repository and its own pre-commit config;
+neither is required for a standalone Python workspace.

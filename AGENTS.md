@@ -48,6 +48,13 @@ failures, and follow-up rather than routine command output.
 
 ## Project Bootstrap Workflow (Agent Behavior)
 
+Use the canonical [Initialize Project skill](/Users/olof/git/codex-config/skills/custom/initialize-project/SKILL.md)
+and [application catalogue](docs/application-references.md). Documentation and
+application selection are independent. Documentation may be partial or omitted
+on request; existing/forked projects receive only opted-in pieces. New project
+repositories go directly under `/Users/olof/git/`. Adapt the following workflow
+to the selected documentation scope and stack.
+
 When a new project is initialized from this template:
 
 1. Open `docs/project-vision.md` first.
@@ -75,6 +82,7 @@ points, contributor guidance, and visual intent respectively.
 - `docs/project-vision.md`: planning template for project idea, vision, MVP, risks, audience, business model, and early assumptions.
 - `docs/project-status.md`: short current outcome, active milestone, uncertainty, and next checkpoint.
 - `docs/user-stories.md`: important user/operator outcomes, acceptance criteria, and direct evidence links.
+- `docs/application-references.md`: reference selection, exports, provenance and maintenance.
 - `docs/testing.md`: red–green workflow, story selection, validation commands, and evidence boundaries.
 - `DESIGN.md`: visual direction, styling ownership, references, and review workflow.
 - `docs/design-harness.md`: development-only style guide, deterministic fixtures, and Playwright capture/review workflow.
@@ -100,6 +108,10 @@ points, contributor guidance, and visual intent respectively.
 - `website/.env.template` and `website/backend/.env.template`: environment variable templates.
 
 ## Tech Stack
+
+The stack and paths below describe the existing Next.js reference in `website/`,
+not a requirement for all new projects. Astro owns its setup in
+`references/astro/README.md`; Python can be exported independently from the backend.
 
 - Frontend: Next.js 16, React 19, TypeScript (strict), Tailwind CSS 4, daisyUI 5.
 - Auth/data integrations: Auth.js v5 (beta), Neon adapter, Resend, PostHog.

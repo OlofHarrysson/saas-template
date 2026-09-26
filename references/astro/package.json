@@ -1,0 +1,29 @@
+{
+  "name": "astro-reference",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "ASTRO_DEV_BACKGROUND=0 astro dev",
+    "build": "astro build",
+    "preview": "ASTRO_PREVIEW_BACKGROUND=0 astro preview",
+    "check": "astro check",
+    "test": "playwright test"
+  },
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "4.3.3",
+    "astro": "7.2.8",
+    "daisyui": "5.7.16",
+    "posthog-js": "1.418.6",
+    "tailwindcss": "4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.6",
+    "@playwright/test": "1.63.0",
+    "@types/node": "22.20.4",
+    "typescript": "5.9.3"
+  }
+}

@@ -72,3 +72,17 @@ Support: implemented; [visual tests](../website/tests/design/visual.spec.ts) and
 Learning: desktop/mobile artifacts have been inspected locally. Founder taste
 and usefulness across new projects remain unverified. Add further fixtures only
 when real component behavior needs them.
+
+## US-004 — Start from an appropriate working reference
+
+As a maintainer, I can choose documentation independently of a Next.js, Astro or
+Python application and know which revision supplied its code.
+
+Acceptance: export only committed application files into a new destination;
+preserve source revision; refuse existing destinations; demonstrate that exported
+apps build/run local checks without copying secrets or product data. The skill
+supports docs-only, partial/no docs and opt-in additions to existing/forked projects.
+
+Support: [catalogue](application-references.md),
+[export isolation tests](../tests/test_export_reference.py), reference-specific
+checks linked by the catalogue, and [current verification](project-status.md).

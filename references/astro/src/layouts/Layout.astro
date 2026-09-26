@@ -1,0 +1,18 @@
+---
+import '../styles/global.css';
+interface Props { title: string }
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="A small website starting point." />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-base-100 text-base-content">
+    <slot />
+    <script>import '../scripts/analytics';</script>
+  </body>
+</html>

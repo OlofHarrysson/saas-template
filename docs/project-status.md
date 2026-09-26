@@ -1,41 +1,22 @@
 # Project status
 
-Last reconciled: 2026-09-06
+27 September 2026.
 
-This page owns current work and near-term milestones. Update it when an outcome,
-priority, blocker, or checkpoint changes, not after every command. Keep it short
-and link to evidence; verify consequential claims against the current source.
-The vision owns durable product direction and the project log owns history.
+## Current milestone
 
-## Current outcome
+Provide tested Next.js, Astro and lightweight Python references with independent
+documentation selection, reproducible exports and one canonical initialization
+skill. Preserve the existing Next.js starter and documentation foundation.
 
-Reusable SaaS starter; no product has been selected. The Next.js website,
-optional Python backend, and existing authentication/analytics modules remain
-the foundation. The documentation refresh, story-linked red–green workflow, and
-development-only visual harness are implemented and locally verified.
+The catalogue, exporter and skill routing are implemented; fresh-export validation
+is in progress. No desktop/mobile template or automatic project updater is in scope.
 
-## Biggest uncertainty
+## Acceptance and next checkpoint
 
-The next product's user, problem, and highest-risk assumption are still unknown.
-The [vision](project-vision.md) is intentionally unfilled.
+Each exported reference installs and passes its relevant local checks. Verify
+PostHog payloads without sending data externally, Astro desktop/mobile appearance,
+Python operation without credentials, source provenance and destination protection.
 
-## Milestones
-
-| Outcome | State | Acceptance evidence / next checkpoint |
-| --- | --- | --- |
-| Refresh documentation and visual review | Implemented; founder review available | 12 visual checks, 5 production checks, lint/build, and inspected desktop/mobile captures; [results](project-log.md) |
-| Refresh package dependencies | Implemented and locally verified | Clean npm/Python audits, build/lint/API checks, 5 production and 12 visual checks using installed Chrome; [results and limits](project-log.md) |
-| Establish the first product | Not started | Name the first user, painful job, riskiest assumption, and smallest useful test |
-
-## Next checkpoint
-
-Review the template's documentation and captured UI before using it for the next
-product. Package upgrades are verified locally; TypeScript 7, a Node type-major
-change, advanced visual measurement, and generated documentation remain deferred.
-
-## On project initialization
-
-Replace the template maintenance rows above with the product's current outcome,
-one active milestone, its acceptance evidence, and the next meaningful decision.
-Later milestones are possibilities until selected. Split out a plan only when
-several substantial milestones need coordination.
+See [application references](application-references.md). The next checkpoint is
+using `$initialize-project` for a real new project and reviewing the selected scope.
+The [project vision](project-vision.md) remains a template for that future product.

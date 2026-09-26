@@ -22,7 +22,8 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    database_url: str = Field(
+    database_url: str | None = Field(
+        default=None,
         validation_alias="DATABASE_URL",
         description=(
             "PostgreSQL connection URL. Use Docker Postgres locally and Neon in "
@@ -124,7 +125,7 @@ def _validation_error_message(error: ValidationError) -> str:
         lines.append("")
 
     lines.append(
-        "Run `uv run python -m mycode.settings` from website/backend to "
+        "Run `uv run python -m mycode.settings` from the Python project directory to "
         "regenerate .env.template."
     )
     return "\n".join(lines)
