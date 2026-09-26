@@ -142,3 +142,43 @@ This is not a strict schema. Use whatever shape best preserves useful context.
   environment limitation, separate from the successful Chrome validation.
 - Disabled Next.js's new automatic agent-rules generation and removed the two
   files created by the test run, keeping the root documentation authoritative.
+
+
+### 2026-09-27 — Application references and project initialization
+
+- Olof approved the catalogue and real starting workflow for Next.js and Astro,
+  adding lightweight Python from this repository. Kept the plain Markdown docs
+  foundation and existing Next.js starter; desktop/mobile remain deferred.
+- `docs/application-references.md` owns choices and upkeep. The canonical skill
+  stays in codex-config and is linked from README/AGENTS. It selects documentation
+  independently, honors partial/no docs, defaults new projects to `/Users/olof/git/`,
+  and uses reviewed opt-in additions for existing/forked projects.
+- Added a small committed-file exporter. It records source commit/path, refuses
+  existing destinations and environment data, and excludes uncommitted files.
+  It has no dependency install, repository creation, scheduling or update side effects.
+- Astro derives its integration patterns from ai-girlfriend-content commit
+  `1bd917bcce16ec7e0de7bc4d2087796114d72eb9`; exact paths and adaptations are in
+  its README. Npm audit exposed GHSA-26w7-cxv4-gfx2 in source Astro 7.2.4. The
+  new reference uses fixed 7.2.8 and reports zero vulnerabilities. The original
+  product was not modified and still needs its own dependency review.
+- Python uses the existing uv lock and code. Database configuration is optional
+  until a product needs it. Lint handles an independent directory, and the tests
+  exercise settings and three endpoints through ASGI without credentials.
+- Fresh exports from `3e133692c62b91eee78cd3ef12241a07d2994fbc` independently
+  installed and verified Next.js, Astro and Python. Current status records exact
+  passes/skips. Real PostHog SDK payloads were intercepted with fake keys; no
+  live ingestion, auth/email or hosting claim. Astro desktop/mobile captures were
+  visually inspected; Next.js UI was unchanged.
+- Resolved a portability problem found during verification: Astro detects an AI
+  agent and detaches its server, causing Playwright to lose ownership. Used its
+  documented `ASTRO_DEV_BACKGROUND=0` / `ASTRO_PREVIEW_BACKGROUND=0` opt-out in
+  npm scripts. The initial detached test server was stopped, and subsequent
+  suites ended with no listener. Type checks also caught missing Node types and
+  a dynamic-import narrowing issue; both corrected before fresh-export checks.
+- Skill validator passed; documentation modes were reviewed against docs-only,
+  app-plus-docs, explicit no-docs and existing-project requests. A real future
+  initialization remains the user-experience checkpoint, not proof from schema checks.
+- Learning audit: choosing a working product is useful evidence, but a reference
+  needs its own clean install and integration checks before reuse. Provenance
+  makes fixes traceable; updates remain deliberate per project. No Nova methodology
+  or global preference changes were made in this sprint.

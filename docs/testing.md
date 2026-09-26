@@ -69,14 +69,15 @@ do not depend on a provider or database. That fixture is not auth verification.
 Run from `website/backend/`:
 
 ```bash
-uv sync
+uv sync --locked
+uv run python -m unittest discover -s tests
 make lint
 ```
 
 For API changes, verify `/`, `/health`, and the changed endpoints, alongside
 focused tests for the changed behavior. Pure tests should use fixtures or fakes
-without credentials; real integrations are separate boundary checks. The starter
-currently has no Python behavioral test suite.
+without credentials; real integrations are separate boundary checks. The starter tests exercise credential-free settings and `/`, `/health`, and
+`/items` through the ASGI application without a running server.
 
 ## Evidence and closeout
 
@@ -88,3 +89,11 @@ Report passes, failures, skips, and unverified boundaries separately. A local
 build is not a hosted deployment check, a fixture is not a real-provider check,
 and a screenshot is not founder acceptance. The [design harness](design-harness.md)
 owns the visual artifact recipe.
+
+## Application reference exports
+
+The [catalogue](application-references.md) owns export and per-stack commands.
+Run `python3 -m unittest discover -s tests` at repository root to verify committed
+content, source provenance, destination refusal and environment-file exclusion.
+The Next.js `npm run test:reference` suite inspects a real SDK pageview payload
+intercepted before it reaches PostHog. Astro owns its independent browser suite.
