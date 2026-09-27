@@ -7,7 +7,22 @@ owns runnable application references. Documentation remains plain Markdown in `d
 
 ## Choose a starting point
 
-| Reference | Maintained source | Included | Choose when |
+For a new website or web app, Olof chooses **Next.js or Astro** unless the
+conversation already establishes the choice. Ask before exporting or scaffolding;
+the examples below support a recommendation, not an automatic selection. Existing
+projects keep their stack unless a migration is requested. Documentation-only
+work needs no application decision.
+
+Mac desktop and menu bar apps default to **Electron**, with **Tailwind, daisyUI
+and a development-only design harness**. This is an agreed stack preference;
+a tested Electron reference is still deferred.
+
+Standalone backend APIs, scripts, data science and custom ML default to **Python
+with uv**. Python can accompany a web or desktop app when useful. Calling an
+external AI API alone does not require another runtime or a separate service.
+Explicit user choices take precedence over all defaults.
+
+| Reference | Maintained source | Included | Typical fit |
 | --- | --- | --- | --- |
 | `nextjs` | [`website/`](../website/README.md) | Existing React/Next.js app, Tailwind/daisyUI, PostHog proxy, auth and optional Python/Vercel plumbing | An interactive web application benefits from the existing full starter |
 | `astro` | [`references/astro/`](../references/astro/README.md) | Small static site, Tailwind/daisyUI and optional PostHog pageviews | A content or marketing website needs a small starting point |
@@ -77,7 +92,9 @@ and review each fix before applying it. There is no automatic propagation.
 
 ## Later references
 
-Desktop: assess Rocket or Thread Launcher when a desktop project needs a start.
+Desktop: assess Rocket or Thread Launcher for the agreed Electron stack when a
+desktop project needs a start. Verify Tailwind/daisyUI and design-harness coverage
+before treating either product as a reusable reference.
 Mobile: assess Glow Radar and Nova's Expo apps when needed; their dependency
 versions and native integrations differ. Neither is certified by this sprint.
 New stacks are added on real demand, not as empty template folders.

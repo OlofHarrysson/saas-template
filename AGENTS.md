@@ -55,6 +55,12 @@ on request; existing/forked projects receive only opted-in pieces. New project
 repositories go directly under `/Users/olof/git/`. Adapt the following workflow
 to the selected documentation scope and stack.
 
+For a new website, ask Olof to choose Next.js or Astro unless already specified.
+Mac desktop/menu bar apps default to Electron with Tailwind, daisyUI and a design
+harness. Python/uv serves standalone API, script and ML/data work, and may accompany
+another app when useful. Calling external APIs alone does not require Python.
+See the catalogue for available references; Electron is not yet a tested export.
+
 When a new project is initialized from this template:
 
 1. Open `docs/project-vision.md` first.

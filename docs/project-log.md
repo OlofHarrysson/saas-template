@@ -182,3 +182,21 @@ This is not a strict schema. Use whatever shape best preserves useful context.
   needs its own clean install and integration checks before reuse. Provenance
   makes fixes traceable; updates remain deliberate per project. No Nova methodology
   or global preference changes were made in this sprint.
+
+
+### 2026-09-27 — Explicit stack choices and dependency review
+
+- New websites wait for Olof's Next.js/Astro choice unless already agreed.
+  Recorded Electron with Tailwind, daisyUI and a design harness for Mac desktop
+  and menu bar apps. A tested Electron export remains deferred. Python/uv can
+  stand alone for APIs, scripts and custom ML/data work or accompany another app;
+  external AI API calls alone do not require a Python service.
+- Updated the canonical initialize-project skill and its template entry points.
+  Skill structure validation and whitespace checks passed. Reviewed unspecified
+  web, already-selected stack, desktop, standalone/paired Python, docs-only and
+  existing-project scenarios against the instructions. No new runtime scaffolding.
+- Rechecked npm audits for Next.js and Astro references: zero reported
+  vulnerabilities. Exported the Python runtime lock and ran pip-audit: no known
+  vulnerabilities. Healthy reference versions were retained.
+- Reviewed the original ai-girlfriend-content Astro source separately; its
+  dependency fix and validation are recorded in that repository's project log.

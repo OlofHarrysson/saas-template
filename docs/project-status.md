@@ -14,6 +14,11 @@ The existing Next.js app remains intact. Astro has a small maintained reference;
 Python reuses the existing backend without requiring database credentials.
 Desktop/mobile references and automatic updates to existing projects are deferred.
 
+Website initialization asks Olof to choose Next.js or Astro unless already agreed.
+Mac desktop/menu bar apps default to Electron with Tailwind, daisyUI and a design
+harness. Python/uv supports standalone APIs, scripts and ML/data work, or can be
+paired with another app when useful; external API calls alone do not require it.
+
 ## Verification — reference commit `3e13369`
 
 - Fresh Next.js export: clean npm install/audit, lint, production build, five
