@@ -26,7 +26,7 @@ npm run design:report
 
 The capture command runs the desktop (1440 × 900) and mobile (390 × 844)
 profiles. Both use Chromium; the mobile profile does not prove iOS Safari
-behavior. [Testing](testing.md) explains temporary servers and using Devrun.
+behavior. [Testing](testing.md) explains temporary servers and using Terminal Manager.
 
 Each meaningful state writes a named PNG and JSON pair in its test directory
 under `website/test-results/design/` and attaches them to the HTML report in

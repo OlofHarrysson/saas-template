@@ -43,8 +43,8 @@ server, and can use `PLAYWRIGHT_BASE_URL` to inspect an already-running server.
 The visual suite must point to a development server. The production-isolation
 test is skipped when an external server is selected, since its mode is unknown.
 
-Use Devrun for persistent local services on Olof's machine. To capture the
-registered template service after starting it through Devrun:
+Use Terminal Manager for persistent local services on Olof's machine. To capture the
+registered template service after starting it through Terminal Manager:
 
 ```bash
 PLAYWRIGHT_BASE_URL=http://127.0.0.1:3007 npm run design:capture

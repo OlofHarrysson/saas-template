@@ -90,14 +90,24 @@ cd website/backend
 uv run python -m mycode.settings
 ```
 
-Install the test browser once with `npm run playwright:install` from `website/`.
-The [testing guide](../docs/testing.md) owns validation commands, story-driven
-red–green development, temporary test servers, and credentialed auth checks.
+## Local Checks
 
-For visual review, open `/internal/style-guide` in development or run
-`npm run design:capture`. The [visual harness guide](../docs/design-harness.md)
-explains named artifacts, fixtures, and the report. Internal review routes are
-unavailable in production builds.
+Run from `website/` after installing dependencies:
+
+```bash
+npm run playwright:install  # Install the test browser once
+npm run lint
+npm run test:e2e            # Builds and tests with a temporary production server
+npm run design:capture     # Captures desktop/mobile views with a temporary dev server
+```
+
+The test commands own and stop their servers. Default checks do not require live
+provider credentials; the separate `npm run test:e2e:dev` authentication check
+requires a configured development server and Neon/Auth.js credentials.
+
+For visual review, inspect the PNG/JSON files under `test-results/design/` or run
+`npm run design:report` to open the HTML report. In a running development server,
+open `/internal/style-guide`. Internal review routes are unavailable in production.
 
 ## Auth and App Behavior
 

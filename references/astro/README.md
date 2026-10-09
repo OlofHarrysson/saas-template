@@ -10,9 +10,9 @@ npm run build
 npm test
 ```
 
-Use Devrun for interactive `npm run dev` sessions. Playwright owns its finite
+Use Terminal Manager for interactive `npm run dev` sessions. Playwright owns its finite
 test server. The npm scripts opt out of Astro’s automatic agent background mode
-so Devrun and Playwright retain process ownership. Install its browser with `npx playwright install chromium` if needed.
+so Terminal Manager and Playwright retain process ownership. Install its browser with `npx playwright install chromium` if needed.
 Tests intercept analytics locally with a fake key; no events reach PostHog.
 
 Copy `.env.template` to `.env` when configuring a deployment. Analytics requires
