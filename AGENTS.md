@@ -18,7 +18,9 @@ For routine orientation, read `README.md` and `docs/project-status.md`, then
 only the documents relevant to the task. The vision owns durable direction;
 status owns current milestones. Read relevant user stories before changing
 user-facing behavior, `docs/testing.md` for the red–green loop, and `DESIGN.md`
-before visual work. Verify current behavior in source and tests.
+before visual work. Before coding, read [coding conventions](docs/coding-conventions.md)
+and the relevant language guide linked there. Verify current behavior in source
+and tests.
 
 ## Nova AI Consciousness Skill
 
@@ -70,6 +72,8 @@ When a new project is initialized from this template:
    its observable acceptance criteria, and the next checkpoint. Keep near-term
    milestones in `docs/project-status.md` until a separate plan earns its place.
 5. Update the compact context in this file and relevant setup/design defaults.
+   Include the shared coding conventions and guides for the selected languages;
+   adapt their reference-specific paths and framework rules to the new project.
    Remove completed bootstrap instructions in the initialized product; retain
    them while maintaining this reusable template.
 
@@ -89,6 +93,9 @@ points, contributor guidance, and visual intent respectively.
 - `docs/project-status.md`: short current outcome, active milestone, uncertainty, and next checkpoint.
 - `docs/user-stories.md`: important user/operator outcomes, acceptance criteria, and direct evidence links.
 - `docs/application-references.md`: reference selection, exports, provenance and maintenance.
+- [Coding conventions](docs/coding-conventions.md): shared implementation preferences and language-guide selection.
+- [Python conventions](docs/coding-conventions-python.md): Python style, models, configuration and resources.
+- [TypeScript conventions](docs/coding-conventions-typescript.md): TypeScript style and frontend preferences.
 - `docs/testing.md`: red–green workflow, story selection, validation commands, and evidence boundaries.
 - `DESIGN.md`: visual direction, styling ownership, references, and review workflow.
 - `docs/design-harness.md`: development-only style guide, deterministic fixtures, and Playwright capture/review workflow.
@@ -97,53 +104,7 @@ points, contributor guidance, and visual intent respectively.
   acceptance criteria, commands, or component inventories across files.
 - `website/README.md`: app-level setup, runtime, and template notes for the Next.js/Vercel app.
 - `website/backend/README.md`: Python/backend template setup and workflow notes.
-
-## Project Structure & Module Organization
-
-- `website/src/app`: Next.js App Router pages (`(marketing)` and `(app)` route groups).
-- `website/src/app/globals.css`: Tailwind CSS 4 import plus daisyUI 5 theme/config; use this as the primary styling config entrypoint.
-- `website/src/components`: reusable UI components.
-- `website/src/lib`: shared app logic (auth, analytics, SEO, utilities).
-- `website/public`: static files (icons, images, sitemap files).
-- `website/backend/src/mycode`: Python codebase for API modules, scripts, shared models, settings, constants, and infrastructure helpers.
-- `website/backend/src/mycode/models.py`: canonical home for reusable Pydantic models and shared type definitions.
-- `website/backend/src/mycode/constants.py`: stable, code-controlled defaults and invariant values.
-- `website/backend/src/mycode/settings.py`: typed environment configuration and the `.env.template` generator.
-- `website/backend/src/mycode/cache.py`: lazy construction of the shared joblib disk cache.
-- `website/api/index.py`: Vercel Python entrypoint mounting FastAPI at `/python-api`.
-- `website/.env.template` and `website/backend/.env.template`: environment variable templates.
-
-## Tech Stack
-
-The stack and paths below describe the existing Next.js reference in `website/`,
-not a requirement for all new projects. Astro owns its setup in
-`references/astro/README.md`; Python can be exported independently from the backend.
-
-- Frontend: Next.js 16, React 19, TypeScript (strict), Tailwind CSS 4, daisyUI 5.
-- Auth/data integrations: Auth.js v5 (beta), Neon adapter, Resend, PostHog.
-- Backend/runtime: Python 3.12, FastAPI, Uvicorn.
-- Tooling: `uv` for Python env/deps, Ruff + pre-commit hooks, Biome for frontend JS/TS linting.
-- Deployment target: Vercel (Next.js + Python function routing).
-
-## Build and Development Commands
-
-- `cd website && npm run dev`: run frontend locally.
-- `cd website && npm run build`: production build (sitemap generation runs automatically only on Vercel production builds).
-- `cd website && npm run lint`: lint frontend.
-- `cd website && npm run test:e2e`: production smoke and route-isolation checks.
-- `cd website && npm run design:capture`: desktop/mobile rendered evidence from a development server.
-- `cd website/backend && uv sync`: install/sync Python dependencies.
-- `cd website/backend && make start_api`: run FastAPI service on `localhost:8080`.
-- `cd website/backend && uv run python path/to/script.py`: run ad hoc Python scripts.
-
-## Coding Philosophy & Style
-
-- Write the simplest code that works, then refactor when needed.
-- Optimize for rapid iteration and quick feedback loops.
-- Fail fast when assumptions are wrong; avoid unnecessary defensive layers unless explicitly requested.
-- Prefer clear core logic over abstraction-heavy designs.
-- Do not proactively prune unused boilerplate. If a module is not needed now, leave it unless it blocks the requested task.
-- Naming: `PascalCase` for React components/classes, `camelCase` for TS functions/vars, `snake_case` for Python modules/functions.
+- `references/astro/README.md`: Astro setup, checks and reference provenance.
 
 ## Validation & Version Control (Solo)
 
@@ -157,36 +118,15 @@ not a requirement for all new projects. Astro owns its setup in
 - Use short, imperative commit messages (`fix auth callback`, `add survey block`).
 - PR checklist requirements are optional unless collaborating externally.
 
-## Additional Conventions
+## Runtime and Setup
 
-- Documentation lives in the root `docs/` folder.
-- Runtime split: `/api/*` routes are Next.js (TypeScript) and `/python-api/*` routes are FastAPI (Python via Vercel).
-- Command policy: avoid running long-lived commands unless explicitly requested; run short commands directly.
-- Dependency updates: use package manager commands (`npm`, `uv`) instead of manually editing dependency files.
-- Ambiguous phrasing can come from speech-to-text; ask one focused clarification only when needed to unblock.
+The app READMEs own stack details, file maps, setup and development commands:
+[Next.js](website/README.md), [Astro](references/astro/README.md), and
+[Python](website/backend/README.md). The existing Next.js/Vercel reference serves
+TypeScript routes at `/api/*` and Python routes at `/python-api/*`.
 
-## Frontend Conventions
+Avoid long-lived commands unless explicitly requested; run short commands directly.
+Use the shared terminal-hub workflow for persistent local services.
 
-- Prefer daisyUI components before custom Tailwind implementations when both are viable.
-- Keep Tailwind/daisyUI styling config in `website/src/app/globals.css`.
-- Default to the built-in daisyUI `dark` theme unless a project-specific theme decision is documented.
-- Build mobile-first responsive layouts and validate desktop behavior.
-- Use Biome for frontend linting; formatting and import-organizing are intentionally disabled unless the project explicitly opts in.
-- Use Lucide icons instead of inline SVGs.
-- Keep frontend organization shallow (one level of grouping); avoid deep nesting.
-- Token hierarchy: use daisyUI theme values for semantic UI colors and component-system values, Tailwind `@theme` for extra reusable utility tokens, and app-specific CSS variables only for domain/layout-specific values.
-- Prefer daisyUI semantic theme colors (`base-*`, `primary`, `secondary`, `accent`, `*-content`) over custom parallel token systems.
-- Current examples in `globals.css`: Tailwind utility tokens like `font-display`/`shadow-glow`, and app-specific layout tokens like `--app-navbar-height`.
-- Use Zustand for shared global client state when global state is needed.
-
-## Backend Conventions
-
-- Use `pathlib` instead of `os.path`.
-- Use modern Python type hints (`list[int]`, `dict[str, str]`, `X | None`).
-- Prefer namespace imports over direct symbol imports when practical (`import functools` then `functools.cache`).
-- Put reusable Pydantic models and shared type definitions in `mycode/models.py`; import them instead of redefining equivalent local schemas.
-- Put code-controlled defaults, hyperparameters, paths, and invariant values in `mycode/constants.py`. Constants must not read environment variables or perform I/O.
-- Access environment-controlled values through the single `mycode.settings.Settings` model and `get_settings()`, not scattered `os.environ` or `dotenv` calls.
-- Define every settings field with an explicit environment-variable alias and useful description. Regenerate `website/backend/.env.template` with `uv run python -m mycode.settings` after changing the model.
-- Keep resource construction and side effects out of constants and models; for example, cache directory creation belongs in `mycode/cache.py`.
-- Start non-trivial Python modules with a concise module docstring that explains the file's intended responsibility.
+Ambiguous phrasing can come from speech-to-text; ask one focused clarification
+only when needed to unblock.

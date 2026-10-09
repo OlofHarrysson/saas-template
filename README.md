@@ -13,6 +13,7 @@ full Next.js starter remains intact.
 - [Project status](docs/project-status.md): current outcome, milestone, and next checkpoint.
 - [User stories](docs/user-stories.md): observable behavior and acceptance evidence.
 - [Frontend setup](website/README.md) and [Python setup](website/backend/README.md).
+- [Coding conventions](docs/coding-conventions.md): shared preferences and Python/TypeScript guides.
 - [Testing](docs/testing.md): the red–green loop and verification commands.
 - [Design](DESIGN.md) and [visual harness](docs/design-harness.md): visual intent and rendered review.
 
