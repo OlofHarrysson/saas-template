@@ -200,3 +200,38 @@ This is not a strict schema. Use whatever shape best preserves useful context.
   vulnerabilities. Healthy reference versions were retained.
 - Reviewed the original ai-girlfriend-content Astro source separately; its
   dependency fix and validation are recorded in that repository's project log.
+
+### 2026-10-10 — Instruction cleanup and independent setup trial
+
+- Kept the export fix small: app READMEs own usable setup/check commands without
+  depending on optional root docs. Initialization removes links to omitted docs,
+  routes coding preferences to the selected language guides, and keeps personal
+  instructions in global personalization. Renamed active Devrun prose to Terminal
+  Manager; historical entries retain their original wording.
+- An independent subagent followed the initialization skill to create Focus Notes
+  from committed `0629d2e` in `.dogfood/focus-notes/`, excluded locally through
+  `.git/info/exclude`. It adapted product context, stories and a proposed first
+  milestone without claiming that notes, privacy or real login were implemented.
+  No remote was created. The ignored local report is
+  `.dogfood/focus-notes/docs/project-log.md`; raw logs and audit detail are in its
+  `evidence/` directory. Trial code and dependencies are not template files.
+- Installation, lint, builds, five smoke tests and the intercepted analytics test
+  passed; credentialed auth remained skipped. Blank AUTH_SECRET caused two login
+  captures to fail even though smoke assertions passed. A generated local secret
+  resolved those errors and all 12 visual checks passed. Desktop/mobile captures
+  were inspected and test servers stopped. No real provider credentials were used.
+- Clarified the setup working directory, local secret generation, optional Python
+  env setup and sitemap regeneration next to the relevant setup steps. Included
+  the reference analytics check in the standalone app README.
+- Browser download timed out through Playwright's built-in retries; a cached
+  headless browser supported the actual tests. Fresh-machine browser installation
+  remains unverified. The trial also reported React Doctor's deprecated `--diff`
+  option; its successful scan does not establish a new-project score baseline.
+- Npm reported eight affected package entries (one critical, six high, one low),
+  including current Next.js advisories. These include transitive propagation,
+  not eight independent flaws or proof of exploitability. Packages remain unchanged;
+  dependency maintenance is the next checkpoint before deployment.
+- Export isolation and all three references' exported README links passed;
+  initialization-skill validation, active template links and whitespace checks
+  passed. No live auth, email, analytics ingestion, hosting or founder acceptance
+  was established by the local trial.

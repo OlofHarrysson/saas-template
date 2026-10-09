@@ -55,11 +55,16 @@ website/
 
 ## First Setup
 
-1. Create env files.
-   - `cp .env.template .env.local`
-   - `cp backend/.env.template backend/.env`
+Run these steps from `website/`.
+
+1. Copy `.env.template` to `.env.local`. Set `AUTH_SECRET` to a fresh random value
+   generated locally with `openssl rand -base64 32`. No provider account is needed
+   for this value. Leave provider/database keys blank for public-page checks;
+   real sign-in requires the corresponding credentials. Copy
+   `backend/.env.template` to `backend/.env` only if using the Python workspace.
 2. Update core product config in `src/app/site-config.ts`.
-3. Set the real domain in `next-sitemap.config.js`.
+3. Set the real domain in `next-sitemap.config.js`. After a local production build,
+   run `npm run sitemap` to refresh the generated sitemap and robots files.
 4. Replace landing page placeholder copy in `src/app/(marketing)/page.tsx`.
 5. Replace placeholder brand text in `src/components/Navbar.tsx`.
 
@@ -98,6 +103,7 @@ Run from `website/` after installing dependencies:
 npm run playwright:install  # Install the test browser once
 npm run lint
 npm run test:e2e            # Builds and tests with a temporary production server
+npm run test:reference      # Checks a PostHog pageview with intercepted requests
 npm run design:capture     # Captures desktop/mobile views with a temporary dev server
 ```
 
