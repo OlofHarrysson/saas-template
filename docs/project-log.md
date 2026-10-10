@@ -352,3 +352,41 @@ This is not a command log, strict changelog, or replacement for git. The structu
   captures, local trial commits, dependencies and throwaway secrets in those
   directories were deleted; earlier references to those artifacts are historical.
   No application code or global configuration changed during cleanup.
+
+### 2026-10-10 — Product identity on domains and subdomains
+
+- Added homepage-only WebSite JSON-LD to both web references, using each product's
+  name and exact configured hostname. Next.js keeps its existing site-config.ts;
+  Astro now has src/site-config.ts, which also supplies astro.config.mjs `site`.
+  Application-name and Open Graph site-name use the same identity. No package added.
+- Next.js homepage/about now set their own canonical metadata; its SEO helper
+  uses each page's canonical path for Open Graph URLs and respects page-specific
+  title/description. Existing privacy/terms canonical paths remain. The root layout
+  has no inherited homepage canonical. Astro derives canonical/social URLs from
+  the page path and production site, excluding query parameters.
+- Kept JSON-LD serialized and escaped for inline HTML. React's string script
+  children preserve valid JSON without a dangerous-HTML prop or lint suppression.
+  Docs explain production host configuration, optional www, independent product
+  naming, and Google's control over final search appearance. Added US-006.
+- Red: new tests failed against missing canonical/site metadata (two Next.js,
+  four Astro viewport cases). Green: Next.js lint/build plus nine browser checks
+  passed, one credentialed-auth skip; Astro check/build and eight browser checks
+  passed. Assertions follow Next.js and Astro's emitted trailing-slash conventions.
+  React Doctor changed-source scan reported no new findings; export isolation and
+  all 85 local doc links/anchors passed.
+- Fresh exports of `7067eb3` independently installed and built with
+  `mytool.example.com` and a name containing closing-script/HTML-like characters.
+  Four Next.js identity/crawl checks and eight Astro checks passed. Direct parsing
+  of both built homepage HTML files confirmed one valid escaped WebSite node with
+  the exact configured name and subdomain. A first Next.js test fixture omitted
+  AUTH_URL and logged UntrustedHost; following the documented env-template setup
+  with the local test origin removed those errors on the final passing run.
+- Removed both temporary exports after review and confirmed ports 3001/3197 stopped.
+  Command logs are temporary `/tmp/saas-identity-*.log` artifacts; this entry retains
+  the durable findings. Live providers, deployment, Google indexing/site-name choice,
+  and a fresh browser download were not tested. Default visible layout is unchanged.
+- Sources: https://developers.google.com/search/docs/appearance/site-names,
+  https://nextjs.org/docs/app/guides/json-ld,
+  https://react.dev/reference/react-dom/components/script,
+  https://docs.astro.build/en/reference/configuration-reference/#site,
+  https://docs.astro.build/en/reference/api-reference/#astrosite.
