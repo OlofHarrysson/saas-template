@@ -235,3 +235,30 @@ This is not a strict schema. Use whatever shape best preserves useful context.
   initialization-skill validation, active template links and whitespace checks
   passed. No live auth, email, analytics ingestion, hosting or founder acceptance
   was established by the local trial.
+
+### 2026-10-10 — Update vulnerable Next.js dependencies
+
+- Updated Next.js 16.3.4 → 16.4.0, PostHog JS 1.427.2 → 1.438.7 and PostCSS
+  8.5.28 → 8.5.29 through npm. Refreshed affected transitive packages including
+  Sharp 0.35.5, DOMPurify 3.4.16 and source-map-js 1.2.2. React, Auth.js,
+  TypeScript and Playwright stayed on their existing versions; no app code changed.
+- Current registry/official advisory review confirmed the Next.js patch path.
+  Npm audit moved from eight affected entries (one critical) to four high entries,
+  all from `next-sitemap → fast-glob → micromatch → braces`. The braces advisory
+  GHSA-vfj7-8cjw-p6xm has no patched release. Npm's force option proposes an older
+  next-sitemap 4.0.9; retained current 4.2.3 without overrides or suppression.
+  Inspection found its glob call in static-export sitemap processing, a mode this
+  template does not enable. This bounds observed use; it does not make the package patched.
+- Fresh export of `753824f` at `.dogfood/dependency-check/`: npm ci, lint,
+  production builds, five smoke tests, one intercepted analytics test, all 12
+  visual checks and explicit sitemap generation passed. Credentialed auth skipped.
+  Inspected desktop homepage/mobile login captures; all 13 diagnostics were clean.
+  Sitemap XML parsed and excluded internal review routes. No test-port listeners remained.
+- React Doctor scanned matching clean source snapshots (55 files each): 54/100
+  before and after, same ten existing findings. Scanning the working checkout's
+  generated builds/Python environment produced unrelated noise, so that score was
+  not used for the comparison. No diagnostics were suppressed or unrelated code changed.
+- Audit JSON, command logs and comparison scans are retained under ignored
+  `.dogfood/dependency-check/evidence/`; screenshot artifacts stay in the export.
+  Used a new local auth secret and cached browser. No live credentials, providers,
+  hosting, Python or Astro runtime were exercised or changed.
