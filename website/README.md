@@ -13,7 +13,7 @@ Default behavior: keep optional boilerplate in place and ignore unused parts unl
 - Auth.js v5 (beta) with Google OAuth + Resend magic-link login
 - Neon adapter for Auth.js session/user storage
 - PostHog client + server utilities with proxy rewrites
-- SEO helper and sitemap generation
+- SEO helper and built-in Next.js sitemap/robots routes
 - FastAPI backend (Python 3.12) for API endpoints and scripts
 - Vercel Python routing via `/python-api/*`
 
@@ -28,6 +28,8 @@ website/
       api/auth/[...nextauth]/      # Auth.js route handlers
       layout.tsx                   # Root layout + SessionProvider
       site-config.ts               # Global app metadata/config
+      sitemap.ts                   # Explicit public-page list for /sitemap.xml
+      robots.ts                    # Crawl rules and sitemap URL for /robots.txt
     components/                    # UI components (navbar, footer, auth forms)
     lib/
       auth/                        # Auth.js config + server/client auth helpers
@@ -35,7 +37,7 @@ website/
       navigation.ts                # Marketing/app nav definitions
       seo.ts                       # Metadata helper
     instrumentation-client.ts      # Client-side PostHog init
-  public/                          # Static assets + sitemap output
+  public/                          # Static assets
   api/index.py                     # Vercel Python entrypoint, mounts FastAPI at /python-api
   backend/
     src/mycode/api/                # FastAPI app and local server bootstrap
@@ -49,7 +51,6 @@ website/
   .env.template                    # Frontend env template
   backend/.env.template            # Backend env template
   next.config.ts                   # PostHog proxy rewrites
-  next-sitemap.config.js           # Sitemap config
   vercel.json                      # /python-api rewrite -> /api/index.py
 ```
 
@@ -62,9 +63,9 @@ Run these steps from `website/`.
    for this value. Leave provider/database keys blank for public-page checks;
    real sign-in requires the corresponding credentials. Copy
    `backend/.env.template` to `backend/.env` only if using the Python workspace.
-2. Update core product config in `src/app/site-config.ts`.
-3. Set the real domain in `next-sitemap.config.js`. After a local production build,
-   run `npm run sitemap` to refresh the generated sitemap and robots files.
+2. Update core product config in `src/app/site-config.ts`, including `domain`.
+3. Review the public-page list in `src/app/sitemap.ts` and the crawl rules in
+   `src/app/robots.ts`. Next.js serves both through the normal build and runtime.
 4. Replace landing page placeholder copy in `src/app/(marketing)/page.tsx`.
 5. Replace placeholder brand text in `src/components/Navbar.tsx`.
 
@@ -135,7 +136,11 @@ open `/internal/style-guide`. Internal review routes are unavailable in producti
 - Server PostHog helper: `src/lib/posthog/posthog-server.ts`
 - Proxy rewrites for PostHog: `next.config.ts` (`/improve-now/*`)
 - SEO metadata utility: `src/lib/seo.ts`
-- Sitemap generation runs automatically only for Vercel production builds. Use `npm run sitemap` after a local build when you want to refresh generated sitemap files explicitly.
+- `src/app/sitemap.ts` serves `/sitemap.xml`; `src/app/robots.ts` serves `/robots.txt`.
+  Both use `siteConfig.domain`, matching the SEO metadata origin. Add or remove
+  public pages in the sitemap's explicit list as the product changes. Private,
+  login, API and internal routes are omitted from that list; omission is not access
+  control. No separate generator command or checked-in sitemap output is needed.
 
 For founder browser testing, visit any page with `?analytics=off` once in each browser. PostHog stores the opt-out choice in a cookie shared across subdomains using the same consent name. New apex domains and browsers need their own visit; clearing cookies resets the choice.
 

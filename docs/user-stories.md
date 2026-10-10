@@ -86,3 +86,19 @@ supports docs-only, partial/no docs and opt-in additions to existing/forked proj
 Support: [catalogue](application-references.md),
 [export isolation tests](../tests/test_export_reference.py), reference-specific
 checks linked by the catalogue, and [current verification](project-status.md).
+
+## US-005 — Publish crawl metadata from one domain setting
+
+As a maintainer, I can configure the product domain once and serve a sitemap and
+robots file through Next.js without a separate generation step.
+
+Acceptance:
+
+- `/sitemap.xml` lists the homepage, about, privacy and terms pages using
+  `siteConfig.domain`; private, login, API and internal routes are omitted.
+- `/robots.txt` allows crawling and points to that sitemap on the same domain.
+- A normal production build serves both files without checked-in generated XML
+  or a post-build script. Adding a public page requires updating the explicit list.
+
+Support: [crawl metadata tests](../website/tests/e2e/crawl-metadata.spec.ts).
+Learning: valid crawl metadata does not prove search-engine indexing or traffic.
