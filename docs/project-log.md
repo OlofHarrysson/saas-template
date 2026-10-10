@@ -333,3 +333,22 @@ This is not a command log, strict changelog, or replacement for git. The structu
   change was needed. Trial evidence remains in its own docs/project-log.md and
   ignored evidence/ directory. This validates the tested Next.js initialization
   path locally, not every stack, live integration or a complete product.
+
+### 2026-10-10 — Final review and throwaway cleanup
+
+- Reviewed Pocket List once more before removal: all 15 Markdown documents / 57
+  local links and anchors passed; repeated lint and production build passed;
+  seven browser checks passed and credentialed auth remained intentionally skipped.
+  Rechecked prior analytics/visual result logs and confirmed no new blocking issue.
+- Reviewed provenance, Git state and relevant notes across all six trial folders.
+  The ten staged sitemap changes in dependency-scan-after already matched the
+  source template; no unique implementation fix remained to recover.
+- With Olof's authorization, removed `/Users/olof/git/saas-template-docs-trial`
+  and `.dogfood/{focus-notes,dependency-baseline,dependency-check,
+  dependency-scan-after,native-sitemap}`, then removed the empty `.dogfood/`
+  directory and its local Git exclusion. Verified all six paths are absent and
+  no listeners remain on test ports 3001/3198.
+- Findings and validation summaries remain in this log. Raw logs, generated
+  captures, local trial commits, dependencies and throwaway secrets in those
+  directories were deleted; earlier references to those artifacts are historical.
+  No application code or global configuration changed during cleanup.

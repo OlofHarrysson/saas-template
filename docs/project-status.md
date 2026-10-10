@@ -30,9 +30,11 @@ stack paths were inherited, and application source matches the export.
 
 Fresh installation, lint, production build, seven browser checks, one intercepted
 analytics check and 12 visual checks passed. The credentialed auth check was
-skipped as requested. No blocking setup defect was found; no provider, remote or
-persistent server was configured. Detailed evidence lives in the trial's own log
-and ignored `evidence/` folder; the template log records the result.
+skipped as requested. No blocking setup defect was found. A final review repeated
+the documentation, lint, build and seven browser checks successfully. At Olof's
+request, the trial and five older throwaway snapshots were then removed, including
+their raw logs and screenshots. The [project log](project-log.md) preserves the
+findings and validation summaries. No test servers remain running.
 
 ## Sitemap migration verification — reference commit `c3e3e07`
 
