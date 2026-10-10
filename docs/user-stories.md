@@ -102,3 +102,23 @@ Acceptance:
 
 Support: [crawl metadata tests](../website/tests/e2e/crawl-metadata.spec.ts).
 Learning: valid crawl metadata does not prove search-engine indexing or traffic.
+
+## US-006 — Give each product its own site identity
+
+As a maintainer, I can set a product name, description and hostname once in either
+web reference so a product on a subdomain describes itself consistently.
+
+Acceptance:
+
+- The homepage publishes one `WebSite` JSON-LD node with the product name and
+  canonical homepage URL, using the configured host exactly.
+- Application-name and Open Graph site-name metadata use that product name.
+- Each public page's canonical and Open Graph URLs retain its own path on the
+  configured host, without tracking query parameters or a preview-server origin.
+- The same configuration works for a root domain and a product subdomain; `www`
+  is included only when configured. The parent site's brand is not inferred.
+
+Support: [Next.js identity checks](../website/tests/e2e/site-identity.spec.ts) and
+[Astro identity checks](../references/astro/tests/site-identity.spec.ts).
+Learning: this declares the preferred identity; Google's displayed site name and
+indexing require separate live evidence after deployment.

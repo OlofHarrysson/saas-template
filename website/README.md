@@ -63,7 +63,9 @@ Run these steps from `website/`.
    for this value. Leave provider/database keys blank for public-page checks;
    real sign-in requires the [auth setup](#auth-and-app-behavior) below.
 2. Update core product config in `src/app/site-config.ts`, including `domain`
-   (hostname only, without `https://` or a trailing slash).
+   (hostname only, without `https://` or a trailing slash). For a subdomain product,
+   use its name and exact host, for example `My Tool` and `mytool.madebyolof.com`.
+   Include `www` only if it belongs to the actual deployed hostname.
 3. Review the public-page list in `src/app/sitemap.ts` and the crawl rules in
    `src/app/robots.ts`. Next.js serves both through the normal build and runtime.
 4. Replace landing page placeholder copy in `src/app/(marketing)/page.tsx`.
@@ -140,6 +142,12 @@ server on port 3007 first; this command does not start or stop it.
   Keep it blank for local checks. The reference test supplies a fake key and
   intercepts its requests; Astro has different analytics gating.
 - SEO metadata utility: `src/lib/seo.ts`
+- The homepage renders `WebSite` JSON-LD from `siteConfig.name` and `domain`.
+  Application-name and Open Graph site-name use the same product identity.
+  Public pages pass their own `canonicalUrlRelative` to `getSEOTags`; use this
+  pattern for new pages so canonical and Open Graph URLs keep the correct path.
+  Keep the homepage canonical in its page metadata rather than the root layout,
+  where other pages could inherit it.
 - `src/app/sitemap.ts` serves `/sitemap.xml`; `src/app/robots.ts` serves `/robots.txt`.
   Both use `siteConfig.domain`, matching the SEO metadata origin. Add or remove
   public pages in the sitemap's explicit list as the product changes. Private,
@@ -147,6 +155,11 @@ server on port 3007 first; this command does not start or stop it.
   control. No separate generator command or checked-in sitemap output is needed.
 
 For founder browser testing, visit any page with `?analytics=off` once in each browser. PostHog stores the opt-out choice in a cookie shared across subdomains using the same consent name. New apex domains and browsers need their own visit; clearing cookies resets the choice.
+
+Set the public production hostname even when testing locally or on a preview.
+Keep visible product branding consistent with the configured name. Google supports
+site names at the domain/subdomain level and uses homepage markup as a preference,
+not a guaranteed display: [site-name guidance](https://developers.google.com/search/docs/appearance/site-names).
 
 ## Python API Shape
 

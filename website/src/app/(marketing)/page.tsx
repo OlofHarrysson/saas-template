@@ -1,9 +1,22 @@
 import Link from "next/link";
+import { getSEOTags } from "@/lib/seo";
 import { siteConfig } from "../site-config";
+
+export const metadata = getSEOTags({ canonicalUrlRelative: "/" });
+
+const websiteStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteConfig.name,
+  url: `https://${siteConfig.domain}/`,
+};
 
 export default function Home() {
   return (
     <div className="flex w-full flex-col items-center justify-center">
+      <script type="application/ld+json">
+        {JSON.stringify(websiteStructuredData).replace(/</g, "\\u003c")}
+      </script>
       <section className="hero min-h-[85vh] w-full bg-base-100 px-4 py-16 sm:px-8">
         <div className="hero-content w-full max-w-[var(--marketing-content-max-width)] flex-col gap-10 text-center">
           <div className="badge badge-primary badge-outline badge-lg px-4 py-4">

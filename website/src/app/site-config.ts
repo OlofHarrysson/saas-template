@@ -7,7 +7,8 @@ export const siteConfig = {
   // Add default keywords relevant to the whole site
   seo_keywords: ["Your keywords"],
 
-  // REQUIRED (no https://, not trialing slash at the end, including www.)
+  // Production hostname, including the product subdomain when applicable.
+  // No protocol or path; do not add www unless it is part of the deployed host.
   domain: "www.yourdomain.com",
 
   auth: {

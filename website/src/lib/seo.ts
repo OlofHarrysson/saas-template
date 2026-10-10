@@ -41,10 +41,10 @@ export function getSEOTags({
 
     // Open Graph
     openGraph: {
-      title: openGraph?.title || siteConfig.name,
-      description: openGraph?.description || siteConfig.description,
+      title: openGraph?.title || title || siteConfig.name,
+      description: openGraph?.description || description || siteConfig.description,
       siteName: siteConfig.name,
-      url: baseUrl, // Only affects the render, not the link
+      url: new URL(canonicalUrlRelative || "/", baseUrl),
       locale: "en_US",
       type: "website",
     },

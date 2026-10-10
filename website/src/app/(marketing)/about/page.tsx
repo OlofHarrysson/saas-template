@@ -1,13 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
-import type { Metadata } from "next";
+import { getSEOTags } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = getSEOTags({
   title: "About",
   description:
     "Meet Olof Harrysson, an AI developer turned indie maker building digital products that solve real problems.",
-};
+  canonicalUrlRelative: "/about",
+});
 
 export default function AboutPage() {
   return (

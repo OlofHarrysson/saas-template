@@ -11,6 +11,10 @@ Run from this directory (`website/` after export):
 npm ci
 ```
 
+Set `name`, `description` and `domain` in `src/site-config.ts`. Use the product's
+exact production host, for example `mytool.madebyolof.com`, without a protocol or
+path. Include `www` only when it is part of that host.
+
 Adapt `src/pages/index.astro` and `about.astro` for the product's content,
 `src/layouts/Layout.astro` for the shared page shell and metadata, and
 `src/styles/global.css` for styling. `astro.config.mjs` owns the build configuration.
@@ -31,6 +35,19 @@ npm test
 
 Playwright owns and stops its temporary test server.
 Tests intercept analytics locally with a fake key; no events reach PostHog.
+
+## Site identity
+
+`astro.config.mjs` derives Astro's `site` URL from the shared domain setting.
+`Layout.astro` uses it for each page's canonical and Open Graph URLs, without
+query parameters. It also publishes application-name, Open Graph site-name and
+homepage-only `WebSite` JSON-LD from the product configuration. Pass a page title
+and optional description to the layout; the homepage uses the configured defaults.
+
+Keep the production hostname in config for local and preview builds too, and keep
+visible branding consistent with the product name. This works for root domains
+and subdomains. Google chooses the final displayed name:
+[site-name guidance](https://developers.google.com/search/docs/appearance/site-names).
 
 ## Analytics
 

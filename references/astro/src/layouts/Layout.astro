@@ -1,15 +1,37 @@
 ---
 import '../styles/global.css';
-interface Props { title: string }
-const { title } = Astro.props;
+import { siteConfig } from '../site-config';
+
+interface Props { title?: string; description?: string }
+const { title = siteConfig.name, description = siteConfig.description } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const websiteStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: siteConfig.name,
+  url: new URL('/', Astro.site).href,
+};
 ---
 <!doctype html>
 <html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="A small website starting point." />
+    <meta name="description" content={description} />
+    <meta name="application-name" content={siteConfig.name} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
     <title>{title}</title>
+    {Astro.url.pathname === '/' && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(websiteStructuredData).replace(/</g, '\\u003c')}
+      />
+    )}
   </head>
   <body class="min-h-screen bg-base-100 text-base-content">
     <slot />
