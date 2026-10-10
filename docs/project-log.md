@@ -262,3 +262,29 @@ This is not a strict schema. Use whatever shape best preserves useful context.
   `.dogfood/dependency-check/evidence/`; screenshot artifacts stay in the export.
   Used a new local auth secret and cached browser. No live credentials, providers,
   hosting, Python or Astro runtime were exercised or changed.
+
+### 2026-10-10 — Built-in sitemap and robots routes
+
+- Replaced next-sitemap with Next.js metadata routes: `src/app/sitemap.ts` lists
+  four public pages and `src/app/robots.ts` permits crawling and advertises the
+  sitemap. Both use siteConfig.domain, matching SEO metadata. New public pages
+  must be added explicitly; no automatic route scanner or invented lastmod values.
+- Removed next-sitemap, its configuration, Vercel-only postbuild wrapper, npm
+  generator commands and checked-in robots/XML output. Npm removed 22 packages;
+  both the working install and fresh export audit report zero vulnerabilities.
+- Added US-005 and two real endpoint checks. Red runs against the previous export
+  failed as intended: sitemapindex versus urlset, and robots' apex domain versus
+  siteConfig's www domain. After implementation, all seven production tests
+  passed (one credentialed auth skip), plus the intercepted analytics check.
+- Fresh export of `c3e3e07` under `.dogfood/native-sitemap/` independently passed
+  npm ci, lint, build and the two crawl-metadata checks. Test-owned servers stopped.
+  React Doctor on the source snapshot stayed at 54/100 with ten existing findings.
+  UI was unchanged; visual captures were not repeated. No live provider or deployment test.
+- Updated setup documentation to use one domain setting and explain the explicit
+  page list. Current project status is compact; earlier results remain in this log.
+- Olof raised a possible small shared sitemap tool for Next.js/Astro. This remains
+  an idea, not an implemented or published package. Astro's official sitemap
+  integration already discovers statically generated routes, while dynamic SSR
+  URLs need explicit input. A useful prototype needs a concrete failure case and
+  agreed URL-discovery scope before taking on framework adapters.
+  Reference: https://docs.astro.build/en/guides/integrations-guide/sitemap/
