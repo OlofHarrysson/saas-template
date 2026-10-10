@@ -20,7 +20,21 @@ commands. Next.js-only harness instructions are scoped explicitly; Astro and
 Python READMEs remain usable after export. Auth setup includes the required
 database schema. React Doctor uses current CLI flags and one shared skill file.
 
-## Latest runtime verification — reference commit `c3e3e07`
+## Latest initialization trial — source commit `17d8278`
+
+A separate agent created `/Users/olof/git/saas-template-docs-trial` as a local-only
+Pocket List example (local commit `7985d5b`). Its 15 Markdown documents distinguish
+planned product behavior from the retained starter. Independent review confirmed
+all 57 local links/anchors resolve, no template maintenance history or obsolete
+stack paths were inherited, and application source matches the export.
+
+Fresh installation, lint, production build, seven browser checks, one intercepted
+analytics check and 12 visual checks passed. The credentialed auth check was
+skipped as requested. No blocking setup defect was found; no provider, remote or
+persistent server was configured. Detailed evidence lives in the trial's own log
+and ignored `evidence/` folder; the template log records the result.
+
+## Sitemap migration verification — reference commit `c3e3e07`
 
 - The two new crawl-metadata tests first failed against the old output: the
   sitemap was an index and robots used a different domain from the SEO config.
@@ -45,8 +59,9 @@ privacy guarantees or product usefulness.
 
 ## Next checkpoint
 
-Use the initializer on a real product and validate the integrations it actually
-needs. A separate shared sitemap tool is an idea for later scoping; no package
+Use the reviewed setup on the next real project and bring back concrete friction.
+No additional documentation or setup tooling is needed from this trial.
+A separate shared sitemap tool is an idea for later scoping; no package
 or Astro migration is underway. Identify a concrete failing scenario before
 adding another generator to maintain.
 

@@ -306,3 +306,30 @@ This is not a command log, strict changelog, or replacement for git. The structu
   Confirmed current React Doctor flags using its CLI help. No runtime tests were
   repeated for this documentation-only pass. Live auth and deployment remain
   unverified; existing dated runtime evidence remains separate in project status.
+
+### 2026-10-10 — Fresh documentation initialization trial
+
+- At Olof's request, repeated setup with a separate agent and the current
+  initialize-project skill. Created `/Users/olof/git/saas-template-docs-trial`
+  from committed `17d8278`, with Pocket List as a hypothetical reading-list brief.
+  This is one disposable local repository, committed as `7985d5b`, with no remote.
+  Live authentication was explicitly excluded; no reading-list features were built.
+- Adapted 15 Markdown documents, including short project instructions, vision,
+  status, planned stories, conventions, testing, design, a new log and handoff.
+  Kept starter test IDs distinct from product stories, omitted Astro/export
+  maintenance instructions, and kept placeholder branding and capability explicit.
+- Fresh npm ci and lint passed with zero audit findings. Production build and
+  seven browser checks passed, with one intended auth skip; the intercepted
+  analytics check and all 12 visual checks passed. The agent inspected desktop
+  homepage/mobile navigation captures. Cached Chromium was used; fresh browser
+  download and optional Python installation were not tested.
+- Parent review independently checked all 57 local links/anchors and read the
+  project context, scope, stories, testing, design, handoff and actual result logs.
+  Compared all 94 exported app files to source: 93 match byte-for-byte; only the
+  app README introduction was adapted to identify the disposable scaffold.
+  Confirmed a clean local working tree, no remote, only env templates tracked,
+  and no remaining listeners on test ports 3001/3198.
+- No blocking setup or documentation defect was found; no source code or skill
+  change was needed. Trial evidence remains in its own docs/project-log.md and
+  ignored evidence/ directory. This validates the tested Next.js initialization
+  path locally, not every stack, live integration or a complete product.
