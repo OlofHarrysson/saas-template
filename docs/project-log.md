@@ -390,3 +390,14 @@ This is not a command log, strict changelog, or replacement for git. The structu
   https://react.dev/reference/react-dom/components/script,
   https://docs.astro.build/en/reference/configuration-reference/#site,
   https://docs.astro.build/en/reference/api-reference/#astrosite.
+
+### 2026-10-10 — Content selection in the design workflow
+
+- DESIGN.md points to global personalization for portable UI preferences; each
+  product keeps its own visual direction, content decisions and review evidence.
+- The workflow now selects content before arranging it and reviews the rendered
+  page against the original user task, including removing unsupported additions
+  while preserving useful content, direct actions and necessary feedback.
+- Validation: checked changed documentation links and consistency with global
+  personalization and the frontend-design workflow; git diff --check passed.
+  Documentation-only change; no application behavior or runtime tests changed.
