@@ -1,4 +1,4 @@
-# SaaS Boilerplate (AI Operator README)
+# Next.js reference
 
 This template is designed for fast MVP shipping. Treat it as a starting point, not a fixed product.
 Default behavior: keep optional boilerplate in place and ignore unused parts unless removal is explicitly requested.
@@ -61,40 +61,29 @@ Run these steps from `website/`.
 1. Copy `.env.template` to `.env.local`. Set `AUTH_SECRET` to a fresh random value
    generated locally with `openssl rand -base64 32`. No provider account is needed
    for this value. Leave provider/database keys blank for public-page checks;
-   real sign-in requires the corresponding credentials. Copy
-   `backend/.env.template` to `backend/.env` only if using the Python workspace.
-2. Update core product config in `src/app/site-config.ts`, including `domain`.
+   real sign-in requires the [auth setup](#auth-and-app-behavior) below.
+2. Update core product config in `src/app/site-config.ts`, including `domain`
+   (hostname only, without `https://` or a trailing slash).
 3. Review the public-page list in `src/app/sitemap.ts` and the crawl rules in
    `src/app/robots.ts`. Next.js serves both through the normal build and runtime.
 4. Replace landing page placeholder copy in `src/app/(marketing)/page.tsx`.
-5. Replace placeholder brand text in `src/components/Navbar.tsx`.
+5. Update navigation in `src/lib/navigation.ts` and the placeholder brand text
+   in `src/components/Navbar.tsx`. Adapt dashboard/settings when building the app.
 
 ## Local Development
 
-Frontend:
+Run from `website/` after first setup:
 
 ```bash
-cd website
-npm install
+npm ci
 npm run dev
 ```
 
 `next dev` uses `.next`, while `next build` writes to `.next-build` so local production builds do not interfere with a running dev server.
 
-Backend (FastAPI on `localhost:8080`):
-
-```bash
-cd website/backend
-uv sync
-make start_api
-```
-
-After changing backend environment settings, regenerate the documented template:
-
-```bash
-cd website/backend
-uv run python -m mycode.settings
-```
+Use Terminal Manager for persistent local services on Olof's machine. The
+optional [Python workspace](backend/README.md) owns its setup and API commands;
+frontend installation does not require Python.
 
 ## Local Checks
 
@@ -118,6 +107,14 @@ open `/internal/style-guide`. Internal review routes are unavailable in producti
 
 ## Auth and App Behavior
 
+For real sign-in, provision a Neon database, set `DATABASE_URL`, and apply the
+[Auth.js Neon adapter schema](https://authjs.dev/getting-started/adapters/neon#schema).
+This reference does not create the auth tables automatically. Set `AUTH_URL` to
+the actual app origin, including the local port. Configure Google credentials
+and its `/api/auth/callback/google` redirect URL, and/or `AUTH_RESEND_KEY` and
+`AUTH_RESEND_FROM` for the providers the product will use. Review enabled providers
+in `auth.config.ts`; the starter displays both.
+
 - Auth route: `src/app/api/auth/[...nextauth]/route.ts`
 - Auth config: `src/lib/auth/auth.config.ts`
 - Session helper: `src/lib/auth/server.ts`
@@ -130,11 +127,18 @@ open `/internal/style-guide`. Internal review routes are unavailable in producti
   - Redirects through Auth.js so the normal `authjs.session-token` cookie is set
   - Use `GET /api/dev-auth/login?redirect=/p/dashboard` to enter the authenticated app locally
 
+The development harness needs the same auth tables and writes a test user/session.
+Use a development database. For `npm run test:e2e:dev`, start the configured dev
+server on port 3007 first; this command does not start or stop it.
+
 ## Analytics and SEO
 
 - Client PostHog bootstrap: `src/instrumentation-client.ts`
 - Server PostHog helper: `src/lib/posthog/posthog-server.ts`
 - Proxy rewrites for PostHog: `next.config.ts` (`/improve-now/*`)
+- A non-empty `NEXT_PUBLIC_POSTHOG_KEY` initializes the client in development too.
+  Keep it blank for local checks. The reference test supplies a fake key and
+  intercepts its requests; Astro has different analytics gating.
 - SEO metadata utility: `src/lib/seo.ts`
 - `src/app/sitemap.ts` serves `/sitemap.xml`; `src/app/robots.ts` serves `/robots.txt`.
   Both use `siteConfig.domain`, matching the SEO metadata origin. Add or remove
@@ -163,17 +167,3 @@ On Vercel, the same app is served under `/python-api/*` through:
 - `src/app/(marketing)/page.tsx` contains placeholder sections and text.
 - `src/app/(app)/p/settings/page.tsx` contains placeholder account settings.
 - `src/components/InlineSurvey.tsx` has an empty `SURVEY_ID`.
-
-## AI Editing Guidance
-
-- Prefer smallest reversible edits.
-- Leave unused scaffolding untouched by default; ignore it unless the task requires it.
-- Do not remove template sections unless explicitly asked, or unless they block the requested change.
-- Example: do not delete the authentication system only because the current feature does not use auth yet.
-- Start productization in this order:
-  1. `src/app/site-config.ts`
-  2. `src/app/(marketing)/page.tsx`
-  3. `src/lib/navigation.ts`
-  4. `src/components/Navbar.tsx`
-  5. `src/app/(app)/p/dashboard/page.tsx`
-- After edits, verify `/, /login, /p/dashboard` and run lint.

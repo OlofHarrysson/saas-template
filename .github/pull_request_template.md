@@ -1,4 +1,7 @@
-## Describe your changes
+## Change
 
-## Submitters checklist
-- [ ] I have performed a self-review of my code
+<!-- Explain the problem and resulting behavior. -->
+
+## Validation
+
+<!-- Record checks run, relevant evidence, and any material unverified behavior. -->

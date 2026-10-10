@@ -1,6 +1,6 @@
 # Repository Guidelines
 
-## Active Project Context (Tier 1 Memory)
+## Active Project Context
 
 - This repository is Olof's reusable SaaS template: a documentation foundation
   plus maintained Next.js, Astro and Python application references.

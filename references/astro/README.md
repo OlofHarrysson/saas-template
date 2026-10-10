@@ -3,17 +3,36 @@
 Small static website with TypeScript, Tailwind 4, daisyUI's dark theme and optional
 PostHog pageviews. Node 22.19+ is required.
 
+## Setup
+
+Run from this directory (`website/` after export):
+
 ```sh
 npm ci
+```
+
+Adapt `src/pages/index.astro` and `about.astro` for the product's content,
+`src/layouts/Layout.astro` for the shared page shell and metadata, and
+`src/styles/global.css` for styling. `astro.config.mjs` owns the build configuration.
+This reference has no auth, Python service or sitemap generator configured.
+
+Use Terminal Manager for interactive `npm run dev` sessions. The npm scripts opt
+out of Astro's automatic agent background mode so Terminal Manager and Playwright
+retain process ownership.
+
+## Checks
+
+```sh
+npx playwright install chromium  # Once per machine
 npm run check
 npm run build
 npm test
 ```
 
-Use Terminal Manager for interactive `npm run dev` sessions. Playwright owns its finite
-test server. The npm scripts opt out of Astro’s automatic agent background mode
-so Terminal Manager and Playwright retain process ownership. Install its browser with `npx playwright install chromium` if needed.
+Playwright owns and stops its temporary test server.
 Tests intercept analytics locally with a fake key; no events reach PostHog.
+
+## Analytics
 
 Copy `.env.template` to `.env` when configuring a deployment. Analytics requires
 a production build, a public project key and `PUBLIC_ANALYTICS_ENABLED=true`.
@@ -43,5 +62,6 @@ No CMS, content, secrets, admin routes or deployment account is copied.
 Astro was advanced from the source's 7.2.4 to patched 7.2.8 because of
 [GHSA-26w7-cxv4-gfx2](https://github.com/advisories/GHSA-26w7-cxv4-gfx2).
 This is now a maintained reference, not an automatically synced copy of the product.
-The package lock owns exact versions. See the parent template catalogue for
-verification dates and limitations.
+The package lock owns exact versions. `template-source.json` in an exported
+project records which template revision supplied the app. Run the checks above
+in the new project; previous template results do not verify its deployment.

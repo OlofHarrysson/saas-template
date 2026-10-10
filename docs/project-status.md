@@ -13,9 +13,14 @@ The Next.js reference uses Next.js 16.4.0 and built-in `sitemap.ts` / `robots.ts
 routes. SEO metadata and crawl metadata share `siteConfig.domain`. The sitemap
 contains an explicit list of public pages; update that list when pages change.
 The external generator, post-build step and checked-in sitemap output are removed.
-Current Next.js npm audit reports zero vulnerabilities.
+The 10 October Next.js npm audit reported zero vulnerabilities.
 
-## Latest verification — reference commit `c3e3e07`
+Documentation now separates shared working guidance from each app's setup and
+commands. Next.js-only harness instructions are scoped explicitly; Astro and
+Python READMEs remain usable after export. Auth setup includes the required
+database schema. React Doctor uses current CLI flags and one shared skill file.
+
+## Latest runtime verification — reference commit `c3e3e07`
 
 - The two new crawl-metadata tests first failed against the old output: the
   sitemap was an index and robots used a different domain from the SEO config.

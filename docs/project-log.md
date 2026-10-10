@@ -11,15 +11,6 @@ duplicating active work. Read the whole file only for an explicit retrospective.
 
 This is not a command log, strict changelog, or replacement for git. The structure is flexible. Add a dated section for a new branch or substantial shift in work. While that work is active, update the same section. Once it is complete, leave the entry as history and add a newer note if understanding changes later.
 
-## Example Entry
-
-This is not a strict schema. Use whatever shape best preserves useful context.
-
-### 2026-04-24 - Bootstrap project memory
-
-- Branch: `main`
-- Notes: Save the important context here: what changed, why it matters, what was decided, what was tried, what worked or failed, and what future work should remember.
-
 ## Entries
 
 ### 2026-04-23 - Frontend tooling and template UI refresh
@@ -288,3 +279,30 @@ This is not a strict schema. Use whatever shape best preserves useful context.
   URLs need explicit input. A useful prototype needs a concrete failure case and
   agreed URL-discovery scope before taking on framework adapters.
   Reference: https://docs.astro.build/en/guides/integrations-guide/sitemap/
+
+### 2026-10-10 — Documentation ownership and setup review
+
+- Reviewed all 19 tracked Markdown entries against app configs, source and test
+  commands; inspected historical log structure and recent entries selectively.
+  Kept the existing document layout and language guides. Root README is a shorter
+  entry point; AGENTS owns the full map, app READMEs own setup/check commands, and
+  shared testing/design docs describe the applicable workflow for each stack.
+- Removed repeated Next.js editing rules, the old Tier 1 Memory label, speculative
+  named desktop/mobile sources (including Nova), the log's sample historical entry,
+  and design-harness expansion suggestions. Preserved completed history. New
+  projects are told to start their own log and adapt only relevant guides.
+- Added the missing Auth.js Neon schema prerequisite and actual-origin/port setup,
+  checked against the official adapter docs and local auth implementation. Clarified
+  that Next.js analytics initializes in development when a key is present. Astro
+  now has setup/adaptation pointers; Python has self-contained credential-free
+  check commands. No schema, provider or application behavior changed.
+- Updated React Doctor from deprecated --diff to --scope changed with an explicit
+  base, narrowed invocation to React work, and documented comparable scan inputs.
+  Claude's skill entry is a relative symlink to the canonical .agents skill.
+  Replaced the PR template's generic self-review checkbox with change/validation prompts.
+- Validation: all 82 local Markdown links and heading anchors resolve, all three
+  application READMEs stay within their exported app for local links, both skill
+  entry paths pass quick_validate, the alias resolves, and git diff --check passes.
+  Confirmed current React Doctor flags using its CLI help. No runtime tests were
+  repeated for this documentation-only pass. Live auth and deployment remain
+  unverified; existing dated runtime evidence remains separate in project status.

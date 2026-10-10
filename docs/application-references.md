@@ -76,7 +76,7 @@ project. Create real project repositories directly under `/Users/olof/git/`.
   No database or running server is needed for scripts.
 - Export isolation: `python3 -m unittest discover -s tests` from this repository.
 
-Verification for this first catalogue is recorded in [project status](project-status.md)
+Current verification is summarized in [project status](project-status.md)
 and [the log](project-log.md). A local check does not validate live authentication,
 email, PostHog ingestion, hosting, or a new product's usefulness.
 
@@ -92,9 +92,6 @@ and review each fix before applying it. There is no automatic propagation.
 
 ## Later references
 
-Desktop: assess Rocket or Thread Launcher for the agreed Electron stack when a
-desktop project needs a start. Verify Tailwind/daisyUI and design-harness coverage
-before treating either product as a reusable reference.
-Mobile: assess Glow Radar and Nova's Expo apps when needed; their dependency
-versions and native integrations differ. Neither is certified by this sprint.
-New stacks are added on real demand, not as empty template folders.
+Desktop and mobile have no maintained exports yet. Select and validate a source
+when a real project needs one; add new stacks on demand rather than creating
+empty template folders.

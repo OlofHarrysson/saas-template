@@ -1,6 +1,6 @@
 # Visual harness
 
-The app's production components, a development-only style guide, and Playwright
+The Next.js reference's production components, development-only style guide, and Playwright
 provide a small rendered-review loop. [DESIGN.md](../DESIGN.md) owns visual intent;
 this guide owns how to inspect the implementation.
 
@@ -59,16 +59,3 @@ baselines. Passing captures do not establish visual quality.
   physical device when its behavior matters to the product.
 
 The test suite owns the current capture inventory; avoid a second coverage table.
-
-## Evolution
-
-This starting point adapts the component-fixture and PNG/JSON evidence pattern
-developed in Guilty Pleasure AI. Its source repository, `ai-girlfriend-content`,
-has a broader system documented in `docs/design-harness.md` and
-`docs/component-visual-testing.md`; it is a reference, not a runtime dependency.
-
-Extend this harness after repeated product work exposes a gap. A searchable
-catalog may help when components become hard to find; geometry reports may help
-when screenshots repeatedly leave a layout question unresolved. Neither is
-required for the current capture/review loop. Keep reports advisory and reserve
-test failures for accepted behavioral contracts and execution errors.

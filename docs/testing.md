@@ -21,19 +21,15 @@ If a red check is impractical, record why and what evidence was used instead.
 
 Use the same sequence for backend, CLI, and data behavior. Choose tests at the
 narrowest responsible boundary; ordinary technical contracts do not need a
-story ID or a browser. Add a backend test suite when behavior requires it,
-rather than copying frontend test machinery into Python.
+story ID or a browser.
 
-## Frontend commands
+## Next.js checks
 
-Run from `website/` after [setup](../website/README.md#first-setup):
+The [Next.js README](../website/README.md#local-checks) owns setup and commands.
+Run from `website/`; select one story when useful:
 
 ```bash
-npm run lint
-npm run test:e2e
 npm run test:e2e -- --grep @US-001
-npm run design:capture
-npm run design:report
 ```
 
 `test:e2e` builds and starts a temporary production server. `design:capture`
@@ -66,18 +62,18 @@ do not depend on a provider or database. That fixture is not auth verification.
 
 ## Python checks
 
-Run from `website/backend/`:
-
-```bash
-uv sync --locked
-uv run python -m unittest discover -s tests
-make lint
-```
+The [Python README](../website/backend/README.md#checks) owns setup and commands.
+Run them from `website/backend/`, or `python/` in a standalone export.
 
 For API changes, verify `/`, `/health`, and the changed endpoints, alongside
 focused tests for the changed behavior. Pure tests should use fixtures or fakes
-without credentials; real integrations are separate boundary checks. The starter tests exercise credential-free settings and `/`, `/health`, and
-`/items` through the ASGI application without a running server.
+without credentials; real integrations are separate boundary checks.
+
+## Astro checks
+
+Use the [Astro README](../references/astro/README.md#checks) for type/build checks,
+desktop/mobile browser tests and the separate analytics modes. The Next.js style
+guide, development-auth harness and `design:capture` command do not exist in Astro.
 
 ## Evidence and closeout
 

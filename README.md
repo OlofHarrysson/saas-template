@@ -1,21 +1,15 @@
 # SaaS template
 
 A shared documentation foundation and runnable application references for Next.js,
-Astro and Python. Choose documentation and application independently. The existing
-full Next.js starter remains intact.
+Astro and Python. Choose documentation and application independently.
 
 ## Start here
 
 - [Application references](docs/application-references.md): choose, export, verify and maintain a starting point.
 - [Initialize Project skill](/Users/olof/git/codex-config/skills/custom/initialize-project/SKILL.md): canonical setup workflow, maintained in codex-config.
-
-- [Project vision](docs/project-vision.md): the problem, audience, MVP, and risks.
 - [Project status](docs/project-status.md): current outcome, milestone, and next checkpoint.
-- [User stories](docs/user-stories.md): observable behavior and acceptance evidence.
-- [Frontend setup](website/README.md) and [Python setup](website/backend/README.md).
-- [Coding conventions](docs/coding-conventions.md): shared preferences and Python/TypeScript guides.
-- [Testing](docs/testing.md): the red–green loop and verification commands.
-- [Design](DESIGN.md) and [visual harness](docs/design-harness.md): visual intent and rendered review.
+- App setup: [Next.js](website/README.md), [Astro](references/astro/README.md),
+  or [Python](website/backend/README.md).
 
 [AGENTS.md](AGENTS.md) owns the complete documentation map and contributor
 instructions. Read relevant current documents first; search the
@@ -33,9 +27,11 @@ command, which records the source revision and excludes uncommitted local data.
 
 Fill the useful parts of the vision, replace the template status and example
 stories with the first product outcome, and update the compact context in
-`AGENTS.md`. Leave unknowns explicit. Keep audience in the vision and near-term
-milestones in project status until either needs more space.
+`AGENTS.md`. Start a new project log with the initialization evidence; keep this
+template's maintenance history here. Include only relevant language and design
+guides, adapting paths and links to the chosen stack. Leave unknowns explicit.
+Keep audience in the vision and near-term milestones in project status.
 
-The visual harness uses the app's existing components and Playwright. It adds
+The Next.js visual harness uses the app's existing components and Playwright. It adds
 no separate component framework. Start with the included page captures and
 route-state fixture, then add evidence when real product behavior needs it.

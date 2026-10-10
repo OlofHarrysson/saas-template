@@ -1,32 +1,25 @@
 ---
 name: react-doctor
-description: Use when finishing a feature, fixing a bug, before committing React code, or when the user wants to improve code quality or clean up a codebase. Checks for score regression. Covers lint, dead code, accessibility, bundle size, architecture diagnostics.
-version: "1.0.0"
+description: Check React changes for new static-analysis findings, or run a requested React code-quality audit. Use after React implementation changes; documentation-only edits do not need a scan.
 ---
 
 # React Doctor
 
-Scans React codebases for security, performance, correctness, and architecture issues. Outputs a 0–100 health score.
-
-## After making React code changes:
-
-Run `npx -y react-doctor@latest . --verbose --diff` and check the score did not regress.
-
-If the score dropped, fix the regressions before committing.
-
-## For general cleanup or code improvement:
-
-Run `npx -y react-doctor@latest . --verbose` (without `--diff`) to scan the full codebase. Fix issues by severity — errors first, then warnings.
-
-## Command
+Run from the React application's directory (`website/` in this repository).
+For uncommitted changes on the current branch:
 
 ```bash
-npx -y react-doctor@latest . --verbose --diff
+npx -y react-doctor@latest . --verbose --scope changed --base HEAD --include-untracked
 ```
 
-| Flag        | Purpose                                       |
-| ----------- | --------------------------------------------- |
-| `.`         | Scan current directory                        |
-| `--verbose` | Show affected files and line numbers per rule |
-| `--diff`    | Only scan changed files vs base branch        |
-| `--score`   | Output only the numeric score                 |
+For committed work, choose the commit before the change as `--base`. The changed
+scope reports new issues relative to that revision; fix regressions introduced
+by the work before committing. Check the reported files and skipped diagnostics
+before treating an empty result as a pass.
+
+For a requested full audit, use `--scope full`. Compare scores only across the
+same source scope and tool version. Generated build output, Python environments,
+and unrelated work can distort a whole-checkout scan; use clean source snapshots
+when needed. A partial or changed-scope score is not a full-project baseline.
+Report existing findings separately from regressions; keep unrelated cleanup
+within the agreed scope. Do not suppress rules just to improve the score.

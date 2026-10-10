@@ -4,7 +4,7 @@ Use this file at the start of a project to capture the idea, intended direction,
 
 This is a planning document, not a contract. It is expected to be incomplete, speculative, and partly wrong early on.
 
-After bootstrap, copy only the few most decision-relevant points from this file into `AGENTS.md` under `Active Project Context (Tier 1 Memory)`.
+After bootstrap, copy only the few most decision-relevant points from this file into `AGENTS.md` under `Active Project Context`.
 
 How to use it:
 
@@ -18,7 +18,6 @@ How to use it:
 - Project name: `TBD`
 - One-line idea: `TBD`
 - Why this matters: `TBD`
-- Current status: `Idea` / `Exploring` / `Building` / `Testing`
 
 ## Vision
 

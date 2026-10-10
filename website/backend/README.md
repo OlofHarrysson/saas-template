@@ -1,4 +1,4 @@
-# Python Backend
+# Python workspace
 
 FastAPI backend and reusable Python workspace for API endpoints, scripts, data preparation, and exploratory work.
 
@@ -15,13 +15,11 @@ src/mycode/
   utils/                Logger, argument parsing, and script template
 ```
 
-Use `models.py` and `constants.py` as the canonical shared locations instead of redefining equivalent schemas or configuration beside individual features. Keep environment reads in `settings.py` and resource initialization in the module that owns the resource.
-
 ## Setup
 
 ```bash
 # Run inside the directory containing pyproject.toml.
-uv sync
+uv sync --locked
 cp .env.template .env
 ```
 
@@ -72,3 +70,15 @@ pre-commit remain in the local development group.
 `export_api_requirements` needs the full Next.js starter's sibling `api/`
 directory. Hook commands need a Git repository and its own pre-commit config;
 neither is required for a standalone Python workspace.
+
+## Checks
+
+Run from the directory containing `pyproject.toml`:
+
+```bash
+uv run python -m unittest discover -s tests
+make lint
+```
+
+The starter tests cover optional settings and the sample API through its ASGI
+application. They need no credentials, database or running server.
