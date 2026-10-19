@@ -154,7 +154,7 @@ server on port 3007 first; this command does not start or stop it.
   login, API and internal routes are omitted from that list; omission is not access
   control. No separate generator command or checked-in sitemap output is needed.
 
-For founder browser testing, visit any page with `?analytics=off` once in each browser. PostHog stores the opt-out choice in a cookie shared across subdomains using the same consent name. New apex domains and browsers need their own visit; clearing cookies resets the choice.
+For founder browser testing, visit any page with `?analytics=off` once in each browser. PostHog stores `olof_analytics_consent=0` in a cookie shared across sibling subdomains using this convention, even when they use different PostHog project keys. Other URL parameters and fragments are preserved. New apex domains and browser profiles need their own setup visit; cookie expiry or clearing site data resets the choice. Delete this cookie to resume tracking. Both maintained web references include this setup; existing projects need to adopt it separately. This stops future browser events and replays, not historical data or server events.
 
 Set the public production hostname even when testing locally or on a preview.
 Keep visible product branding consistent with the configured name. Google supports

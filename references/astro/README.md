@@ -82,3 +82,14 @@ This is now a maintained reference, not an automatically synced copy of the prod
 The package lock owns exact versions. `template-source.json` in an exported
 project records which template revision supplied the app. Run the checks above
 in the new project; previous template results do not verify its deployment.
+
+## Exclude founder browser visits
+
+With production analytics enabled, visit any page with `?analytics=off` once in
+each browser profile. The SDK persists `olof_analytics_consent=0` as a shared
+parent-domain cookie, using the same convention as the Next.js reference. Other
+URL parameters and fragments remain intact. Future sibling subdomains using
+either reference honor the cookie; unrelated domains require their own setup
+visit. New profiles, private sessions, cookie expiry and cleared site data require
+opting out again. Delete this cookie to resume tracking. This affects future
+browser events and replays, not historical data or server events.

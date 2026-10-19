@@ -122,3 +122,19 @@ Support: [Next.js identity checks](../website/tests/e2e/site-identity.spec.ts) a
 [Astro identity checks](../references/astro/tests/site-identity.spec.ts).
 Learning: this declares the preferred identity; Google's displayed site name and
 indexing require separate live evidence after deployment.
+
+## US-007 — Keep founder visits out of analytics
+
+As a maintainer, I can opt out a browser once so routine use and agent checks do
+not inflate visitor metrics.
+
+Acceptance:
+
+- Both web references persist `?analytics=off` in the same parent-domain cookie.
+- Opt-out takes effect on the setup page, survives navigation and reload, and
+  preserves other URL parameters and fragments.
+- Participating sibling subdomains honor it; other domains and browser profiles
+  remain independent. Ordinary visitors continue to send pageviews.
+
+Support: [Next.js analytics tests](../website/tests/reference/analytics.spec.ts)
+and [Astro starter tests](../references/astro/tests/starter.spec.ts).

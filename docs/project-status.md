@@ -1,6 +1,15 @@
 # Project status
 
-10 October 2026.
+19 October 2026.
+
+## Browser analytics exclusion
+
+Both web references now persist `?analytics=off` in the shared
+`olof_analytics_consent` parent-domain cookie before automatic capture. Setup
+preserves other URL parameters and fragments. Next.js reference browser tests
+passed (2); Astro enabled-analytics desktop/mobile tests passed (10). Fresh
+exports still need validation against the final committed revision.
+Application READMEs own setup, cookie scope and reset instructions.
 
 ## Current outcome
 

@@ -14,9 +14,12 @@ if (posthogKey && typeof window !== "undefined") {
     opt_out_capturing_persistence_type: "cookie",
     consent_persistence_name: "olof_analytics_consent",
     cross_subdomain_cookie: true,
+    loaded(client) {
+      if (!optOutNow) return;
+      client.opt_out_capturing();
+      const url = new URL(window.location.href);
+      url.searchParams.delete("analytics");
+      window.history.replaceState(window.history.state, "", url);
+    },
   });
-  if (optOutNow) {
-    posthog.opt_out_capturing();
-    window.history.replaceState(null, "", window.location.pathname + window.location.hash);
-  }
 }

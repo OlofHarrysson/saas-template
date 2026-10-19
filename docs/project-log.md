@@ -401,3 +401,24 @@ This is not a command log, strict changelog, or replacement for git. The structu
 - Validation: checked changed documentation links and consistency with global
   personalization and the frontend-design workflow; git diff --check passed.
   Documentation-only change; no application behavior or runtime tests changed.
+
+### 2026-10-19 — Persistent founder browser opt-out
+
+- Both web references share the `olof_analytics_consent` cookie convention, using
+  cookie consent persistence and parent-domain scope. `?analytics=off` is applied
+  in the SDK loaded callback before automatic pageviews, including a browser
+  previously opted in. Only the analytics parameter is removed from the URL.
+- Astro previously skipped initialization for that URL only and did not persist
+  the preference. Next.js previously removed all query parameters and applied
+  opt-out after initialization. Normal visitor capture settings are preserved.
+- Red evidence: an isolated real-SDK browser check of the original Astro entry
+  could not observe an initialized opted-out SDK on the setup page. After the
+  change, the same checks passed for both references and the portfolio, Wrapped
+  and Looper integrations, including prior opt-in, reload, sibling subdomain,
+  cookie persistence and retained URL state. No production analytics was sent.
+- Next.js lint and both reference browser tests passed. Astro check/build and
+  ten enabled-analytics desktop/mobile tests passed. Maintained regression tests
+  cover setup and subsequent navigation; US-007 owns the operator outcome.
+- Browser profiles and unrelated domains need separate enrollment. Server events
+  and historical analytics remain outside browser opt-out. Fresh-export evidence
+  will be recorded after the code checkpoint.

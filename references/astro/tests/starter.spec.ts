@@ -48,3 +48,26 @@ test('analytics obeys deployment gate and sends actual pageview payloads', async
     expect(requests).toEqual([]);
   }
 });
+
+
+test('founder opt-out survives navigation and preserves other URL parameters', async ({ page, context }) => {
+  test.skip(process.env.REFERENCE_ANALYTICS_MODE !== 'enabled', 'Requires enabled analytics build');
+  const captures: string[] = [];
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, 'webdriver', { get: () => false });
+    Object.defineProperty(navigator, 'userAgentData', { get: () => undefined });
+  });
+  await page.route(/https:\/\/[^/]*posthog\.com\//, async route => {
+    if (/\/(e|s)\//.test(new URL(route.request().url()).pathname)) captures.push(route.request().url());
+    await route.fulfill({ status: 200, contentType: 'application/json', body: '{}' });
+  });
+  await page.goto('/?analytics=off&keep=value#details');
+  await expect(page).toHaveURL(/\/\?keep=value#details$/);
+  expect(await context.cookies()).toEqual(expect.arrayContaining([
+    expect.objectContaining({ name: 'olof_analytics_consent', value: '0' }),
+  ]));
+  await page.goto('/about');
+  await page.reload();
+  await page.waitForTimeout(1500);
+  expect(captures).toEqual([]);
+});
