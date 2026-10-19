@@ -8,7 +8,8 @@ Both web references now persist `?analytics=off` in the shared
 `olof_analytics_consent` parent-domain cookie before automatic capture. Setup
 preserves other URL parameters and fragments. Next.js reference browser tests
 passed (2); Astro enabled-analytics desktop/mobile tests passed (10). Fresh
-exports still need validation against the final committed revision.
+exports of `36eaf6e` passed the same checks: Next.js with a clean npm install,
+Astro with the existing dependency installation. Export isolation also passed.
 Application READMEs own setup, cookie scope and reset instructions.
 
 ## Current outcome

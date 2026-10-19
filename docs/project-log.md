@@ -420,5 +420,11 @@ This is not a command log, strict changelog, or replacement for git. The structu
   ten enabled-analytics desktop/mobile tests passed. Maintained regression tests
   cover setup and subsequent navigation; US-007 owns the operator outcome.
 - Browser profiles and unrelated domains need separate enrollment. Server events
-  and historical analytics remain outside browser opt-out. Fresh-export evidence
-  will be recorded after the code checkpoint.
+  and historical analytics remain outside browser opt-out. Fresh exports of `36eaf6e`
+  passed both Next.js analytics checks and all ten Astro checks. Next.js used a
+  clean npm install (zero audit findings); Astro reused installed dependencies.
+  The initial Next.js dependency symlink was rejected by Turbopack; installing
+  normally resolved it. Setting the documented fixture AUTH_URL and a synthetic
+  AUTH_SECRET removed unrelated authentication warnings on the final run. Export
+  isolation passed. No live credentials, analytics ingestion or deployment were
+  exercised.
