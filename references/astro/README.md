@@ -93,3 +93,16 @@ either reference honor the cookie; unrelated domains require their own setup
 visit. New profiles, private sessions, cookie expiry and cleared site data require
 opting out again. Delete this cookie to resume tracking. This affects future
 browser events and replays, not historical data or server events.
+
+## Footer and maker credit
+
+The shared layout includes `Footer.astro`: product home link, navigation and the
+Made by Olof wordmark with portrait. Set `showMakerCredit: false` in
+`src/site-config.ts` to omit the credit. Use the footer's default slot for the
+project's real navigation; add policy links when those pages exist.
+
+`MadeByOlofWordmark.astro` can also be imported on its own; `showTagline` defaults
+to false and `href` defaults to the portfolio. It inherits text color for light
+and dark themes and uses bundled portrait/Lora assets without an external font
+request or JavaScript. Keep `public/branding/made-by-olof/` with the component.
+The lettering and portrait treatment come from Bluesky Wrapped.

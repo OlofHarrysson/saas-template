@@ -1,0 +1,17 @@
+---
+import MadeByOlofWordmark from './MadeByOlofWordmark.astro';
+import { siteConfig } from '../site-config';
+---
+<footer class="site-footer">
+  <a class="site-name" href="/">{siteConfig.name}</a>
+  <nav aria-label="Footer"><slot><a href="/about">About</a></slot></nav>
+  {siteConfig.showMakerCredit && <MadeByOlofWordmark />}
+</footer>
+<style>
+  .site-footer { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; max-width: 72rem; margin-inline: auto; padding: 2rem 1.5rem; border-top: 1px solid var(--color-base-300); }
+  .site-name { font-weight: 600; }
+  nav { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-right: auto; }
+  nav :global(a), .site-name { display: inline-flex; align-items: center; min-height: 44px; }
+  nav :global(a:hover) { text-decoration: underline; text-underline-offset: 4px; }
+  @media (max-width: 480px) { nav { flex-basis: 100%; order: 3; } }
+</style>

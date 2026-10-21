@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Footer from '../components/Footer.astro';
 import { siteConfig } from '../site-config';
 
 interface Props { title?: string; description?: string }
@@ -35,6 +36,7 @@ const websiteStructuredData = {
   </head>
   <body class="min-h-screen bg-base-100 text-base-content">
     <slot />
+    <Footer />
     <script>import '../scripts/analytics';</script>
   </body>
 </html>

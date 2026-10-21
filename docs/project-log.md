@@ -428,3 +428,17 @@ This is not a command log, strict changelog, or replacement for git. The structu
   AUTH_SECRET removed unrelated authentication warnings on the final run. Export
   isolation passed. No live credentials, analytics ingestion or deployment were
   exercised.
+
+### 2026-10-21 — Reusable Astro footer and maker wordmark
+
+- Added a compact shared footer with product home link, an About navigation slot
+  and the Made by Olof wordmark/portrait ported from Bluesky Wrapped.
+  `showMakerCredit` toggles it; the component can also be used independently.
+  Bundled licensed Lora font and portrait; inherited color supports light/dark.
+- Design guidance now selects intended feeling and visual references before
+  page styling, and reviews one representative page before expanding.
+- Astro check/build passed. Existing browser suite: eight passes, two
+  analytics-mode skips. Temporary visual review checks passed on desktop/mobile
+  with loaded portrait and correct portfolio link; screenshots inspected under
+  `.local/maker-footer/`. No new implementation-mirroring regression test.
+- Next.js is unchanged. No persistent test server or deployment.

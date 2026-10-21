@@ -1,6 +1,14 @@
 # Project status
 
-19 October 2026.
+21 October 2026.
+
+## Astro footer and visual direction
+
+The Astro reference now includes a shared footer and configurable Made by Olof
+wordmark with portrait. Component usage lives in its README. Design guidance
+chooses the product direction before page styling. Astro check/build and eight
+existing browser tests passed (two analytics-mode skips); desktop/mobile footer
+captures were inspected. Next.js remains unchanged.
 
 ## Browser analytics exclusion
 

@@ -8,8 +8,13 @@ review evidence rather than copying those preferences into each project.
 ## Starting direction
 
 The web references use daisyUI's built-in dark theme and responsive layouts;
-Next.js also loads Inter. These are working defaults; set the product's visual
-direction when its audience and purpose are known.
+Next.js also loads Inter. These are working defaults, not the product identity.
+Before styling the first page, choose the intended feeling and a small set of
+visual references with Olof (or reuse direction already agreed in conversation).
+Record what to borrow: typography, palette, density, composition and imagery.
+Apply those choices to one representative page and inspect it before expanding
+the site. Scaffolding can happen first; a generic starter should not silently
+become the finished design.
 
 - Intended tone and audience needs: `TBD` in the [vision](docs/project-vision.md).
 - Selected visual references: `TBD`. For each retained reference, state which
@@ -48,3 +53,11 @@ direction when its audience and purpose are known.
 Keep fixtures and checks proportional to the product. Named states and real-page
 captures are the starting evidence; new measurement or catalog tooling needs a
 repeated review problem to solve.
+
+## Astro footer
+
+`Footer.astro` supplies a compact product link, navigation and optional maker
+identity. The Made by Olof credit follows the Bluesky Wrapped lettering/portrait
+reference, inherits the surrounding color and omits the tagline by default.
+Use the component in the page shell; customize navigation to actual pages.
+This is reusable structure, not a prescribed product palette or composition.
